@@ -1,0 +1,51 @@
+package eu.pintergabor.oredetector.tag;
+
+import eu.pintergabor.oredetector.util.ModIdentifier;
+
+import net.minecraft.block.Block;
+import net.minecraft.registry.RegistryKeys;
+import net.minecraft.registry.tag.TagKey;
+import net.minecraft.util.Identifier;
+
+public class ModBlockTags {
+	private ModBlockTags() {
+	}
+
+	public static TagKey<Block> AIR;
+	public static TagKey<Block> WATER;
+	public static TagKey<Block> LAVA;
+	public static TagKey<Block> COAL;
+	public static TagKey<Block> COPPER;
+	public static TagKey<Block> IRON;
+	public static TagKey<Block> GOLD;
+	public static TagKey<Block> REDSTONE;
+	public static TagKey<Block> LAPIS;
+	public static TagKey<Block> DIAMOND;
+	public static TagKey<Block> EMERALD;
+	public static TagKey<Block> NETHER;
+
+	@SuppressWarnings("unused")
+	private static TagKey<Block> createBlockTag(String name) {
+		return TagKey.of(RegistryKeys.BLOCK, new ModIdentifier(name));
+	}
+
+	@SuppressWarnings("unused")
+	private static TagKey<Block> createCommonBlockTag(String name) {
+		return TagKey.of(RegistryKeys.BLOCK, new Identifier("c", name));
+	}
+
+	public static void register() {
+		AIR = createBlockTag("air");
+		WATER = createBlockTag("water");
+		LAVA = createBlockTag("lava");
+		COAL = createBlockTag("coal");
+		COPPER = createBlockTag("copper");
+		IRON = createBlockTag("iron");
+		GOLD = createBlockTag("gold");
+		REDSTONE = createBlockTag("redstone");
+		LAPIS = createBlockTag("lapis");
+		DIAMOND = createBlockTag("diamond");
+		EMERALD = createBlockTag("emerald");
+		NETHER = createBlockTag("nether");
+	}
+}

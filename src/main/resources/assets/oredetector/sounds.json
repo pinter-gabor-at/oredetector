@@ -1,0 +1,128 @@
+{
+	"detector_3bangs0": {
+		"subtitle": "sounds.oredetector.3bangs",
+		"sounds": [
+			"oredetector:3bangs0"
+		]
+	},
+	"detector_3bangs1": {
+		"subtitle": "sounds.oredetector.3bangs",
+		"sounds": [
+			"oredetector:3bangs1"
+		]
+	},
+	"detector_3bangs2": {
+		"subtitle": "sounds.oredetector.3bangs",
+		"sounds": [
+			"oredetector:3bangs2"
+		]
+	},
+	"detector_3bangs3": {
+		"subtitle": "sounds.oredetector.3bangs",
+		"sounds": [
+			"oredetector:3bangs3"
+		]
+	},
+	"detector_3bangs4": {
+		"subtitle": "sounds.oredetector.3bangs",
+		"sounds": [
+			"oredetector:3bangs4"
+		]
+	},
+	"detector_3echos00": {
+		"subtitle": "sounds.oredetector.3echos00",
+		"sounds": [
+			"oredetector:3echos00"
+		]
+	},
+	"detector_3echos01": {
+		"subtitle": "sounds.oredetector.3echos01",
+		"sounds": [
+			"oredetector:3echos01"
+		]
+	},
+	"detector_3echos02": {
+		"subtitle": "sounds.oredetector.3echos02",
+		"sounds": [
+			"oredetector:3echos02"
+		]
+	},
+	"detector_3echos03": {
+		"subtitle": "sounds.oredetector.3echos03",
+		"sounds": [
+			"oredetector:3echos03"
+		]
+	},
+	"detector_3echos04": {
+		"subtitle": "sounds.oredetector.3echos04",
+		"sounds": [
+			"oredetector:3echos04"
+		]
+	},
+	"detector_3echos05": {
+		"subtitle": "sounds.oredetector.3echos05",
+		"sounds": [
+			"oredetector:3echos05"
+		]
+	},
+	"detector_3echos06": {
+		"subtitle": "sounds.oredetector.3echos06",
+		"sounds": [
+			"oredetector:3echos06"
+		]
+	},
+	"detector_3echos07": {
+		"subtitle": "sounds.oredetector.3echos07",
+		"sounds": [
+			"oredetector:3echos07"
+		]
+	},
+	"detector_3echos08": {
+		"subtitle": "sounds.oredetector.3echos08",
+		"sounds": [
+			"oredetector:3echos08"
+		]
+	},
+	"detector_3echos09": {
+		"subtitle": "sounds.oredetector.3echos09",
+		"sounds": [
+			"oredetector:3echos09"
+		]
+	},
+	"detector_3echos10": {
+		"subtitle": "sounds.oredetector.3echos10",
+		"sounds": [
+			"oredetector:3echos10"
+		]
+	},
+	"detector_3echos11": {
+		"subtitle": "sounds.oredetector.3echos11",
+		"sounds": [
+			"oredetector:3echos11"
+		]
+	},
+	"detector_3echos12": {
+		"subtitle": "sounds.oredetector.3echos12",
+		"sounds": [
+			"oredetector:3echos12"
+		]
+	},
+	"detector_3echos13": {
+		"subtitle": "sounds.oredetector.3echos13",
+		"sounds": [
+			"oredetector:3echos13"
+		]
+	},
+	"detector_3echos14": {
+		"subtitle": "sounds.oredetector.3echos14",
+		"sounds": [
+			"oredetector:3echos14"
+		]
+	},
+	"detector_3echos15": {
+		"subtitle": "sounds.oredetector.3echos15",
+		"sounds": [
+			"oredetector:3echos15"
+		]
+	}
+}
