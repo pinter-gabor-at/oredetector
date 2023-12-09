@@ -1,0 +1,43 @@
+{
+	"schemaVersion": 1,
+	"id": "oredetector",
+	"version": "${version}",
+	"name": "Balanced Ore Detector",
+	"description": "Tools to help detecting ores underground.",
+	"authors": [
+		"Pintér Gábor <pinter.gabor@gmx.at>"
+	],
+	"contact": {
+		"homepage": "https://pintergabor.eu/en/minecraft/mods/oredetector",
+		"sources": "https://gitlab.com/pintergabor/oredetector"
+	},
+	"license": "MIT",
+	"icon": "icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"eu.pintergabor.oredetector.Mod"
+		],
+		"client": [
+			"eu.pintergabor.oredetector.ModClient"
+		],
+		"modmenu": [
+			"eu.pintergabor.oredetector.config.ModMenu"
+		],
+		"fabric-datagen": [
+			"eu.pintergabor.oredetector.Datagen"
+		]
+	},
+	"mixins": [
+		"mixins.json"
+	],
+	"depends": {
+		"fabricloader": ">=0.15.0",
+		"minecraft": "~1.20.4",
+		"java": ">=17",
+		"fabric-api": "*"
+	},
+	"suggests": {
+		"modmenu": ">=8"
+	}
+}

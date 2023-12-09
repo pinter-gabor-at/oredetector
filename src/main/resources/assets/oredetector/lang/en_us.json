@@ -1,0 +1,7 @@
+{
+	"text.autoconfig.oredetector.title": "Balanced Ore Detector Options",
+	"text.autoconfig.oredetector.option.enableSignTextFormatting": "Enable Sign Text Formatting",
+	"text.autoconfig.oredetector.option.enableSignTextFormatting.@Tooltip": "It has no effect on existing signs",
+	"text.autoconfig.oredetector.option.enableFormattingKey": "Enable inserting the formatting prefix by pressing Ctrl+[",
+	"text.autoconfig.oredetector.option.enableFormattingKey.@Tooltip": "Only for nerds!!!"
+}
