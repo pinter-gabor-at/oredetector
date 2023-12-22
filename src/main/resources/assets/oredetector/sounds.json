@@ -14,7 +14,7 @@
 	"detector_3echos01": {
 		"subtitle": "sounds.oredetector.3echos01",
 		"sounds": [
-			"oredetector:3echos1"
+			"oredetector:3echos01"
 		]
 	},
 	"detector_3echos02": {

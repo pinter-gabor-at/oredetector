@@ -1,7 +1,8 @@
 package eu.pintergabor.oredetector.item;
 
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Direction;
+import eu.pintergabor.oredetector.config.ModConfig;
+
+import net.minecraft.block.BlockState;
 
 public class DiamondDetector extends AbstractOreDetector {
 	public DiamondDetector(Settings settings) {
@@ -9,9 +10,13 @@ public class DiamondDetector extends AbstractOreDetector {
 	}
 
 	@Override
-	protected boolean isDetectable(BlockPos pos, Direction facing) {
-		distance = 0;
-		type = 0;
-		return false;
+	protected int detect(BlockState blockState) {
+		return -1;
+	}
+
+	@Override
+	protected int getRange() {
+		final var config = ModConfig.getInstance();
+		return config.rangeDiamondDetector;
 	}
 }

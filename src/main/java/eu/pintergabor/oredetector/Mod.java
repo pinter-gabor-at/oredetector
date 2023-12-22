@@ -2,7 +2,6 @@ package eu.pintergabor.oredetector;
 
 import eu.pintergabor.oredetector.config.ModConfig;
 import eu.pintergabor.oredetector.item.ModItems;
-import eu.pintergabor.oredetector.main.ServerTick;
 import eu.pintergabor.oredetector.sound.ModSounds;
 import eu.pintergabor.oredetector.tag.ModBlockTags;
 
@@ -19,7 +18,5 @@ public class Mod implements ModInitializer {
 		ModBlockTags.register();
 		// Register sounds
 		ModSounds.register();
-		// Register tick
-		ServerTick.register();
 	}
 }

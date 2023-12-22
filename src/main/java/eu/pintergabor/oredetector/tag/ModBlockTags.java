@@ -1,7 +1,5 @@
 package eu.pintergabor.oredetector.tag;
 
-import java.util.ArrayList;
-
 import eu.pintergabor.oredetector.util.ModIdentifier;
 
 import net.minecraft.block.Block;
@@ -12,7 +10,6 @@ import net.minecraft.util.Identifier;
 public class ModBlockTags {
 	private ModBlockTags() {
 	}
-
 
 	public static TagKey<Block> VOID_DETECT0;
 	public static TagKey<Block> VOID_DETECT1;

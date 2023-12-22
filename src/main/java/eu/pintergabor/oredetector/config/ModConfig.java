@@ -17,7 +17,7 @@ public class ModConfig implements ConfigData {
 	public int rangeVoidDetector = 8;
 
 	@ConfigEntry.Gui.Tooltip
-	public int durabilityVoidDetector = 80;
+	public int durabilityVoidDetector = 200;
 
 	@ConfigEntry.Gui.Tooltip
 	public boolean enableCoalDetector = true;
@@ -26,7 +26,7 @@ public class ModConfig implements ConfigData {
 	public int rangeCoalDetector = 8;
 
 	@ConfigEntry.Gui.Tooltip
-	public int durabilityCoalDetector = 80;
+	public int durabilityCoalDetector = 200;
 
 	@ConfigEntry.Gui.Tooltip
 	public boolean enableIronDetector = true;
@@ -35,7 +35,7 @@ public class ModConfig implements ConfigData {
 	public int rangeIronDetector = 8;
 
 	@ConfigEntry.Gui.Tooltip
-	public int durabilityIronDetector = 80;
+	public int durabilityIronDetector = 250;
 
 	@ConfigEntry.Gui.Tooltip
 	public boolean enableGoldDetector = true;
@@ -44,7 +44,7 @@ public class ModConfig implements ConfigData {
 	public int rangeGoldDetector = 8;
 
 	@ConfigEntry.Gui.Tooltip
-	public int durabilityGoldDetector = 80;
+	public int durabilityGoldDetector = 300;
 
 	@ConfigEntry.Gui.Tooltip
 	public boolean enableDiamondDetector = true;
@@ -53,7 +53,7 @@ public class ModConfig implements ConfigData {
 	public int rangeDiamondDetector = 8;
 
 	@ConfigEntry.Gui.Tooltip
-	public int durabilityDiamondDetector = 80;
+	public int durabilityDiamondDetector = 350;
 
 	public static void init() {
 		AutoConfig.register(ModConfig.class, Toml4jConfigSerializer::new);
