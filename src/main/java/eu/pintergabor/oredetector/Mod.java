@@ -10,11 +10,11 @@ import net.fabricmc.api.ModInitializer;
 public class Mod implements ModInitializer {
 	@Override
 	public void onInitialize() {
+		// Init config
+		ModConfig.init();
 		// Register items
 		ModItems.register();
 		// Register sounds
 		ModSounds.register();
-		// Init config
-		ModConfig.init();
 	}
 }

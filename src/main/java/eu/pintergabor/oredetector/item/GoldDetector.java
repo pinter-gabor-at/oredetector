@@ -3,8 +3,8 @@ package eu.pintergabor.oredetector.item;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 
-public class VoidDetector extends AbstractOreDetector {
-	public VoidDetector(Settings settings) {
+public class GoldDetector extends AbstractOreDetector {
+	public GoldDetector(Settings settings) {
 		super(settings);
 	}
 

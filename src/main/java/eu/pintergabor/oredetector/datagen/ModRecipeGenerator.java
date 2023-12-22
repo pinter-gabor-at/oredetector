@@ -1,13 +1,16 @@
 package eu.pintergabor.oredetector.datagen;
 
-import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
-import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
+import eu.pintergabor.oredetector.item.ModItems;
+
 import net.minecraft.data.server.recipe.RecipeExporter;
-import net.minecraft.data.server.recipe.ShapelessRecipeJsonBuilder;
+import net.minecraft.data.server.recipe.ShapedRecipeJsonBuilder;
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
 import net.minecraft.recipe.book.RecipeCategory;
 import net.minecraft.util.Identifier;
+
+import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
+import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
 
 public class ModRecipeGenerator extends FabricRecipeProvider {
 	public ModRecipeGenerator(FabricDataOutput output) {
@@ -19,15 +22,29 @@ public class ModRecipeGenerator extends FabricRecipeProvider {
 	 */
 	@Override
 	public void generate(RecipeExporter exporter) {
-		// Generate two shapeless recipes:
-		// Mix DIRT with BONE_MEAL or with ROTTEN_FLESH to create 2 DIRTs.
-		for (Item i : new Item[]{Items.BONE_MEAL, Items.ROTTEN_FLESH}) {
-			ShapelessRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, Items.DIRT, 2)
-					.input(i)
-					.input(Items.DIRT)
-					.criterion(hasItem(Items.DIRT), conditionsFromItem(Items.DIRT))
-					.criterion(hasItem(i), conditionsFromItem(i))
-					.offerTo(exporter, new Identifier(getRecipeName(Items.DIRT) + "-" + getRecipeName(i)));
-		}
+		generateOne(exporter, Items.COBBLESTONE, ModItems.VOID_DETECTOR_ITEM);
+		generateOne(exporter, Items.COAL, ModItems.COAL_DETECTOR_ITEM);
+		generateOne(exporter, Items.IRON_INGOT, ModItems.IRON_DETECTOR_ITEM);
+		generateOne(exporter, Items.GOLD_INGOT, ModItems.GOLD_DETECTOR_ITEM);
+		generateOne(exporter, Items.DIAMOND, ModItems.DIAMOND_DETECTOR_ITEM);
+	}
+
+	/**
+	 * Generate one recipe
+	 * @param keyItem Item in the top right slot
+	 * @param resultItem Result
+	 */
+	private void generateOne(RecipeExporter exporter,
+		Item keyItem, Item resultItem) {
+		ShapedRecipeJsonBuilder.create(RecipeCategory.TOOLS, resultItem)
+			.pattern("  B")
+			.pattern(" /@")
+			.pattern("/@ ")
+			.input('/', Items.STICK)
+			.input('@', Items.STRING)
+			.input('B', keyItem)
+			.criterion(hasItem(Items.STICK), conditionsFromItem(Items.STICK))
+			.criterion(hasItem(Items.STRING), conditionsFromItem(Items.STRING))
+			.offerTo(exporter, new Identifier(getRecipeName(resultItem)));
 	}
 }
