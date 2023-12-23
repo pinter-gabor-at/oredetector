@@ -1,11 +1,18 @@
 package eu.pintergabor.oredetector.item;
 
+import eu.pintergabor.oredetector.Global;
+import eu.pintergabor.oredetector.config.ModConfig;
 import eu.pintergabor.oredetector.mixinutil.DelayedExecute;
 import eu.pintergabor.oredetector.sound.ModSounds;
 
+import net.minecraft.block.Block;
+import net.minecraft.block.Blocks;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemUsageContext;
+import net.minecraft.particle.BlockStateParticleEffect;
+import net.minecraft.particle.ParticleEffect;
+import net.minecraft.particle.ParticleTypes;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvent;
@@ -17,7 +24,7 @@ import net.minecraft.util.math.Vec3i;
 public abstract class AbstractOreDetector extends Item {
 	public AbstractOreDetector(Settings settings) {
 		super(settings);
-		bangs = ModSounds.DETECTOR_3BANGS;
+		bangs = null;
 		bangVolume = 1f;
 	}
 
@@ -93,6 +100,9 @@ public abstract class AbstractOreDetector extends Item {
 	 */
 	protected int echoDelay;
 
+	protected ParticleEffect particleEffect;
+
+	protected int particleCount;
 	// endregion
 
 	@Override
@@ -125,6 +135,13 @@ public abstract class AbstractOreDetector extends Item {
 							clickWorld.playSound(null, clickPos,
 								echoes, SoundCategory.BLOCKS,
 								echoVolume, 1f);
+							final var ppos = clickPos.offset(clickFacing);
+							if (particleEffect != null) {
+								clickWorld.spawnParticles(particleEffect,
+									ppos.getX() + 0.5d, ppos.getY() + 0.5d, ppos.getZ() + 0.5d,
+									particleCount,
+									0, 0, 0, 1f);
+							}
 						});
 				}
 
@@ -132,56 +149,6 @@ public abstract class AbstractOreDetector extends Item {
 		}
 		return ActionResult.SUCCESS;
 	}
-
-//	@Override
-//	public ActionResult useOnBlock(ItemUsageContext context) {
-//		final World world = context.getWorld();
-//		final BlockPos pos = context.getBlockPos();
-//		final BlockState clickedBlockState = world.getBlockState(pos);
-//		final PlayerEntity player = context.getPlayer();
-//		final ItemStack stack = context.getStack();
-//		Direction clickedFace = context.getSide();
-//		BlockPos markPosition = pos.offset(clickedFace);
-//		if (world.isAir(markPosition) || world.getBlockState(markPosition).getBlock() instanceof ChalkMarkBlock) {
-//			if (clickedBlockState.getBlock() instanceof ChalkMarkBlock) { // replace mark
-//				clickedFace = clickedBlockState.get(ChalkMarkBlock.FACING);
-//				markPosition = pos;
-//				world.removeBlock(pos, false);
-//			} else if (player != null &&
-//				!Block.isFaceFullSquare(clickedBlockState.getCollisionShape(world, pos, ShapeContext.of(player)), clickedFace)) {
-//				return ActionResult.PASS;
-//			} else if ((!world.isAir(markPosition) && world.getBlockState(markPosition).getBlock() instanceof ChalkMarkBlock) || stack.getItem() != this) {
-//				return ActionResult.PASS;
-//			}
-//
-//			if (world.isClient) {
-//				Random r = new Random();
-//				if ((boolean) ConfigHelper.getConfig("emit_particles"))
-//					world.addParticle(ParticleTypes.CLOUD, markPosition.getX() + (0.5 * (r.nextFloat() + 0.4)), markPosition.getY() + 0.65, markPosition.getZ() + (0.5 * (r.nextFloat() + 0.4)), 0.0D, 0.005D, 0.0D);
-//				return ActionResult.SUCCESS;
-//			}
-//
-//			final int orientation = getClickedRegion(context.getHitPos(), clickedFace);
-//
-//			BlockState blockState = getChalkMarkBlock().getDefaultState()
-//				.with(ChalkMarkBlock.FACING, clickedFace)
-//				.with(ChalkMarkBlock.ORIENTATION, orientation);
-//
-//			if (world.setBlockState(markPosition, blockState, 1 | 2)) {
-//				if (player != null &&
-//					!player.isCreative()) {
-//					if (stack.getDamage() >= stack.getMaxDamage()) {
-//						world.playSound(null, markPosition, SoundEvents.BLOCK_GRAVEL_BREAK, SoundCategory.BLOCKS, 0.5f, 1f);
-//					}
-//					stack.damage(1, player, (e) -> e.sendEquipmentBreakStatus(EquipmentSlot.MAINHAND));
-//				}
-//
-//				world.playSound(null, markPosition, SoundEvents.UI_CARTOGRAPHY_TABLE_TAKE_RESULT, SoundCategory.BLOCKS, 0.6f, world.random.nextFloat() * 0.2f + 0.8f);
-//				return ActionResult.CONSUME;
-//			}
-//		}
-//		return ActionResult.FAIL;
-//	}
 
 	/**
 	 * @return Max detection range
@@ -194,7 +161,26 @@ public abstract class AbstractOreDetector extends Item {
 	 * Set {@link #distance} to {@code distance}, and set echo properties if detected anything
 	 * @return true if detected something
 	 */
-	protected abstract boolean detect(BlockPos pos, int d);
+	protected abstract boolean detect(BlockPos pos, int distance);
+
+	/**
+	 * Debug hook before calling {@link #detect(BlockPos, int)}
+	 */
+	private boolean priDetect(BlockPos pos, int distance) {
+		final boolean ret = detect(pos, distance);
+		final ModConfig config = ModConfig.getInstance();
+		if (0 < config.debugLevel && ret) {
+			Global.LOGGER.info("Found: {}, type: {}, at ({})",
+				clickWorld.getBlockState(pos).getBlock().toString(),
+				type,
+				pos.subtract(clickPos).toShortString());
+		}
+		if (1 < config.debugLevel && !ret) {
+			// Replace the scanned and not detectable block with glass to see the detected block
+			clickWorld.setBlockState(pos, Blocks.GLASS.getDefaultState(), Block.NOTIFY_ALL);
+		}
+		return ret;
+	}
 
 	/**
 	 * Translate {@code (x, y, z)} depending on the scanning direction
@@ -219,7 +205,7 @@ public abstract class AbstractOreDetector extends Item {
 	 * @return true if detected anything
 	 */
 	private boolean transDetect(int x, int y, int z, int d) {
-		return detect(clickPos.add(translate(x, y, z)), d);
+		return priDetect(clickPos.add(translate(x, y, z)), d);
 	}
 
 	/**
@@ -270,6 +256,21 @@ public abstract class AbstractOreDetector extends Item {
 		echoes = ModSounds.DETECTOR_3ECHOS[type];
 		echoVolume = 1f - 0.9f * distance / getRange();
 		echoDelay = 10 + 2 * distance;
+		// For echos that do not generate particles
+		particleEffect = null;
+	}
+
+	/**
+	 * Common echo and particle calculations
+	 */
+	protected void calcEcho(int type, int distance, Block pBlock) {
+		calcEcho(type, distance);
+		final var config = ModConfig.getInstance();
+		if (config.enableParticles) {
+			particleEffect = new BlockStateParticleEffect(
+				ParticleTypes.BLOCK, pBlock.getDefaultState());
+			particleCount = (int) (40 * (1f - 0.9f * distance / getRange()));
+		}
 	}
 }
 

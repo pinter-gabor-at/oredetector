@@ -1,15 +1,16 @@
 {
-	"required": true,
-	"package": "eu.pintergabor.oredetector.mixin",
-	"compatibilityLevel": "JAVA_17",
-	"injectors": {
-		"defaultRequire": 1
-	},
-	"mixins": [
-		"ServerPlayerEntityMixin"
-	],
-	"client": [
-	],
-	"server": [
+  "required": true,
+  "package": "eu.pintergabor.oredetector.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "mixins": [
+    "RecipeManagerMixin",
+    "ServerPlayerEntityMixin"
+  ],
+  "client": [
+  ],
+  "server": [
 	]
 }

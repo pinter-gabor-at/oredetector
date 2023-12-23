@@ -1,8 +1,32 @@
 {
-	"detector_3bangs": {
+	"detector_3bangs0": {
 		"subtitle": "sounds.oredetector.3bangs",
 		"sounds": [
-			"oredetector:3bangs"
+			"oredetector:3bangs0"
+		]
+	},
+	"detector_3bangs1": {
+		"subtitle": "sounds.oredetector.3bangs",
+		"sounds": [
+			"oredetector:3bangs1"
+		]
+	},
+	"detector_3bangs2": {
+		"subtitle": "sounds.oredetector.3bangs",
+		"sounds": [
+			"oredetector:3bangs2"
+		]
+	},
+	"detector_3bangs3": {
+		"subtitle": "sounds.oredetector.3bangs",
+		"sounds": [
+			"oredetector:3bangs3"
+		]
+	},
+	"detector_3bangs4": {
+		"subtitle": "sounds.oredetector.3bangs",
+		"sounds": [
+			"oredetector:3bangs4"
 		]
 	},
 	"detector_3echos00": {

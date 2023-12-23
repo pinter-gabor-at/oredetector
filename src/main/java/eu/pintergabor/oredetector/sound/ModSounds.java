@@ -8,7 +8,7 @@ import net.minecraft.sound.SoundEvent;
 import net.minecraft.util.Identifier;
 
 public class ModSounds {
-	public static SoundEvent DETECTOR_3BANGS;
+	public static SoundEvent[] DETECTOR_3BANGS = new SoundEvent[5];
 	public static SoundEvent[] DETECTOR_3ECHOS = new SoundEvent[16];
 
 	@SuppressWarnings("SameParameterValue")
@@ -20,7 +20,9 @@ public class ModSounds {
 	}
 
 	public static void register() {
-		DETECTOR_3BANGS = registerSoundEvent("detector_3bangs");
+		for (int i = 0; i < DETECTOR_3BANGS.length; i++) {
+			DETECTOR_3BANGS[i] = registerSoundEvent(String.format("detector_3bangs%d", i));
+		}
 		for (int i = 0; i < DETECTOR_3ECHOS.length; i++) {
 			DETECTOR_3ECHOS[i] = registerSoundEvent(String.format("detector_3echos%02d", i));
 		}

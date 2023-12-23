@@ -4,7 +4,7 @@ import me.shedaniel.autoconfig.AutoConfig;
 import me.shedaniel.autoconfig.ConfigData;
 import me.shedaniel.autoconfig.annotation.Config;
 import me.shedaniel.autoconfig.annotation.ConfigEntry;
-import me.shedaniel.autoconfig.serializer.Toml4jConfigSerializer;
+import me.shedaniel.autoconfig.serializer.GsonConfigSerializer;
 import org.jetbrains.annotations.ApiStatus;
 
 @ApiStatus.Internal
@@ -14,49 +14,61 @@ public class ModConfig implements ConfigData {
 	public boolean enableVoidDetector = true;
 
 	@ConfigEntry.Gui.Tooltip
-	public int rangeVoidDetector = 8;
+	public int rangeVoidDetector = 10;
 
 	@ConfigEntry.Gui.Tooltip
-	public int durabilityVoidDetector = 200;
+	public int durabilityVoidDetector = 100;
 
 	@ConfigEntry.Gui.Tooltip
 	public boolean enableCoalDetector = true;
 
 	@ConfigEntry.Gui.Tooltip
-	public int rangeCoalDetector = 8;
+	public int rangeCoalDetector = 9;
 
 	@ConfigEntry.Gui.Tooltip
-	public int durabilityCoalDetector = 200;
+	public int durabilityCoalDetector = 100;
 
 	@ConfigEntry.Gui.Tooltip
 	public boolean enableIronDetector = true;
 
 	@ConfigEntry.Gui.Tooltip
-	public int rangeIronDetector = 8;
+	public int rangeIronDetector = 10;
 
 	@ConfigEntry.Gui.Tooltip
-	public int durabilityIronDetector = 250;
+	public int durabilityIronDetector = 150;
 
 	@ConfigEntry.Gui.Tooltip
 	public boolean enableGoldDetector = true;
 
 	@ConfigEntry.Gui.Tooltip
-	public int rangeGoldDetector = 8;
+	public int rangeGoldDetector = 11;
 
 	@ConfigEntry.Gui.Tooltip
-	public int durabilityGoldDetector = 300;
+	public int durabilityGoldDetector = 200;
 
 	@ConfigEntry.Gui.Tooltip
 	public boolean enableDiamondDetector = true;
 
 	@ConfigEntry.Gui.Tooltip
-	public int rangeDiamondDetector = 8;
+	public int rangeDiamondDetector = 12;
 
 	@ConfigEntry.Gui.Tooltip
-	public int durabilityDiamondDetector = 350;
+	public int durabilityDiamondDetector = 250;
+
+	public boolean enableParticles = true;
+
+	/**
+	 * Hidden debug level control for developers
+	 * <p>
+	 * <div>0 = No debugging (default)</div>
+	 * <div>1 = Only non-destructive debugging</div>
+	 * <div>2 = Destructive and time consuming debugging</div>
+	 */
+	@ConfigEntry.Gui.Excluded
+	public int debugLevel = 0;
 
 	public static void init() {
-		AutoConfig.register(ModConfig.class, Toml4jConfigSerializer::new);
+		AutoConfig.register(ModConfig.class, GsonConfigSerializer::new);
 	}
 
 	public static ModConfig getInstance() {
@@ -64,7 +76,7 @@ public class ModConfig implements ConfigData {
 	}
 
 	@Override
-	public void validatePostLoad() throws ValidationException {
+	public void validatePostLoad() {
 		rangeVoidDetector = Math.min(Math.max(1, rangeVoidDetector), 16);
 		durabilityVoidDetector = Math.min(Math.max(1, durabilityVoidDetector), 999);
 		rangeCoalDetector = Math.min(Math.max(1, rangeCoalDetector), 16);

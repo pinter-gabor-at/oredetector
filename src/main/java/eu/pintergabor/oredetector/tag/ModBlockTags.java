@@ -14,6 +14,15 @@ public class ModBlockTags {
 	public static TagKey<Block> AIR;
 	public static TagKey<Block> WATER;
 	public static TagKey<Block> LAVA;
+	public static TagKey<Block> COAL;
+	public static TagKey<Block> COPPER;
+	public static TagKey<Block> IRON;
+	public static TagKey<Block> GOLD;
+	public static TagKey<Block> REDSTONE;
+	public static TagKey<Block> LAPIS;
+	public static TagKey<Block> DIAMOND;
+	public static TagKey<Block> EMERALD;
+	public static TagKey<Block> NETHER;
 
 	@SuppressWarnings("unused")
 	private static TagKey<Block> createBlockTag(String name) {
@@ -26,8 +35,17 @@ public class ModBlockTags {
 	}
 
 	public static void register() {
-		AIR = createBlockTag("void_detect_0");
-		WATER = createBlockTag("void_detect_1");
-		LAVA = createBlockTag("void_detect_2");
+		AIR = createBlockTag("air");
+		WATER = createBlockTag("water");
+		LAVA = createBlockTag("lava");
+		COAL = createBlockTag("coal");
+		COPPER = createBlockTag("copper");
+		IRON = createBlockTag("iron");
+		GOLD = createBlockTag("gold");
+		REDSTONE = createBlockTag("redstone");
+		LAPIS = createBlockTag("lapis");
+		DIAMOND = createBlockTag("diamond");
+		EMERALD = createBlockTag("emerald");
+		NETHER = createBlockTag("nether");
 	}
 }

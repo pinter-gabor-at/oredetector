@@ -30,6 +30,7 @@
 	"text.autoconfig.oredetector.option.rangeDiamondDetector.@Tooltip": "Please set it to a reasonable value",
 	"text.autoconfig.oredetector.option.durabilityDiamondDetector": "Diamond Detector Durability",
 	"text.autoconfig.oredetector.option.durabilityDiamondDetector.@Tooltip": "Please set it to a reasonable value",
+	"text.autoconfig.oredetector.option.enableParticles": "Enable Particle Generation",
 
 	"item.oredetector.void_detector": "Void Detector",
 	"item.oredetector.coal_detector": "Coal Detector",
