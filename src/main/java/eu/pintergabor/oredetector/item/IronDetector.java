@@ -2,7 +2,7 @@ package eu.pintergabor.oredetector.item;
 
 import eu.pintergabor.oredetector.config.ModConfig;
 
-import net.minecraft.block.BlockState;
+import net.minecraft.util.math.BlockPos;
 
 public class IronDetector extends AbstractOreDetector {
 	public IronDetector(Settings settings) {
@@ -10,8 +10,8 @@ public class IronDetector extends AbstractOreDetector {
 	}
 
 	@Override
-	protected int detect(BlockState blockState) {
-		return -1;
+	protected boolean detect(BlockPos pos, int distance) {
+		return false;
 	}
 
 	@Override

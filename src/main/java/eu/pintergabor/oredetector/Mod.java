@@ -12,11 +12,11 @@ public class Mod implements ModInitializer {
 	public void onInitialize() {
 		// Init config
 		ModConfig.init();
-		// Register items
-		ModItems.register();
-		// Register tags
-		ModBlockTags.register();
 		// Register sounds
 		ModSounds.register();
+		// Register tags
+		ModBlockTags.register();
+		// Register items
+		ModItems.register();
 	}
 }

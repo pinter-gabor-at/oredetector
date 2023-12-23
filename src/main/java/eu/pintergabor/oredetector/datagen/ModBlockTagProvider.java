@@ -18,11 +18,11 @@ public class ModBlockTagProvider extends FabricTagProvider.BlockTagProvider {
 
     @Override
     protected void configure(RegistryWrapper.WrapperLookup arg) {
-		getOrCreateTagBuilder(ModBlockTags.VOID_DETECT0)
+		getOrCreateTagBuilder(ModBlockTags.AIR)
 			.add(Blocks.AIR, Blocks.VOID_AIR, Blocks.CAVE_AIR);
-		getOrCreateTagBuilder(ModBlockTags.VOID_DETECT1)
+		getOrCreateTagBuilder(ModBlockTags.WATER)
 			.add(Blocks.WATER);
-		getOrCreateTagBuilder(ModBlockTags.VOID_DETECT2)
+		getOrCreateTagBuilder(ModBlockTags.LAVA)
 			.add(Blocks.LAVA);
     }
 }

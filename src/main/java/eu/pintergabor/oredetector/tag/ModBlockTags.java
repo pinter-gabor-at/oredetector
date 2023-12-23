@@ -11,9 +11,9 @@ public class ModBlockTags {
 	private ModBlockTags() {
 	}
 
-	public static TagKey<Block> VOID_DETECT0;
-	public static TagKey<Block> VOID_DETECT1;
-	public static TagKey<Block> VOID_DETECT2;
+	public static TagKey<Block> AIR;
+	public static TagKey<Block> WATER;
+	public static TagKey<Block> LAVA;
 
 	@SuppressWarnings("unused")
 	private static TagKey<Block> createBlockTag(String name) {
@@ -26,8 +26,8 @@ public class ModBlockTags {
 	}
 
 	public static void register() {
-		VOID_DETECT0 = createBlockTag("void_detect_0");
-		VOID_DETECT1 = createBlockTag("void_detect_1");
-		VOID_DETECT2 = createBlockTag("void_detect_2");
+		AIR = createBlockTag("void_detect_0");
+		WATER = createBlockTag("void_detect_1");
+		LAVA = createBlockTag("void_detect_2");
 	}
 }
