@@ -1,10 +1,12 @@
 package eu.pintergabor.oredetector.item;
 
-import static eu.pintergabor.oredetector.util.Register.registerItem;
-
 import eu.pintergabor.oredetector.config.ModConfig;
+import eu.pintergabor.oredetector.util.ModIdentifier;
 
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroups;
+import net.minecraft.registry.Registries;
+import net.minecraft.registry.Registry;
 
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
@@ -57,5 +59,19 @@ public final class ModItems {
 				entries.add(GOLD_DETECTOR_ITEM);
 				entries.add(DIAMOND_DETECTOR_ITEM);
 			});
+	}
+
+	/**
+	 * Register mod item
+	 * @param name Name, as in lang/*.json files without the "item.modid." prefix
+	 * @param item Item
+	 * @return The same item
+	 */
+	@SuppressWarnings("UnusedReturnValue")
+	public static Item registerItem(String name, Item item) {
+		return Registry.register(
+			Registries.ITEM,
+			new ModIdentifier(name),
+			item);
 	}
 }
