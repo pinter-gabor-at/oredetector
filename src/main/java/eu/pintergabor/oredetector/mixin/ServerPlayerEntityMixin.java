@@ -27,8 +27,8 @@ public abstract class ServerPlayerEntityMixin
 	@Unique
 	private Runnable action;
 
-	@Inject(method = "tick", at = @At(value = "HEAD"))
-	private void tick(CallbackInfo ci) {
+	@Inject(method = "playerTick", at = @At(value = "HEAD"))
+	private void playerTick(CallbackInfo ci) {
 		if (!getWorld().isClient()) {
 			if (running && triggerTime <= getWorld().getTime()) {
 				action.run();
