@@ -3,6 +3,7 @@ package eu.pintergabor.oredetector;
 import eu.pintergabor.oredetector.config.ModConfig;
 import eu.pintergabor.oredetector.item.ModItems;
 import eu.pintergabor.oredetector.sound.ModSounds;
+import eu.pintergabor.oredetector.tag.ImportBlockTags;
 import eu.pintergabor.oredetector.tag.ModBlockTags;
 
 import net.fabricmc.api.ModInitializer;
@@ -15,6 +16,7 @@ public class Mod implements ModInitializer {
 		// Register sounds
 		ModSounds.register();
 		// Register tags
+		ImportBlockTags.register();
 		ModBlockTags.register();
 		// Register items
 		ModItems.register();
