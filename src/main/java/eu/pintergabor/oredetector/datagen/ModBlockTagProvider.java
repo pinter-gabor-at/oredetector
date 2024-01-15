@@ -4,6 +4,9 @@ import java.util.concurrent.CompletableFuture;
 
 import eu.pintergabor.oredetector.tag.ModBlockTags;
 
+import net.fabricmc.fabric.api.tag.convention.v1.ConventionalBlockTags;
+
+import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.registry.tag.BlockTags;
@@ -67,6 +70,14 @@ public class ModBlockTagProvider extends FabricTagProvider.BlockTagProvider {
 		getOrCreateTagBuilder(ModBlockTags.EMERALD)
 			.forceAddTag(BlockTags.EMERALD_ORES)
 			.add(Blocks.EMERALD_BLOCK);
+		getOrCreateTagBuilder(ModBlockTags.QUARTZ)
+			.forceAddTag(ConventionalBlockTags.QUARTZ_ORES)
+			.add(Blocks.QUARTZ_BLOCK,
+				Blocks.QUARTZ_BRICKS, Blocks.QUARTZ_PILLAR,
+				Blocks.QUARTZ_SLAB, Blocks.QUARTZ_STAIRS,
+				Blocks.CHISELED_QUARTZ_BLOCK,
+				Blocks.SMOOTH_QUARTZ,
+				Blocks.SMOOTH_QUARTZ_SLAB, Blocks.SMOOTH_QUARTZ_STAIRS);
 		getOrCreateTagBuilder(ModBlockTags.NETHER)
 			.add(Blocks.NETHERITE_BLOCK, Blocks.ANCIENT_DEBRIS);
 	}

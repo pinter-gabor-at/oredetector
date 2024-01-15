@@ -12,11 +12,11 @@ The Void Detector emits a sound that is reflected from non-solid blocks, like ai
 
 ![Crafting a Void Detector](./images/recipe_void.png "Crafting a Void Detector")
 
-The Coal Detector emits a sound that is reflected best from coal, copper and iron ores and from a few other things that are made of these materials.
+The Coal Detector emits a sound that is reflected best from coal, copper, iron and quartz ores and from a few other things that are made of these materials.
 
 ![Crafting a Coal Detector](./images/recipe_coal.png "Crafting a Coal Detector")
 
-The Iron Detector does not detect coal, but, in addition to copper and iron, it detects gold, redstone and lapis.
+The Iron Detector does not detect coal, but, in addition to copper, iron and quartz, it detects gold, redstone and lapis.
 
 ![Crafting an Iron Detector](./images/recipe_iron.png "Crafting an Iron Detector")
 
@@ -41,6 +41,23 @@ Every major feature of the mod is configurable in the Mod Menu.
 - [Fabric API](https://modrinth.com/mod/fabric-api)  
 - [Cloth Config API](https://modrinth.com/mod/cloth-config)
 - Optional, but recommended [Mod Menu](https://modrinth.com/mod/modmenu)
+
+## Compatibility
+
+### [Tech Reborn](https://www.curseforge.com/minecraft/mc-mods/techreborn)
+
+Since 1.1.0  
+
+- the Coal Detector detects galena, tin, lead, ruby and sapphire, 
+- the Iron Detector detects galena, tin, lead, ruby, sapphire, silver and bauxite,
+- the Gold Detector detects silver and iridium,
+- and the Diamond Detector detects iridium, pyrite, cinnabar, sphalerite, tungsten, sheldonite, peridot and sodalite.
+
+### [Applied energistics 2](https://www.curseforge.com/minecraft/mc-mods/applied-energistics-2)
+
+Since 1.1.0
+
+- Coal and Iron Detectors detect certus quartz too.
 
 ## License
 
