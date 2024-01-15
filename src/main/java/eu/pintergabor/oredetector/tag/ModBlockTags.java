@@ -1,16 +1,18 @@
 package eu.pintergabor.oredetector.tag;
 
+import eu.pintergabor.oredetector.datagen.ModBlockTagProvider;
 import eu.pintergabor.oredetector.util.ModIdentifier;
 
 import net.minecraft.block.Block;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.tag.TagKey;
-import net.minecraft.util.Identifier;
 
-public class ModBlockTags {
-	private ModBlockTags() {
-	}
-
+/**
+ * Primary block tags of this mod
+ * <p>
+ * See {@link ModBlockTagProvider}
+ */
+public final class ModBlockTags {
 	public static TagKey<Block> AIR;
 	public static TagKey<Block> WATER;
 	public static TagKey<Block> LAVA;
@@ -22,16 +24,12 @@ public class ModBlockTags {
 	public static TagKey<Block> LAPIS;
 	public static TagKey<Block> DIAMOND;
 	public static TagKey<Block> EMERALD;
+	public static TagKey<Block> QUARTZ;
 	public static TagKey<Block> NETHER;
 
 	@SuppressWarnings("unused")
-	private static TagKey<Block> createBlockTag(String name) {
+	public static TagKey<Block> createBlockTag(String name) {
 		return TagKey.of(RegistryKeys.BLOCK, new ModIdentifier(name));
-	}
-
-	@SuppressWarnings("unused")
-	private static TagKey<Block> createCommonBlockTag(String name) {
-		return TagKey.of(RegistryKeys.BLOCK, new Identifier("c", name));
 	}
 
 	public static void register() {
@@ -46,6 +44,7 @@ public class ModBlockTags {
 		LAPIS = createBlockTag("lapis");
 		DIAMOND = createBlockTag("diamond");
 		EMERALD = createBlockTag("emerald");
+		QUARTZ = createBlockTag("quartz");
 		NETHER = createBlockTag("nether");
 	}
 }
