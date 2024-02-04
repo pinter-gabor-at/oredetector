@@ -4,10 +4,12 @@ import eu.pintergabor.oredetector.Global;
 import eu.pintergabor.oredetector.config.ModConfig;
 import eu.pintergabor.oredetector.mixinutil.DelayedExecute;
 import eu.pintergabor.oredetector.sound.ModSounds;
+import org.jetbrains.annotations.NotNull;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.EquipmentSlot;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemUsageContext;
 import net.minecraft.particle.BlockStateParticleEffect;
@@ -105,6 +107,55 @@ public abstract class AbstractOreDetector extends Item {
 	protected int particleCount;
 	// endregion
 
+	/**
+	 * Scanning damages the tool
+	 * <p>
+	 * Called from {@link #useOnBlock(ItemUsageContext)}
+	 */
+	private void damageTool(ItemUsageContext context, PlayerEntity player) {
+		if (!player.isCreative()) {
+			final var stack = context.getStack();
+			stack.damage(1, player,
+				(e) -> e.sendEquipmentBreakStatus(EquipmentSlot.MAINHAND));
+		}
+	}
+
+	/**
+	 * Play echo
+	 */
+	@NotNull
+	private Runnable playEcho() {
+		return () -> {
+			clickWorld.playSound(null, clickPos,
+				echoes, SoundCategory.BLOCKS,
+				echoVolume, 1f);
+			final var ppos = clickPos.offset(clickFacing);
+			if (particleEffect != null) {
+				clickWorld.spawnParticles(particleEffect,
+					ppos.getX() + 0.5d, ppos.getY() + 0.5d, ppos.getZ() + 0.5d,
+					particleCount,
+					0, 0, 0, 1f);
+			}
+		};
+	}
+
+	/**
+	 * Play sound, scan and play delayed echo
+	 * <p>
+	 * Called from {@link #useOnBlock(ItemUsageContext)}
+	 */
+	private void soundScanEcho(DelayedExecute delayedExecute) {
+		// Everybody can hear the bangs on the server
+		clickWorld.playSound(null, clickPos,
+			bangs, SoundCategory.BLOCKS,
+			bangVolume, 1f);
+		// Scan
+		if (scan()) {
+			// Play echo delayed
+			delayedExecute.oredetector$delayedExecute(echoDelay, playEcho());
+		}
+	}
+
 	@Override
 	public ActionResult useOnBlock(ItemUsageContext context) {
 		if (!context.getWorld().isClient()) {
@@ -113,38 +164,15 @@ public abstract class AbstractOreDetector extends Item {
 			clickFacing = context.getSide();
 			final var player = context.getPlayer();
 			if (player != null) {
+				DelayedExecute delayedExecute = (DelayedExecute) player;
 				// Cannot start new scanning while the previous one is still running
-				if (((DelayedExecute) player).oredetector$isRunning()) {
+				if (delayedExecute.oredetector$isRunning()) {
 					return ActionResult.FAIL;
 				}
 				// Scanning damages the tool
-				if (!player.isCreative()) {
-					final var stack = context.getStack();
-					stack.damage(1, player,
-						(e) -> e.sendEquipmentBreakStatus(EquipmentSlot.MAINHAND));
-				}
-				// Everybody can hear the bangs on the server
-				clickWorld.playSound(null, clickPos,
-					bangs, SoundCategory.BLOCKS,
-					bangVolume, 1f);
-				// Scan
-				if (scan()) {
-					// Play echo delayed
-					((DelayedExecute) player)
-						.oredetector$delayedExecute(echoDelay, () -> {
-							clickWorld.playSound(null, clickPos,
-								echoes, SoundCategory.BLOCKS,
-								echoVolume, 1f);
-							final var ppos = clickPos.offset(clickFacing);
-							if (particleEffect != null) {
-								clickWorld.spawnParticles(particleEffect,
-									ppos.getX() + 0.5d, ppos.getY() + 0.5d, ppos.getZ() + 0.5d,
-									particleCount,
-									0, 0, 0, 1f);
-							}
-						});
-				}
-
+				damageTool(context, player);
+				// Play sound, scan and play echo
+				soundScanEcho(delayedExecute);
 			}
 		}
 		return ActionResult.SUCCESS;
@@ -222,6 +250,43 @@ public abstract class AbstractOreDetector extends Item {
 	}
 
 	/**
+	 * Scans blocks in a square at -y level
+	 * <p>
+	 * Called from {@link #scanSquare(int)}
+	 */
+	private boolean scanSquareY(int d, int y) {
+		// Only for even numbers
+		if (((d - y) & 1) == 0) {
+			final int n = (d - y) / 2;
+			for (int x = 0; x < n; x++) {
+				if (transDetect4(x, -y, n - x, d)) return true;
+			}
+		}
+		return false;
+	}
+
+	/**
+	 * Scan blocks in a square
+	 * <p>
+	 * Called from {@link #scan()}
+	 */
+	private boolean scanSquare(int d) {
+		for (int y = 0; y < d; y++) {
+			if (scanSquareY(d, y)) return true;
+		}
+		return false;
+	}
+
+	/**
+	 * Scan the block at the center at -y level
+	 * <p>
+	 * Called from {@link #scan()}
+	 */
+	private boolean scanCenter(int y) {
+		return transDetect(0, -y, 0, y);
+	}
+
+	/**
 	 * Scans blocks
 	 * <p>
 	 * Also sets {@link #distance} and {@link #type} according to the first detected block.
@@ -231,18 +296,7 @@ public abstract class AbstractOreDetector extends Item {
 	protected boolean scan() {
 		final int range = getRange();
 		for (int d = 0; d < range; d++) {
-			// Center
-			if (transDetect(0, -d, 0, d)) return true;
-			// Square
-			for (int y = 0; y < d; y++) {
-				// Only for even numbers
-				if (((d - y) & 1) == 0) {
-					final int n = (d - y) / 2;
-					for (int x = 0; x < n; x++) {
-						if (transDetect4(x, -y, n - x, d)) return true;
-					}
-				}
-			}
+			if (scanCenter(d) || scanSquare(d)) return true;
 		}
 		return false;
 	}

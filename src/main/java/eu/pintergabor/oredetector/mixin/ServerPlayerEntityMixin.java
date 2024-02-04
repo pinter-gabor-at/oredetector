@@ -12,6 +12,9 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.world.World;
 
+/**
+ * Inject delayed action method that is linked to the player, and ticked by the {@link ServerPlayerEntity#playerTick()}
+ */
 @Mixin(ServerPlayerEntity.class)
 public abstract class ServerPlayerEntityMixin
 	extends LivingEntity

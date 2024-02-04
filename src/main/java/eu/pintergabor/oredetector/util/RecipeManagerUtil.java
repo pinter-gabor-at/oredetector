@@ -10,9 +10,6 @@ import net.minecraft.item.Item;
 import net.minecraft.util.Identifier;
 
 public class RecipeManagerUtil {
-	private RecipeManagerUtil() {
-	}
-
 	/**
 	 * Remove recipes, if they are disabled in config
 	 * @param map Map of all recipes

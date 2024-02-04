@@ -12,8 +12,6 @@ import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 
 public final class ModItems {
-	private ModItems() {
-	}
 
 	// Ore Detectors
 	public static VoidDetector VOID_DETECTOR_ITEM;
