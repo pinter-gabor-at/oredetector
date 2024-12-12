@@ -1,5 +1,5 @@
 plugins {
-	id 'fabric-loom' version '1.5-SNAPSHOT'
+	id 'fabric-loom' version '1.9-SNAPSHOT'
 }
 
 version = project.mod_version + "+mc" + project.minecraft_version
@@ -13,10 +13,13 @@ repositories {
 	maven { url = "https://maven.fabricmc.net/" } // Fabric
 	maven { url = "https://maven.shedaniel.me/" } // Cloth Config
 	maven { url = "https://maven.terraformersmc.com/releases/" } // Mod Menu
+	maven { url = "https://maven.nucleoid.xyz/" } // Mod Menu dependency
 }
 
 fabricApi {
-	configureDataGeneration()
+	configureDataGeneration {
+		client = true
+	}
 }
 
 dependencies {
@@ -40,12 +43,12 @@ processResources {
 }
 
 tasks.withType(JavaCompile).configureEach {
-	it.options.release = 17
+	it.options.release = 21
 }
 
 java {
-	sourceCompatibility = JavaVersion.VERSION_17
-	targetCompatibility = JavaVersion.VERSION_17
+	sourceCompatibility = JavaVersion.VERSION_21
+	targetCompatibility = JavaVersion.VERSION_21
 }
 
 jar {

@@ -71,3 +71,7 @@ The source code has lots of comments to help learning Minecraft modding.
 ## Thanks
 
 Thanks to Kaupenjoe for his excellent [Modding By Kaupenjoe: Minecraft Modding 1.20.X for Fabric](https://www.udemy.com/course/minecraft-modding-120x-for-fabric/) course. 
+
+## See also
+
+My other mods on [Modrinth](https://modrinth.com/user/pinter.gabor) and on [CurseForge](https://www.curseforge.com/members/pintergabor/projects).

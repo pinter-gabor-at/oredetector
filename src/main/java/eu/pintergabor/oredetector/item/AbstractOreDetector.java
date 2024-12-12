@@ -5,6 +5,7 @@ import eu.pintergabor.oredetector.config.ModConfig;
 import eu.pintergabor.oredetector.mixinutil.DelayedExecute;
 import eu.pintergabor.oredetector.sound.ModSounds;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
@@ -37,7 +38,7 @@ public abstract class AbstractOreDetector extends Item {
 	 * <p>
 	 * Set in the constructor
 	 */
-	protected SoundEvent bangs;
+	protected @Nullable SoundEvent bangs;
 
 	/**
 	 * Volume of the transmitted bangs
@@ -86,7 +87,7 @@ public abstract class AbstractOreDetector extends Item {
 	 * <p>
 	 * Set by {@link #scan()} if it detects anything
 	 */
-	protected SoundEvent echoes;
+	protected @Nullable SoundEvent echoes;
 
 	/**
 	 * Volume of received echoes
@@ -102,8 +103,14 @@ public abstract class AbstractOreDetector extends Item {
 	 */
 	protected int echoDelay;
 
-	protected ParticleEffect particleEffect;
+	/**
+	 * The particles of the found block
+	 */
+	protected @Nullable ParticleEffect particleBlock;
 
+	/**
+	 * Number of particles
+	 */
 	protected int particleCount;
 	// endregion
 
@@ -121,18 +128,20 @@ public abstract class AbstractOreDetector extends Item {
 	}
 
 	/**
-	 * Play echo
+	 * Play echo and show particles
 	 */
 	@NotNull
 	private Runnable playEcho() {
 		return () -> {
-			clickWorld.playSound(null, clickPos,
-				echoes, SoundCategory.BLOCKS,
-				echoVolume, 1f);
-			final var ppos = clickPos.offset(clickFacing);
-			if (particleEffect != null) {
-				clickWorld.spawnParticles(particleEffect,
-					ppos.getX() + 0.5d, ppos.getY() + 0.5d, ppos.getZ() + 0.5d,
+			if (echoes != null) {
+				clickWorld.playSound(null, clickPos,
+					echoes, SoundCategory.BLOCKS,
+					echoVolume, 1f);
+			}
+			final var ppos = clickPos.offset(clickFacing).toCenterPos();
+			if (particleBlock != null) {
+				clickWorld.spawnParticles(particleBlock,
+					ppos.x, ppos.y, ppos.z,
 					particleCount,
 					0, 0, 0, 1f);
 			}
@@ -311,7 +320,7 @@ public abstract class AbstractOreDetector extends Item {
 		echoVolume = 1f - 0.9f * distance / getRange();
 		echoDelay = 10 + 2 * distance;
 		// For echos that do not generate particles
-		particleEffect = null;
+		particleBlock = null;
 	}
 
 	/**
@@ -321,7 +330,7 @@ public abstract class AbstractOreDetector extends Item {
 		calcEcho(type, distance);
 		final var config = ModConfig.getInstance();
 		if (config.enableParticles) {
-			particleEffect = new BlockStateParticleEffect(
+			particleBlock = new BlockStateParticleEffect(
 				ParticleTypes.BLOCK, pBlock.getDefaultState());
 			particleCount = (int) (40 * (1f - 0.9f * distance / getRange()));
 		}
