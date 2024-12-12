@@ -1,0 +1,6 @@
+{
+  "model": {
+    "type": "minecraft:model",
+    "model": "oredetector:item/diamond_detector"
+  }
+}
