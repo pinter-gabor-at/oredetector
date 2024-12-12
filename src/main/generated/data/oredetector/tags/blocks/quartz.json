@@ -1,7 +1,6 @@
 {
-  "replace": false,
   "values": [
-    "#c:quartz_ores",
+    "#c:ores/quartz",
     "minecraft:quartz_block",
     "minecraft:quartz_bricks",
     "minecraft:quartz_pillar",

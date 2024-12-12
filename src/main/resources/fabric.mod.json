@@ -12,7 +12,7 @@
 		"sources": "https://gitlab.com/pintergabor/oredetector"
 	},
 	"license": "MIT",
-	"icon": "icon.png",
+	"icon": "eu.pintergabor.oredetector.icon.png",
 	"environment": "*",
 	"entrypoints": {
 		"main": [
@@ -33,11 +33,11 @@
 	],
 	"depends": {
 		"fabricloader": ">=0.16.9",
-		"minecraft": "~1.20.4",
+		"minecraft": "~1.20.5",
 		"java": ">=21",
 		"fabric-api": "*"
 	},
 	"suggests": {
-		"modmenu": ">=9"
+		"modmenu": ">=10"
 	}
 }

@@ -8,7 +8,6 @@ import net.minecraft.item.ItemGroups;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 
-import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 
 public final class ModItems {
@@ -24,27 +23,27 @@ public final class ModItems {
 		var config = ModConfig.getInstance();
 		// Create and register Ore Detectors
 		VOID_DETECTOR_ITEM =
-			new VoidDetector(new FabricItemSettings()
+			new VoidDetector(new Item.Settings()
 				.maxDamage(config.durabilityVoidDetector));
 		registerItem(
 			"void_detector", VOID_DETECTOR_ITEM);
 		COAL_DETECTOR_ITEM =
-			new CoalDetector(new FabricItemSettings()
+			new CoalDetector(new Item.Settings()
 				.maxDamage(config.durabilityCoalDetector));
 		registerItem(
 			"coal_detector", COAL_DETECTOR_ITEM);
 		IRON_DETECTOR_ITEM =
-			new IronDetector(new FabricItemSettings()
+			new IronDetector(new Item.Settings()
 				.maxDamage(config.durabilityIronDetector));
 		registerItem(
 			"iron_detector", IRON_DETECTOR_ITEM);
 		GOLD_DETECTOR_ITEM =
-			new GoldDetector(new FabricItemSettings()
+			new GoldDetector(new Item.Settings()
 				.maxDamage(config.durabilityGoldDetector));
 		registerItem(
 			"gold_detector", GOLD_DETECTOR_ITEM);
 		DIAMOND_DETECTOR_ITEM =
-			new DiamondDetector(new FabricItemSettings()
+			new DiamondDetector(new Item.Settings()
 				.maxDamage(config.durabilityDiamondDetector));
 		registerItem(
 			"diamond_detector", DIAMOND_DETECTOR_ITEM);

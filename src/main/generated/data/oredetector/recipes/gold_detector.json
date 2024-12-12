@@ -18,6 +18,7 @@
     "/@ "
   ],
   "result": {
-    "item": "oredetector:gold_detector"
+    "count": 1,
+    "id": "oredetector:gold_detector"
   }
 }

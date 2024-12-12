@@ -18,6 +18,7 @@
     "/@ "
   ],
   "result": {
-    "item": "oredetector:coal_detector"
+    "count": 1,
+    "id": "oredetector:coal_detector"
   }
 }
