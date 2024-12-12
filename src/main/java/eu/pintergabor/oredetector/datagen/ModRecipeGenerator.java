@@ -1,5 +1,6 @@
 package eu.pintergabor.oredetector.datagen;
 
+import eu.pintergabor.oredetector.Global;
 import eu.pintergabor.oredetector.item.ModItems;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
@@ -9,7 +10,6 @@ import net.minecraft.item.Item;
 import net.minecraft.item.Items;
 import net.minecraft.recipe.book.RecipeCategory;
 import net.minecraft.registry.RegistryWrapper;
-import net.minecraft.util.Identifier;
 
 import java.util.concurrent.CompletableFuture;
 
@@ -50,6 +50,6 @@ public class ModRecipeGenerator extends FabricRecipeProvider {
                 .input('B', keyItem)
                 .criterion(hasItem(Items.STICK), conditionsFromItem(Items.STICK))
                 .criterion(hasItem(Items.STRING), conditionsFromItem(Items.STRING))
-                .offerTo(exporter, new Identifier(getRecipeName(resultItem)));
+                .offerTo(exporter, Global.ModIdentifier(getRecipeName(resultItem)));
     }
 }
