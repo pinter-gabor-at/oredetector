@@ -1,0 +1,10 @@
+{
+  "values": [
+    "#minecraft:iron_ores",
+    "minecraft:iron_block",
+    "minecraft:raw_iron_block",
+    "minecraft:iron_bars",
+    "minecraft:iron_door",
+    "minecraft:iron_trapdoor"
+  ]
+}
