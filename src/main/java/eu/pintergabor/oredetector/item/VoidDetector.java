@@ -37,7 +37,7 @@ public class VoidDetector extends AbstractOreDetector {
 			calcEcho(4, distance, Blocks.WATER);
 			return true;
 		}
-		if (!blockState.isOpaqueFullCube(clickWorld, clickPos)) {
+		if (!blockState.isOpaqueFullCube()) {
 			// Something partly transparent
 			calcEcho(1, distance, Blocks.SHORT_GRASS);
 			return true;

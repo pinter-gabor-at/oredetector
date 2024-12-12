@@ -5,8 +5,9 @@ import eu.pintergabor.oredetector.config.ModConfig;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroups;
-import net.minecraft.registry.Registries;
-import net.minecraft.registry.Registry;
+import net.minecraft.item.Items;
+import net.minecraft.registry.RegistryKey;
+import net.minecraft.registry.RegistryKeys;
 
 public final class ModItems {
 
@@ -20,31 +21,26 @@ public final class ModItems {
     public static void register() {
         var config = ModConfig.getInstance();
         // Create and register Ore Detectors
-        VOID_DETECTOR_ITEM =
-                new VoidDetector(new Item.Settings()
-                        .maxDamage(config.durabilityVoidDetector));
-        registerItem(
-                "void_detector", VOID_DETECTOR_ITEM);
-        COAL_DETECTOR_ITEM =
-                new CoalDetector(new Item.Settings()
-                        .maxDamage(config.durabilityCoalDetector));
-        registerItem(
-                "coal_detector", COAL_DETECTOR_ITEM);
-        IRON_DETECTOR_ITEM =
-                new IronDetector(new Item.Settings()
-                        .maxDamage(config.durabilityIronDetector));
-        registerItem(
-                "iron_detector", IRON_DETECTOR_ITEM);
-        GOLD_DETECTOR_ITEM =
-                new GoldDetector(new Item.Settings()
-                        .maxDamage(config.durabilityGoldDetector));
-        registerItem(
-                "gold_detector", GOLD_DETECTOR_ITEM);
-        DIAMOND_DETECTOR_ITEM =
-                new DiamondDetector(new Item.Settings()
-                        .maxDamage(config.durabilityDiamondDetector));
-        registerItem(
-                "diamond_detector", DIAMOND_DETECTOR_ITEM);
+        VOID_DETECTOR_ITEM = (VoidDetector) Items.register(
+                RegistryKey.of(RegistryKeys.ITEM, Global.ModIdentifier("void_detector")),
+                VoidDetector::new,
+                new Item.Settings().maxDamage(config.durabilityVoidDetector));
+        COAL_DETECTOR_ITEM = (CoalDetector) Items.register(
+                RegistryKey.of(RegistryKeys.ITEM, Global.ModIdentifier("coal_detector")),
+                CoalDetector::new,
+                new Item.Settings().maxDamage(config.durabilityCoalDetector));
+        IRON_DETECTOR_ITEM = (IronDetector) Items.register(
+                RegistryKey.of(RegistryKeys.ITEM, Global.ModIdentifier("iron_detector")),
+                IronDetector::new,
+                new Item.Settings().maxDamage(config.durabilityIronDetector));
+        GOLD_DETECTOR_ITEM = (GoldDetector) Items.register(
+                RegistryKey.of(RegistryKeys.ITEM, Global.ModIdentifier("gold_detector")),
+                GoldDetector::new,
+                new Item.Settings().maxDamage(config.durabilityGoldDetector));
+        DIAMOND_DETECTOR_ITEM = (DiamondDetector) Items.register(
+                RegistryKey.of(RegistryKeys.ITEM, Global.ModIdentifier("diamond_detector")),
+                DiamondDetector::new,
+                new Item.Settings().maxDamage(config.durabilityDiamondDetector));
         // Item groups
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.TOOLS).register(
                 entries -> {
@@ -54,20 +50,5 @@ public final class ModItems {
                     entries.add(GOLD_DETECTOR_ITEM);
                     entries.add(DIAMOND_DETECTOR_ITEM);
                 });
-    }
-
-    /**
-     * Register mod item
-     *
-     * @param name Name, as in lang/*.json files without the "item.modid." prefix
-     * @param item Item
-     * @return The same item
-     */
-    @SuppressWarnings("UnusedReturnValue")
-    public static Item registerItem(String name, Item item) {
-        return Registry.register(
-                Registries.ITEM,
-                Global.ModIdentifier(name),
-                item);
     }
 }
