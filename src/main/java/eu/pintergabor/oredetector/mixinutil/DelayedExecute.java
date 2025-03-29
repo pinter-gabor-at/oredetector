@@ -1,5 +1,6 @@
 package eu.pintergabor.oredetector.mixinutil;
 
+
 public interface DelayedExecute {
 
 	boolean oredetector$isRunning();

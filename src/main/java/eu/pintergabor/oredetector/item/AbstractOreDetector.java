@@ -30,7 +30,7 @@ public abstract class AbstractOreDetector extends Item {
 	public AbstractOreDetector(Settings settings) {
 		super(settings);
 		bangs = null;
-		bangVolume = 1f;
+		bangVolume = 1F;
 	}
 
 	// region Fields
@@ -158,7 +158,7 @@ public abstract class AbstractOreDetector extends Item {
 		// Everybody can hear the bangs on the server.
 		clickWorld.playSound(null, clickPos,
 			bangs, SoundCategory.BLOCKS,
-			bangVolume, 1f);
+			bangVolume, 1F);
 		// Scan.
 		if (scan()) {
 			// Play echo delayed.
@@ -175,13 +175,13 @@ public abstract class AbstractOreDetector extends Item {
 			final PlayerEntity player = context.getPlayer();
 			if (player != null) {
 				DelayedExecute delayedExecute = (DelayedExecute) player;
-				// Cannot start new scanning while the previous one is still running
+				// Cannot start new scanning while the previous one is still running.
 				if (delayedExecute.oredetector$isRunning()) {
 					return ActionResult.FAIL;
 				}
-				// Scanning damages the tool
+				// Scanning damages the tool.
 				damageTool(context, player);
-				// Play sound, scan and play echo
+				// Play sound, scan and play echo.
 				soundScanEcho(delayedExecute);
 			}
 		}
@@ -192,6 +192,13 @@ public abstract class AbstractOreDetector extends Item {
 	 * @return Max detection range.
 	 */
 	protected abstract int getRange();
+
+	/**
+	 * @return Focus.
+	 */
+	protected int getFocus() {
+		return 1;
+	}
 
 	/**
 	 * Check one block.
@@ -214,7 +221,7 @@ public abstract class AbstractOreDetector extends Item {
 				type,
 				pos.subtract(clickPos).toShortString());
 		}
-		if (1 < config.debugLevel && !ret) {
+		if (2 < config.debugLevel && !ret) {
 			// Replace the scanned and not detectable block with glass to see the detected block.
 			clickWorld.setBlockState(pos, Blocks.GLASS.getDefaultState(), Block.NOTIFY_ALL);
 		}
@@ -241,9 +248,11 @@ public abstract class AbstractOreDetector extends Item {
 	 * Call {@link #translate(int, int, int)} and then {@link #detect(BlockPos, int)}.
 	 * <p>
 	 * Set {@link #distance}, {@link #type} and the other echo properties according to the first detected block.
+	 * <p>
+	 * Called indirectly from {@link #scan()}.
 	 *
-	 * @param d Current scanning distance (Will be copied into {@link #distance} if detected anything).
-	 * @return true if detected anything.
+	 * @param d Current scanning distance.
+	 * @return true if anything is detected.
 	 */
 	private boolean transDetect(int x, int y, int z, int d) {
 		return priDetect(clickPos.add(translate(x, y, z)), d);
@@ -253,10 +262,12 @@ public abstract class AbstractOreDetector extends Item {
 	 * Rotate {@code (x,y,z)} in the 4 horizontal directions
 	 * and call {@link #transDetect(int, int, int, int)}
 	 * with each of them.
+	 * <p>
+	 * Called indirectly from {@link #scan()}.
 	 *
-	 * @param d Current scanning distance
-	 *          (Will be copied into {@link #distance} if detected anything).
-	 * @return true if detected anything.
+	 * @param d Current scanning distance.
+	 *          (Will be copied into {@link #distance} if anything is detected).
+	 * @return true if anything is detected.
 	 */
 	private boolean transDetect4(int x, int y, int z, int d) {
 		return (transDetect(+x, y, +z, d)) ||
@@ -266,40 +277,66 @@ public abstract class AbstractOreDetector extends Item {
 	}
 
 	/**
-	 * Scans blocks in a square at -y level.
+	 * Scan {@code 4*r} blocks at level {@code y} in a radius of {@code r}.
 	 * <p>
-	 * Called from {@link #scanSquare(int)}.
+	 * Example: Blocks to scan for r = [1..4]
+	 * <pre>
+	 *     4
+	 *    434
+	 *   43234
+	 *  4321234
+	 * 4321 1234
+	 *  4321234
+	 *   43234
+	 *    434
+	 *     4
+	 * </pre>
+	 * <p>
+	 * Called indirectly from {@link #scan()}.
+	 *
+	 * @param y Y level.
+	 * @param r Radius.
+	 * @param d Current scanning distance.
+	 *          (Will be copied into {@link #distance} if anything is detected).
+	 * @return true if anything is detected.
 	 */
-	private boolean scanSquareY(int d, int y) {
-		// Only for even numbers
-		if (((d - y) & 1) == 0) {
-			final int n = (d - y) / 2;
-			for (int x = 0; x < n; x++) {
-				if (transDetect4(x, -y, n - x, d)) return true;
+	private boolean scanSquareYR(int y, int r, int d) {
+		for (int x = 0; x < r; x++) {
+			if (transDetect4(x, -y, r - x, d)) return true;
+		}
+		return false;
+	}
+
+	/**
+	 * Scan blocks in a square at a distance of {@code d}.
+	 * <p>
+	 * Called from {@link #scan()}.
+	 */
+	private boolean scanSquare(int d) {
+		final boolean scanDebug = 1 < ModConfig.getInstance().debugLevel;
+		for (int y = 0; y < d; y++) {
+			int r = d - y;
+			if (r <= y / getFocus()) {
+				if (scanDebug) {
+					Global.LOGGER.info("Scanning square d={}, y={}, r={}", d, y, r);
+				}
+				if (scanSquareYR(y, r, d)) return true;
 			}
 		}
 		return false;
 	}
 
 	/**
-	 * Scan blocks in a square.
+	 * Scan the block at the center at {@code y=-d} level.
 	 * <p>
 	 * Called from {@link #scan()}.
 	 */
-	private boolean scanSquare(int d) {
-		for (int y = 0; y < d; y++) {
-			if (scanSquareY(d, y)) return true;
+	private boolean scanCenter(int d) {
+		final boolean scanDebug = 1 < ModConfig.getInstance().debugLevel;
+		if (scanDebug) {
+			Global.LOGGER.info("Scanning center d={}, y={}", d, d);
 		}
-		return false;
-	}
-
-	/**
-	 * Scan the block at the center at -y level.
-	 * <p>
-	 * Called from {@link #scan()}.
-	 */
-	private boolean scanCenter(int y) {
-		return transDetect(0, -y, 0, y);
+		return transDetect(0, -d, 0, d);
 	}
 
 	/**
@@ -307,7 +344,7 @@ public abstract class AbstractOreDetector extends Item {
 	 * <p>
 	 * Also sets {@link #distance} and {@link #type} according to the first detected block.
 	 *
-	 * @return true if detected anything.
+	 * @return true if anything is detected.
 	 */
 	@SuppressWarnings("UnusedReturnValue")
 	protected boolean scan() {

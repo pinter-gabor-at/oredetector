@@ -7,12 +7,12 @@
     "B": "minecraft:iron_ingot"
   },
   "pattern": [
-    "  B",
-    "@/ ",
+    " BB",
+    "@BB",
     "/@ "
   ],
   "result": {
     "count": 1,
-    "id": "oredetector:iron_detector"
+    "id": "oredetector:focused_iron_detector"
   }
 }

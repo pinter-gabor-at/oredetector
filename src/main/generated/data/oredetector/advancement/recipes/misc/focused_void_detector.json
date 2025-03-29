@@ -1,11 +1,11 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_diamond": {
+    "has_cobblestone": {
       "conditions": {
         "items": [
           {
-            "items": "minecraft:diamond"
+            "items": "minecraft:cobblestone"
           }
         ]
       },
@@ -33,7 +33,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "oredetector:diamond_detector"
+        "recipe": "oredetector:focused_void_detector"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -41,14 +41,14 @@
   "requirements": [
     [
       "has_the_recipe",
-      "has_diamond",
+      "has_cobblestone",
       "has_stick",
       "has_string"
     ]
   ],
   "rewards": {
     "recipes": [
-      "oredetector:diamond_detector"
+      "oredetector:focused_void_detector"
     ]
   }
 }

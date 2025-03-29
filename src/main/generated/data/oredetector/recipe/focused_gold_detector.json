@@ -4,15 +4,15 @@
   "key": {
     "/": "minecraft:stick",
     "@": "minecraft:string",
-    "B": "minecraft:iron_ingot"
+    "B": "minecraft:gold_ingot"
   },
   "pattern": [
-    "  B",
-    "@/ ",
+    " BB",
+    "@BB",
     "/@ "
   ],
   "result": {
     "count": 1,
-    "id": "oredetector:iron_detector"
+    "id": "oredetector:focused_gold_detector"
   }
 }

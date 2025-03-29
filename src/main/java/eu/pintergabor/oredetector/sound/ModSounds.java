@@ -12,15 +12,12 @@ public class ModSounds {
 	public static SoundEvent[] DETECTOR_3BANGS = new SoundEvent[5];
 	public static SoundEvent[] DETECTOR_3ECHOS = new SoundEvent[16];
 
-	@SuppressWarnings("SameParameterValue")
 	private static SoundEvent registerSoundEvent(String name) {
-		Identifier identifier = Global.ModIdentifier(name);
-		return Registry.register(Registries.SOUND_EVENT,
-			identifier,
-			SoundEvent.of(identifier));
+		Identifier id = Global.modId(name);
+		return Registry.register(Registries.SOUND_EVENT, id, SoundEvent.of(id));
 	}
 
-	public static void register() {
+	public static void init() {
 		for (int i = 0; i < DETECTOR_3BANGS.length; i++) {
 			DETECTOR_3BANGS[i] = registerSoundEvent(String.format("detector_3bangs%d", i));
 		}

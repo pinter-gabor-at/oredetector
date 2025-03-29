@@ -9,9 +9,9 @@ import net.minecraft.registry.tag.TagKey;
 
 
 /**
- * Primary block tags of this mod
+ * Primary block tags of this mod.
  * <p>
- * See {@link ModBlockTagProvider}
+ * See {@link ModBlockTagProvider}.
  */
 public final class ModBlockTags {
 	public static TagKey<Block> AIR;
@@ -28,9 +28,8 @@ public final class ModBlockTags {
 	public static TagKey<Block> QUARTZ;
 	public static TagKey<Block> NETHER;
 
-	@SuppressWarnings("unused")
 	public static TagKey<Block> createBlockTag(String name) {
-		return TagKey.of(RegistryKeys.BLOCK, Global.ModIdentifier(name));
+		return TagKey.of(RegistryKeys.BLOCK, Global.modId(name));
 	}
 
 	public static void init() {

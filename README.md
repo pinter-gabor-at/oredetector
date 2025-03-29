@@ -6,7 +6,7 @@ These ore detectors do not print out the type and coordinates of the found ores,
 That would be cheating.  
 But they do help finding ores a little faster than mining.
 
-They all operate by echo location. When they are used on a solid surface, they emit three loud bangs, which travel in the rock twice as fast forward than sideways, and got reflected from certain blocks. Each detector emits different sounds which got reflected differently. The volume of the echo, and the time till it returns, depend on the distance of the block. The pitch and the particles that may appear help to identify the block.  
+They all operate by echo location. When they are used on a solid surface, they emit three loud bangs, which get reflected from certain blocks. Each detector emits different sounds which get reflected differently. The volume of the echo, and the time till it returns, depend on the distance of the block. The pitch and the particles that may appear help to identify the block.  
 
 The Void Detector emits a sound that is reflected from non-solid blocks, like air, water, lava and some other partly transparent blocks.
 

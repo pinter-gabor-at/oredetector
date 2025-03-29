@@ -8,14 +8,21 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.util.math.BlockPos;
 
+
 /**
  * Detect air, water, lava and other non-solid blocks.
  */
 public class VoidDetector extends AbstractOreDetector {
+	private final int focus;
 
-	public VoidDetector(Settings settings) {
+	public VoidDetector(Settings settings, int focus) {
 		super(settings);
 		bangs = ModSounds.DETECTOR_3BANGS[0];
+		this.focus = focus;
+	}
+
+	public VoidDetector(Settings settings) {
+		this(settings, 1);
 	}
 
 	@Override
@@ -34,12 +41,12 @@ public class VoidDetector extends AbstractOreDetector {
 			return true;
 		}
 		if (!blockState.getFluidState().isEmpty()) {
-			// Some fluid, which is not water or lava
+			// Some fluid, which is not water or lava.
 			calcEcho(4, distance, Blocks.WATER);
 			return true;
 		}
 		if (!blockState.isOpaqueFullCube()) {
-			// Something partly transparent
+			// Something partly transparent.
 			calcEcho(1, distance, Blocks.SHORT_GRASS);
 			return true;
 		}
@@ -47,8 +54,13 @@ public class VoidDetector extends AbstractOreDetector {
 	}
 
 	@Override
-	protected int getRange() {
+	public int getRange() {
 		final var config = ModConfig.getInstance();
 		return config.rangeVoidDetector;
+	}
+
+	@Override
+	public int getFocus() {
+		return focus;
 	}
 }

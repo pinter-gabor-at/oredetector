@@ -17,10 +17,17 @@ import net.minecraft.block.Blocks;
  * <p>
  * plus Applied Energistics certus quartz.
  */
-public final class CoalDetector extends DetectOreDetector {
-	public CoalDetector(Settings settings) {
+public class CoalDetector extends DetectOreDetector {
+	private final int focus;
+
+	public CoalDetector(Settings settings, int focus) {
 		super(settings);
 		bangs = ModSounds.DETECTOR_3BANGS[1];
+		this.focus = focus;
+	}
+
+	public CoalDetector(Settings settings) {
+		this(settings, 1);
 	}
 
 	{
@@ -39,8 +46,13 @@ public final class CoalDetector extends DetectOreDetector {
 	}
 
 	@Override
-	protected int getRange() {
+	public int getRange() {
 		final var config = ModConfig.getInstance();
-		return config.rangeCoalDetector;
+		return config.rangeVoidDetector;
+	}
+
+	@Override
+	public int getFocus() {
+		return focus;
 	}
 }

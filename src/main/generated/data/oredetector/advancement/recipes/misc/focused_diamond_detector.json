@@ -33,7 +33,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "oredetector:diamond_detector"
+        "recipe": "oredetector:focused_diamond_detector"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -48,7 +48,7 @@
   ],
   "rewards": {
     "recipes": [
-      "oredetector:diamond_detector"
+      "oredetector:focused_diamond_detector"
     ]
   }
 }

@@ -7,7 +7,7 @@ import net.minecraft.util.Identifier;
 
 
 /**
- * Conventional block tags from popular mods
+ * Conventional block tags from popular mods.
  */
 public final class ImportBlockTags {
 	// Tech Reborn, Overworld.

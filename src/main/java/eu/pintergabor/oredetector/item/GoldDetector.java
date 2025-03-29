@@ -16,9 +16,16 @@ import net.minecraft.block.Blocks;
  * plus Tech Reborn silver and iridium.
  */
 public class GoldDetector extends DetectOreDetector {
-	public GoldDetector(Settings settings) {
+	private final int focus;
+
+	public GoldDetector(Settings settings, int focus) {
 		super(settings);
 		bangs = ModSounds.DETECTOR_3BANGS[3];
+		this.focus = focus;
+	}
+
+	public GoldDetector(Settings settings) {
+		this(settings, 1);
 	}
 
 	{
@@ -44,8 +51,13 @@ public class GoldDetector extends DetectOreDetector {
 	}
 
 	@Override
-	protected int getRange() {
+	public int getRange() {
 		final var config = ModConfig.getInstance();
-		return config.rangeGoldDetector;
+		return config.rangeVoidDetector;
+	}
+
+	@Override
+	public int getFocus() {
+		return focus;
 	}
 }

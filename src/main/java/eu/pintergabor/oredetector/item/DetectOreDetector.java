@@ -9,21 +9,23 @@ import net.minecraft.block.BlockState;
 import net.minecraft.registry.tag.TagKey;
 import net.minecraft.util.math.BlockPos;
 
+
 /**
  * Detector where the detect rules can be expressed as a list.
  */
 public abstract class DetectOreDetector extends AbstractOreDetector {
+
 	public DetectOreDetector(Settings settings) {
 		super(settings);
 	}
 
 	/**
-	 * List of detection rules
+	 * List of detection rules.
 	 */
 	protected List<Echo> ECHOLIST;
 
 	/**
-	 * Detection rule
+	 * Detection rule.
 	 * <p>
 	 * If the block is in {@code tag} then create an echo {@code type} and generate {@code pBlock} particles.
 	 */

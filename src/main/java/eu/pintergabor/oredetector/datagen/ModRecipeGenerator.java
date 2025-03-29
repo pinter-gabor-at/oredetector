@@ -17,35 +17,62 @@ public class ModRecipeGenerator extends RecipeGenerator {
 	}
 
 	/**
-	 * Generate one recipe
+	 * Generate one basic item recipe.
 	 *
-	 * @param keyItem    Item in the top right slot
-	 * @param resultItem Result
+	 * @param keyItem    Item in the top right slot.
+	 * @param resultItem Result.
 	 */
-	private void generateOne(
-		RecipeExporter exporter,
+	private void generateBasic(
 		Item keyItem, Item resultItem) {
 		createShaped(RecipeCategory.MISC, resultItem)
 			.pattern("  B")
-			.pattern(" /@")
+			.pattern("@/ ")
 			.pattern("/@ ")
 			.input('/', Items.STICK)
 			.input('@', Items.STRING)
 			.input('B', keyItem)
+			.criterion(hasItem(keyItem), conditionsFromItem(keyItem))
 			.criterion(hasItem(Items.STICK), conditionsFromItem(Items.STICK))
 			.criterion(hasItem(Items.STRING), conditionsFromItem(Items.STRING))
 			.offerTo(exporter);
 	}
 
 	/**
+	 * Generate one focused item recipe.
+	 *
+	 * @param keyItem    Item in the top right slot.
+	 * @param resultItem Result.
+	 */
+	private void generateFocused(
+		Item keyItem, Item resultItem) {
+		createShaped(RecipeCategory.MISC, resultItem)
+			.pattern(" BB")
+			.pattern("@BB")
+			.pattern("/@ ")
+			.input('/', Items.STICK)
+			.input('@', Items.STRING)
+			.input('B', keyItem)
+			.criterion(hasItem(keyItem), conditionsFromItem(keyItem))
+			.criterion(hasItem(Items.STICK), conditionsFromItem(Items.STICK))
+			.criterion(hasItem(Items.STRING), conditionsFromItem(Items.STRING))
+			.offerTo(exporter);
+	}
+
+
+	/**
 	 * Generate recipes
 	 */
 	@Override
 	public void generate() {
-		generateOne(exporter, Items.COBBLESTONE, ModItems.VOID_DETECTOR_ITEM);
-		generateOne(exporter, Items.COAL, ModItems.COAL_DETECTOR_ITEM);
-		generateOne(exporter, Items.IRON_INGOT, ModItems.IRON_DETECTOR_ITEM);
-		generateOne(exporter, Items.GOLD_INGOT, ModItems.GOLD_DETECTOR_ITEM);
-		generateOne(exporter, Items.DIAMOND, ModItems.DIAMOND_DETECTOR_ITEM);
+		generateBasic(Items.COBBLESTONE, ModItems.VOID_DETECTOR_ITEM);
+		generateFocused(Items.COBBLESTONE, ModItems.FOCUSED_VOID_DETECTOR_ITEM);
+		generateBasic(Items.COAL, ModItems.COAL_DETECTOR_ITEM);
+		generateFocused(Items.COAL, ModItems.FOCUSED_COAL_DETECTOR_ITEM);
+		generateBasic(Items.IRON_INGOT, ModItems.IRON_DETECTOR_ITEM);
+		generateFocused(Items.IRON_INGOT, ModItems.FOCUSED_IRON_DETECTOR_ITEM);
+		generateBasic(Items.GOLD_INGOT, ModItems.GOLD_DETECTOR_ITEM);
+		generateFocused(Items.GOLD_INGOT, ModItems.FOCUSED_GOLD_DETECTOR_ITEM);
+		generateBasic(Items.DIAMOND, ModItems.DIAMOND_DETECTOR_ITEM);
+		generateFocused(Items.DIAMOND, ModItems.FOCUSED_DIAMOND_DETECTOR_ITEM);
 	}
 }

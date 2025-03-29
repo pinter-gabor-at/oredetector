@@ -23,9 +23,14 @@ public class ModModelProvider extends FabricModelProvider {
 	@Override
 	public void generateItemModels(ItemModelGenerator itemModelGenerator) {
 		itemModelGenerator.register(ModItems.VOID_DETECTOR_ITEM, Models.HANDHELD);
+		itemModelGenerator.register(ModItems.FOCUSED_VOID_DETECTOR_ITEM, Models.HANDHELD);
 		itemModelGenerator.register(ModItems.COAL_DETECTOR_ITEM, Models.HANDHELD);
+		itemModelGenerator.register(ModItems.FOCUSED_COAL_DETECTOR_ITEM, Models.HANDHELD);
 		itemModelGenerator.register(ModItems.IRON_DETECTOR_ITEM, Models.HANDHELD);
+		itemModelGenerator.register(ModItems.FOCUSED_IRON_DETECTOR_ITEM, Models.HANDHELD);
 		itemModelGenerator.register(ModItems.GOLD_DETECTOR_ITEM, Models.HANDHELD);
+		itemModelGenerator.register(ModItems.FOCUSED_GOLD_DETECTOR_ITEM, Models.HANDHELD);
+		itemModelGenerator.register(ModItems.FOCUSED_DIAMOND_DETECTOR_ITEM, Models.HANDHELD);
 		itemModelGenerator.register(ModItems.DIAMOND_DETECTOR_ITEM, Models.HANDHELD);
 	}
 }

@@ -12,7 +12,8 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 /**
- * Inject delayed action method that is linked to the player, and ticked by the {@link ServerPlayerEntity#playerTick()}
+ * Inject delayed action method that is linked to the player,
+ * and ticked by the {@link ServerPlayerEntity#playerTick()}.
  */
 @Mixin(ServerPlayerEntity.class)
 public abstract class ServerPlayerEntityMixin

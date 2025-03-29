@@ -8,17 +8,18 @@ import eu.pintergabor.oredetector.tag.ModBlockTags;
 
 import net.fabricmc.api.ModInitializer;
 
+
 public class Mod implements ModInitializer {
 	@Override
 	public void onInitialize() {
-		// Init config
+		// Init config.
 		ModConfig.init();
-		// Register sounds
-		ModSounds.register();
-		// Register tags
+		// Register sounds.
+		ModSounds.init();
+		// Register tags.
 		ImportBlockTags.init();
 		ModBlockTags.init();
-		// Register items
+		// Register items.
 		ModItems.init();
 	}
 }
