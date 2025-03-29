@@ -9,10 +9,11 @@ import eu.pintergabor.oredetector.tag.ModBlockTags;
 
 import net.minecraft.block.Blocks;
 
+
 /**
- * Detect gold, redstone, lapis, diamond, and emerald
+ * Detect gold, redstone, lapis, diamond, and emerald.
  * <p>
- * plus Tech Reborn silver and iridium
+ * plus Tech Reborn silver and iridium.
  */
 public class GoldDetector extends DetectOreDetector {
 	public GoldDetector(Settings settings) {

@@ -1,6 +1,6 @@
 {
 	"schemaVersion": 1,
-	"id": "oredetector",
+  "id": "${mod_id}",
 	"version": "${version}",
 	"name": "Balanced Ore Detector",
 	"description": "Tools to help detecting ores underground.",
@@ -31,13 +31,14 @@
 	"mixins": [
 		"eu.pintergabor.oredetector.mixins.json"
 	],
-	"depends": {
-		"fabricloader": ">=0.16.9",
-		"minecraft": "~1.21.4",
-		"java": ">=21",
-		"fabric-api": "*"
-	},
-	"suggests": {
-		"modmenu": ">=13"
-	}
+  "depends": {
+    "java": ">=21",
+    "minecraft": "${minecraft_version}",
+    "fabricloader": "${loader_version}",
+    "fabric-api": "${fabric_version}",
+    "cloth-config": "${cloth_config_version}"
+  },
+  "suggests": {
+    "modmenu": "${modmenu_version}"
+  }
 }

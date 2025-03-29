@@ -16,9 +16,9 @@ public class Mod implements ModInitializer {
 		// Register sounds
 		ModSounds.register();
 		// Register tags
-		ImportBlockTags.register();
-		ModBlockTags.register();
+		ImportBlockTags.init();
+		ModBlockTags.init();
 		// Register items
-		ModItems.register();
+		ModItems.init();
 	}
 }

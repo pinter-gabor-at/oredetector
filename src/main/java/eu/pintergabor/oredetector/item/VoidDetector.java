@@ -9,9 +9,10 @@ import net.minecraft.block.Blocks;
 import net.minecraft.util.math.BlockPos;
 
 /**
- * Detect air, water, lava and other non-solid blocks
+ * Detect air, water, lava and other non-solid blocks.
  */
 public class VoidDetector extends AbstractOreDetector {
+
 	public VoidDetector(Settings settings) {
 		super(settings);
 		bangs = ModSounds.DETECTOR_3BANGS[0];

@@ -10,7 +10,7 @@ import net.minecraft.registry.tag.TagKey;
 import net.minecraft.util.math.BlockPos;
 
 /**
- * Detector where the detect rules can be expressed as a list
+ * Detector where the detect rules can be expressed as a list.
  */
 public abstract class DetectOreDetector extends AbstractOreDetector {
 	public DetectOreDetector(Settings settings) {

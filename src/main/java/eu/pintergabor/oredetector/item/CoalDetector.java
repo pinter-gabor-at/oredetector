@@ -9,14 +9,15 @@ import eu.pintergabor.oredetector.tag.ModBlockTags;
 
 import net.minecraft.block.Blocks;
 
+
 /**
- * Detect coal, copper and iron ores
+ * Detect coal, copper and iron ores.
  * <p>
- * plus Tech Reborn galena, tin, lead, ruby and sapphire
+ * plus Tech Reborn galena, tin, lead, ruby and sapphire.
  * <p>
- * plus Applied Energistics certus quartz
+ * plus Applied Energistics certus quartz.
  */
-public class CoalDetector extends DetectOreDetector {
+public final class CoalDetector extends DetectOreDetector {
 	public CoalDetector(Settings settings) {
 		super(settings);
 		bangs = ModSounds.DETECTOR_3BANGS[1];
