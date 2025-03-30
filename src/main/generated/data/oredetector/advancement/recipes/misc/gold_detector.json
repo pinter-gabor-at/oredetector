@@ -1,6 +1,16 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
+    "has_gold_ingot": {
+      "conditions": {
+        "items": [
+          {
+            "items": "minecraft:gold_ingot"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
     "has_stick": {
       "conditions": {
         "items": [
@@ -31,6 +41,7 @@
   "requirements": [
     [
       "has_the_recipe",
+      "has_gold_ingot",
       "has_stick",
       "has_string"
     ]

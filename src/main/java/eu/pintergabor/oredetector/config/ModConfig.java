@@ -7,6 +7,7 @@ import me.shedaniel.autoconfig.annotation.ConfigEntry;
 import me.shedaniel.autoconfig.serializer.GsonConfigSerializer;
 import org.jetbrains.annotations.ApiStatus;
 
+
 @ApiStatus.Internal
 @Config(name = "oredetector")
 public class ModConfig implements ConfigData {
@@ -58,11 +59,12 @@ public class ModConfig implements ConfigData {
 	public boolean enableParticles = true;
 
 	/**
-	 * Hidden debug level control for developers
+	 * Hidden debug level control for developers.
 	 * <p>
-	 * <div>0 = No debugging (default)</div>
-	 * <div>1 = Only non-destructive debugging</div>
-	 * <div>2 = Destructive and time consuming debugging</div>
+	 * <div>0 = No debugging (default).</div>
+	 * <div>1 = Only non-destructive debugging.</div>
+	 * <div>2 = More verbose.</div>
+	 * <div>3 = Destructive and time consuming debugging.</div>
 	 */
 	@ConfigEntry.Gui.Excluded
 	public int debugLevel = 0;

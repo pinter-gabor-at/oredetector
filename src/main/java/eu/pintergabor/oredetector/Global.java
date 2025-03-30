@@ -1,8 +1,10 @@
 package eu.pintergabor.oredetector;
 
-import net.minecraft.util.Identifier;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import net.minecraft.util.Identifier;
+
 
 public final class Global {
 	// Used for logging and registration
@@ -12,10 +14,11 @@ public final class Global {
 	public static final Logger LOGGER = LoggerFactory.getLogger(MODID);
 
 	/**
-	 * Create a mod specific identifier
-	 * @param path Name, as in lang/*.json files without "*.modid." prefix
+	 * Create a mod specific identifier.
+	 *
+	 * @param path Name, as in lang/*.json files without "*.modid." prefix.
 	 */
-	public static Identifier ModIdentifier(String path) {
+	public static Identifier modId(String path) {
 		return Identifier.of(MODID, path);
 	}
 }

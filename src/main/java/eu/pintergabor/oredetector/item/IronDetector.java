@@ -9,17 +9,23 @@ import eu.pintergabor.oredetector.tag.ModBlockTags;
 
 import net.minecraft.block.Blocks;
 
+
 /**
- * Detect iron, gold, redstone and lapis ores
+ * Detect iron, gold, redstone and lapis ores.
  * <p>
- * plus Tech Reborn galena, tin, lead, ruby, sapphire, silver and bauxite
+ * plus Tech Reborn galena, tin, lead, ruby, sapphire, silver and bauxite.
  * <p>
- * plus Applied Energistics certus quartz
+ * plus Applied Energistics certus quartz.
  */
 public class IronDetector extends DetectOreDetector {
-	public IronDetector(Settings settings) {
-		super(settings);
+
+	public IronDetector(Settings settings, int focus) {
+		super(settings, focus);
 		bangs = ModSounds.DETECTOR_3BANGS[2];
+	}
+
+	public IronDetector(Settings settings) {
+		this(settings, 1);
 	}
 
 	{
@@ -42,8 +48,8 @@ public class IronDetector extends DetectOreDetector {
 	}
 
 	@Override
-	protected int getRange() {
+	public int getRange() {
 		final var config = ModConfig.getInstance();
-		return config.rangeIronDetector;
+		return config.rangeVoidDetector;
 	}
 }

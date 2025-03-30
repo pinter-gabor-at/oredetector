@@ -1,67 +1,69 @@
 package eu.pintergabor.oredetector.mixin;
 
 import eu.pintergabor.oredetector.mixinutil.DelayedExecute;
+import net.minecraft.entity.EntityType;
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.world.World;
-
 /**
- * Inject delayed action method that is linked to the player, and ticked by the {@link ServerPlayerEntity#playerTick()}
+ * Inject delayed action method that is linked to the player,
+ * and ticked by the {@link ServerPlayerEntity#playerTick()}.
  */
 @Mixin(ServerPlayerEntity.class)
 public abstract class ServerPlayerEntityMixin
-	extends LivingEntity
-	implements DelayedExecute {
-	private ServerPlayerEntityMixin(EntityType<? extends LivingEntity> entityType, World world) {
-		super(entityType, world);
-	}
+        extends LivingEntity
+        implements DelayedExecute {
 
-	@Unique
-	private boolean running = false;
-	@Unique
-	private long triggerTime;
-	@Unique
-	private Runnable action;
+    private ServerPlayerEntityMixin(EntityType<? extends LivingEntity> entityType, World world) {
+        super(entityType, world);
+    }
 
-	@Inject(method = "playerTick", at = @At(value = "HEAD"))
-	private void playerTick(CallbackInfo ci) {
-		if (!getWorld().isClient()) {
-			if (running && triggerTime <= getWorld().getTime()) {
-				action.run();
-				running = false;
-			}
-		}
-	}
+    @Unique
+    private boolean running = false;
+    @Unique
+    private long triggerTime;
+    @Unique
+    private Runnable action;
 
-	/**
-	 * @return true if the previous delayed action is still waiting to be triggered.
-	 */
-	@Unique
-	public boolean oredetector$isRunning(){
-		return running;
-	}
+    @Inject(method = "playerTick", at = @At(value = "HEAD"))
+    private void playerTick(CallbackInfo ci) {
+        if (!getWorld().isClient()) {
+            if (running && triggerTime <= getWorld().getTime()) {
+                action.run();
+                running = false;
+            }
+        }
+    }
 
-	/**
-	 * Execute {@code action} after {@code delay} ticks
-	 * <p>
-	 * There can be only one delayed action at any time. New delayed action cannot be started until the previous one
-	 * gets triggered.
-	 * @return true on success
-	 */
-	@Unique
-	@SuppressWarnings("UnusedReturnValue")
-	public boolean oredetector$delayedExecute(int delay, Runnable action) {
-		if (running) return false;
-		this.triggerTime = getWorld().getTime() + delay;
-		this.action = action;
-		running = true;
-		return true;
-	}
+    /**
+     * @return true if the previous delayed action is still waiting to be triggered.
+     */
+    @Unique
+    public boolean oredetector$isRunning() {
+        return running;
+    }
+
+    /**
+     * Execute {@code action} after {@code delay} ticks.
+     * <p>
+     * There can be only one delayed action at any time.
+	 * New delayed action cannot be started until the previous one gets triggered.
+     *
+     * @return true on success.
+     */
+    @Unique
+    @SuppressWarnings("UnusedReturnValue")
+    public boolean oredetector$delayedExecute(int delay, Runnable action) {
+        if (running) return false;
+        this.triggerTime = getWorld().getTime() + delay;
+        this.action = action;
+        running = true;
+        return true;
+    }
 }

@@ -9,17 +9,23 @@ import eu.pintergabor.oredetector.tag.ModBlockTags;
 
 import net.minecraft.block.Blocks;
 
+
 /**
- * Detect coal, copper and iron ores
+ * Detect coal, copper and iron ores.
  * <p>
- * plus Tech Reborn galena, tin, lead, ruby and sapphire
+ * plus Tech Reborn galena, tin, lead, ruby and sapphire.
  * <p>
- * plus Applied Energistics certus quartz
+ * plus Applied Energistics certus quartz.
  */
 public class CoalDetector extends DetectOreDetector {
-	public CoalDetector(Settings settings) {
-		super(settings);
+
+	public CoalDetector(Settings settings, int focus) {
+		super(settings, focus);
 		bangs = ModSounds.DETECTOR_3BANGS[1];
+	}
+
+	public CoalDetector(Settings settings) {
+		this(settings, 1);
 	}
 
 	{
@@ -38,8 +44,8 @@ public class CoalDetector extends DetectOreDetector {
 	}
 
 	@Override
-	protected int getRange() {
+	public int getRange() {
 		final var config = ModConfig.getInstance();
-		return config.rangeCoalDetector;
+		return config.rangeVoidDetector;
 	}
 }

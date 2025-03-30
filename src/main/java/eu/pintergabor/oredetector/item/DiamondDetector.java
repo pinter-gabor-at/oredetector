@@ -9,15 +9,21 @@ import eu.pintergabor.oredetector.tag.ModBlockTags;
 
 import net.minecraft.block.Blocks;
 
+
 /**
- * Detect only diamond, emerald and netherite ores
+ * Detect only diamond, emerald and netherite ores.
  * <p>
- * plus Tech Reborn iridium, pyrite, cinnabar, sphalerite, tungsten, sheldonite, peridot and sodalite
+ * plus Tech Reborn iridium, pyrite, cinnabar, sphalerite, tungsten, sheldonite, peridot and sodalite.
  */
 public class DiamondDetector extends DetectOreDetector {
-	public DiamondDetector(Settings settings) {
-		super(settings);
+
+	public DiamondDetector(Settings settings, int focus) {
+		super(settings, focus);
 		bangs = ModSounds.DETECTOR_3BANGS[4];
+	}
+
+	public DiamondDetector(Settings settings) {
+		this(settings, 1);
 	}
 
 	{
@@ -37,8 +43,8 @@ public class DiamondDetector extends DetectOreDetector {
 	}
 
 	@Override
-	protected int getRange() {
+	public int getRange() {
 		final var config = ModConfig.getInstance();
-		return config.rangeDiamondDetector;
+		return config.rangeVoidDetector;
 	}
 }

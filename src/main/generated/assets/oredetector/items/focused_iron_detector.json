@@ -1,0 +1,6 @@
+{
+  "model": {
+    "type": "minecraft:model",
+    "model": "oredetector:item/focused_iron_detector"
+  }
+}
