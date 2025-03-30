@@ -240,16 +240,15 @@ public abstract class AbstractOreDetector extends Item {
 	 */
 	private boolean priDetect(BlockPos pos, int distance) {
 		final boolean ret = detect(pos, distance);
-		final ModConfig config = ModConfig.getInstance();
-		if (0 < config.debugLevel && ret) {
+		if (0 < debugLevel && ret) {
 			Global.LOGGER.info("Found: {}, type: {}, at ({})",
 				clickWorld.getBlockState(pos).getBlock().toString(),
 				type,
 				pos.subtract(clickPos).toShortString());
 		}
-		if (2 < config.debugLevel && !ret) {
+		if (2 < debugLevel && !ret) {
 			// Replace the scanned and not detectable block with glass to see the detected block.
-			clickWorld.setBlockState(pos, Blocks.GLASS.getDefaultState(), Block.NOTIFY_ALL);
+			clickWorld.setBlockState(pos, Blocks.TINTED_GLASS.getDefaultState(), Block.NOTIFY_ALL);
 		}
 		return ret;
 	}
