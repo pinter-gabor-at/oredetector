@@ -18,9 +18,6 @@
 		"main": [
 			"eu.pintergabor.oredetector.Mod"
 		],
-		"client": [
-			"eu.pintergabor.oredetector.ModClient"
-		],
 		"modmenu": [
 			"eu.pintergabor.oredetector.config.ModMenu"
 		],

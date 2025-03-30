@@ -13,12 +13,10 @@ import net.minecraft.util.math.BlockPos;
  * Detect air, water, lava and other non-solid blocks.
  */
 public class VoidDetector extends AbstractOreDetector {
-	private final int focus;
 
 	public VoidDetector(Settings settings, int focus) {
-		super(settings);
+		super(settings, focus);
 		bangs = ModSounds.DETECTOR_3BANGS[0];
-		this.focus = focus;
 	}
 
 	public VoidDetector(Settings settings) {
@@ -57,10 +55,5 @@ public class VoidDetector extends AbstractOreDetector {
 	public int getRange() {
 		final var config = ModConfig.getInstance();
 		return config.rangeVoidDetector;
-	}
-
-	@Override
-	public int getFocus() {
-		return focus;
 	}
 }

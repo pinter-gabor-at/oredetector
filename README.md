@@ -6,27 +6,29 @@ These ore detectors do not print out the type and coordinates of the found ores,
 That would be cheating.  
 But they do help finding ores a little faster than mining.
 
-They all operate by echo location. When they are used on a solid surface, they emit three loud bangs, which get reflected from certain blocks. Each detector emits different sounds which get reflected differently. The volume of the echo, and the time till it returns, depend on the distance of the block. The pitch and the particles that may appear help to identify the block.  
+They all operate by echo location. When they are used on a solid surface, they emit three loud bangs, which get reflected from certain blocks. Each detector emits different sounds which get reflected differently. The volume of the echo, and the time till it returns, depend on the distance of the block. The pitch and the particles that may appear help to identify the block.
+
+There are two variants of each detector: basic and focused. The focused ones use a narrower beam, therefore they are better for deceting ores, but they are more expensive. 
 
 The Void Detector emits a sound that is reflected from non-solid blocks, like air, water, lava and some other partly transparent blocks.
 
-![Crafting a Void Detector](./images/recipe_void.png "Crafting a Void Detector")
+![Crafting a Void Detector](./images/recipe_void.png "Crafting a Void Detector") ![Crafting a Focused Void Detector](./images/recipe_focused_void.png "Crafting a Focused Void Detector")
 
 The Coal Detector emits a sound that is reflected best from coal, copper, iron and quartz ores and from a few other things that are made of these materials.
 
-![Crafting a Coal Detector](./images/recipe_coal.png "Crafting a Coal Detector")
+![Crafting a Coal Detector](./images/recipe_coal.png "Crafting a Coal Detector") ![Crafting a Focused Coal Detector](./images/recipe_focused_coal.png "Crafting a Focused Coal Detector")
 
 The Iron Detector does not detect coal, but, in addition to copper, iron and quartz, it detects gold, redstone and lapis.
 
-![Crafting an Iron Detector](./images/recipe_iron.png "Crafting an Iron Detector")
+![Crafting an Iron Detector](./images/recipe_iron.png "Crafting an Iron Detector") ![Crafting a Focused Iron Detector](./images/recipe_focused_iron.png "Crafting a Focused Iron Detector")
 
 The Gold Detector is the most universal. It detects iron, gold, redstone, lapis, diamonds and emeralds, but unfortunately it is insensitive to coal and copper.
 
-![Crafting a Gold Detector](./images/recipe_gold.png "Crafting a Gold Detector")
+![Crafting a Gold Detector](./images/recipe_gold.png "Crafting a Gold Detector") ![Crafting a Focused Gold Detector](./images/recipe_focused_gold.png "Crafting a Focused Gold Detector")
 
 And the Diamond Detector is the best to find the most precious ores, diamonds, emeralds and ancient debris in the nether. 
 
-![Crafting a Diamond Detector](./images/recipe_diamond.png "Crafting a Diamond Detector")
+![Crafting a Diamond Detector](./images/recipe_diamond.png "Crafting a Diamond Detector") ![Crafting a Focused Diamond Detector](./images/recipe_focused_diamond.png "Crafting a Focused Diamond Detector")
 
 All detectors have long, but limited usability.
 

@@ -14,8 +14,9 @@ import net.fabricmc.fabric.api.tag.convention.v2.ConventionalBlockTags;
 
 
 public class ModBlockTagProvider extends FabricTagProvider.BlockTagProvider {
-	public ModBlockTagProvider(FabricDataOutput output,
-							   CompletableFuture<RegistryWrapper.WrapperLookup> registriesFuture) {
+	public ModBlockTagProvider(
+		FabricDataOutput output,
+		CompletableFuture<RegistryWrapper.WrapperLookup> registriesFuture) {
 		super(output, registriesFuture);
 	}
 

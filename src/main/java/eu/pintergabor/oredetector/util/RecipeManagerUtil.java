@@ -14,6 +14,16 @@ import net.minecraft.util.Identifier;
 public class RecipeManagerUtil {
 
 	/**
+	 * Remove {@code item} recipe from map.
+	 *
+	 * @param map Map of all recipes.
+	 */
+	private static void removeItemRecipe(
+		Map<Identifier, Recipe<?>> map, Item item) {
+		map.remove(Registries.ITEM.getId(item));
+	}
+
+	/**
 	 * Remove recipes, if they are disabled in config.
 	 *
 	 * @param map Map of all recipes.
@@ -40,15 +50,5 @@ public class RecipeManagerUtil {
 			removeItemRecipe(map, ModItems.DIAMOND_DETECTOR_ITEM);
 			removeItemRecipe(map, ModItems.FOCUSED_DIAMOND_DETECTOR_ITEM);
 		}
-	}
-
-	/**
-	 * Remove {@code item} recipe from map.
-	 *
-	 * @param map Map of all recipes.
-	 */
-	private static void removeItemRecipe(
-		Map<Identifier, Recipe<?>> map, Item item) {
-		map.remove(Registries.ITEM.getId(item));
 	}
 }

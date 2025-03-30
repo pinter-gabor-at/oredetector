@@ -34,10 +34,15 @@
   "text.autoconfig.oredetector.option.debugLevel": "Debug Level Control for Developers",
 
   "item.oredetector.void_detector": "Void Detector",
+  "item.oredetector.focused_void_detector": "Focused Void Detector",
   "item.oredetector.coal_detector": "Coal Detector",
+  "item.oredetector.focused_coal_detector": "Focused Coal Detector",
   "item.oredetector.iron_detector": "Iron Detector",
+  "item.oredetector.focused_iron_detector": "Focused Iron Detector",
   "item.oredetector.gold_detector": "Gold Detector",
+  "item.oredetector.focused_gold_detector": "Focused Gold Detector",
   "item.oredetector.diamond_detector": "Diamond Detector",
+  "item.oredetector.focused_diamond_detector": "Focused Diamond Detector",
 
   "sounds.oredetector.3bangs": "Transmit 3 bangs",
   "sounds.oredetector.3echos00": "Received 3 echoes, pitch 0",

@@ -15,8 +15,8 @@ import net.minecraft.util.math.BlockPos;
  */
 public abstract class DetectOreDetector extends AbstractOreDetector {
 
-	public DetectOreDetector(Settings settings) {
-		super(settings);
+	public DetectOreDetector(Settings settings, int focus) {
+		super(settings, focus);
 	}
 
 	/**
@@ -34,10 +34,16 @@ public abstract class DetectOreDetector extends AbstractOreDetector {
 
 	@Override
 	protected boolean detect(BlockPos pos, int distance) {
+		// Check the block at this position.
 		final BlockState blockState = clickWorld.getBlockState(pos);
-		for (var e : ECHOLIST) {
+		for (Echo e : ECHOLIST) {
+			// If it is in the list...
 			if (blockState.isIn(e.tag)) {
-				calcEcho(e.type, distance, e.pBlock == null ? blockState.getBlock() : e.pBlock);
+				// Calculate echo parameters from the distance.
+				// Generate particles either as defined in the table,
+				// or from the found block.
+				calcEcho(e.type, distance,
+					e.pBlock != null ? e.pBlock : blockState.getBlock());
 				return true;
 			}
 		}

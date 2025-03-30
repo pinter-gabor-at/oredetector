@@ -19,20 +19,20 @@ public final class ModItems {
 	// Ore Detectors.
 	public static Item VOID_DETECTOR_ITEM;
 	public static Item FOCUSED_VOID_DETECTOR_ITEM;
-	public static Item IRON_DETECTOR_ITEM;
-	public static Item FOCUSED_IRON_DETECTOR_ITEM;
-	public static Item DIAMOND_DETECTOR_ITEM;
 	public static Item COAL_DETECTOR_ITEM;
 	public static Item FOCUSED_COAL_DETECTOR_ITEM;
+	public static Item IRON_DETECTOR_ITEM;
+	public static Item FOCUSED_IRON_DETECTOR_ITEM;
 	public static Item GOLD_DETECTOR_ITEM;
 	public static Item FOCUSED_GOLD_DETECTOR_ITEM;
+	public static Item DIAMOND_DETECTOR_ITEM;
 	public static Item FOCUSED_DIAMOND_DETECTOR_ITEM;
 
 	/**
 	 * Create and register items.
 	 */
 	public static void init() {
-		var config = ModConfig.getInstance();
+		final var config = ModConfig.getInstance();
 		// Create and register Ore Detectors.
 		VOID_DETECTOR_ITEM =
 			register("void_detector",
@@ -71,18 +71,22 @@ public final class ModItems {
 			entries -> {
 				entries.add(VOID_DETECTOR_ITEM);
 				entries.add(FOCUSED_VOID_DETECTOR_ITEM);
-				entries.add(IRON_DETECTOR_ITEM);
-				entries.add(FOCUSED_IRON_DETECTOR_ITEM);
-				entries.add(DIAMOND_DETECTOR_ITEM);
 				entries.add(COAL_DETECTOR_ITEM);
 				entries.add(FOCUSED_COAL_DETECTOR_ITEM);
+				entries.add(IRON_DETECTOR_ITEM);
+				entries.add(FOCUSED_IRON_DETECTOR_ITEM);
 				entries.add(GOLD_DETECTOR_ITEM);
 				entries.add(FOCUSED_GOLD_DETECTOR_ITEM);
+				entries.add(DIAMOND_DETECTOR_ITEM);
 				entries.add(FOCUSED_DIAMOND_DETECTOR_ITEM);
 			});
 	}
 
-	private static Item register(String path, Function<Item.Settings, Item> factory, int durability) {
+	/**
+	 * Register one item.
+	 */
+	private static Item register(
+		String path, Function<Item.Settings, Item> factory, int durability) {
 		return Items.register(
 			RegistryKey.of(RegistryKeys.ITEM, Global.modId(path)),
 			factory,

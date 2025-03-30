@@ -27,10 +27,12 @@ import net.minecraft.util.math.Vec3i;
 
 public abstract class AbstractOreDetector extends Item {
 
-	public AbstractOreDetector(Settings settings) {
+	public AbstractOreDetector(Settings settings, int focus) {
 		super(settings);
-		bangs = null;
-		bangVolume = 1F;
+		this.bangs = null;
+		this.bangVolume = 1F;
+		this.debugLevel = ModConfig.getInstance().debugLevel;
+		this.focus = focus;
 	}
 
 	// region Fields
@@ -48,6 +50,21 @@ public abstract class AbstractOreDetector extends Item {
 	 * Set in the constructor.
 	 */
 	protected float bangVolume;
+
+	/**
+	 * Focus.
+	 * <p>
+	 * Set in the constructor.
+	 */
+	protected int focus;
+
+	/**
+	 * Debug level.
+	 * <p>
+	 * Set in the constructor.
+	 * See {@link ModConfig#debugLevel} for details.
+	 */
+	protected int debugLevel;
 
 	/**
 	 * World in which the block is clicked.
@@ -134,17 +151,21 @@ public abstract class AbstractOreDetector extends Item {
 	@NotNull
 	private Runnable playEcho() {
 		return () -> {
+			// Play sound coming from the clicked block.
 			if (echoes != null) {
 				clickWorld.playSound(null, clickPos,
 					echoes, SoundCategory.BLOCKS,
 					echoVolume, 1F);
 			}
+			// Spawn particles in front of the clicked block, at the center,
+			// with a speed vector pointing outwards.
 			final var ppos = clickPos.offset(clickFacing).toCenterPos();
+			final var pspeed = clickFacing.getDoubleVector();
 			if (particleBlock != null) {
 				clickWorld.spawnParticles(particleBlock,
 					ppos.x, ppos.y, ppos.z,
 					particleCount,
-					0, 0, 0, 1F);
+					pspeed.x, pspeed.y, pspeed.z, 0.005F);
 			}
 		};
 	}
@@ -190,14 +211,18 @@ public abstract class AbstractOreDetector extends Item {
 
 	/**
 	 * @return Max detection range.
+	 * <p>
+	 * Valid values: 1..
 	 */
 	protected abstract int getRange();
 
 	/**
 	 * @return Focus.
+	 * <p>
+	 * Valid values: 1..4
 	 */
 	protected int getFocus() {
-		return 1;
+		return focus;
 	}
 
 	/**
@@ -205,6 +230,7 @@ public abstract class AbstractOreDetector extends Item {
 	 * <p>
 	 * Set {@link #distance} to {@code distance}, and set echo properties if detected anything.
 	 *
+	 * @param pos Check block at this position.
 	 * @return true if detected something.
 	 */
 	protected abstract boolean detect(BlockPos pos, int distance);
@@ -279,7 +305,7 @@ public abstract class AbstractOreDetector extends Item {
 	/**
 	 * Scan {@code 4*r} blocks at level {@code y} in a radius of {@code r}.
 	 * <p>
-	 * Example: Blocks to scan for r = [1..4]
+	 * Example: Blocks to scan for r = [1..4] on the XZ plane.
 	 * <pre>
 	 *     4
 	 *    434
@@ -291,6 +317,7 @@ public abstract class AbstractOreDetector extends Item {
 	 *    434
 	 *     4
 	 * </pre>
+	 * (r can be larger, but the picture shows scans only up to 4.)
 	 * <p>
 	 * Called indirectly from {@link #scan()}.
 	 *
@@ -311,13 +338,38 @@ public abstract class AbstractOreDetector extends Item {
 	 * Scan blocks in a square at a distance of {@code d}.
 	 * <p>
 	 * Called from {@link #scan()}.
+	 * <p>
+	 * See also {@link #scanCenter}.
+	 * <p>
+	 * Example: Blocks to scan for d = [1..8] on the YX or YZ plane, when focus=1.
+	 * <pre>
+	 *     8
+	 *     78
+	 *    5678
+	 *  2345678
+	 * 012345678 <-- scanned by scanCenter
+	 *  2345678
+	 *    5678
+	 *     78
+	 *     8
+	 * </pre>
+	 * (d can be larger, but the picture shows scans only up to 8.)
+	 * <p>
+	 * Example: Blocks to scan for d = [1..4] on the YX or YZ plane, when focus=2.
+	 * <pre>
+	 *     678
+	 *   345678
+	 * 012345678 <-- scanned by scanCenter
+	 *   345678
+	 *     678
+	 * </pre>
+	 * (d can be larger, but the picture shows scans only up to 8.)
 	 */
 	private boolean scanSquare(int d) {
-		final boolean scanDebug = 1 < ModConfig.getInstance().debugLevel;
 		for (int y = 0; y < d; y++) {
 			int r = d - y;
 			if (r <= y / getFocus()) {
-				if (scanDebug) {
+				if (1 < debugLevel) {
 					Global.LOGGER.info("Scanning square d={}, y={}, r={}", d, y, r);
 				}
 				if (scanSquareYR(y, r, d)) return true;
@@ -330,10 +382,11 @@ public abstract class AbstractOreDetector extends Item {
 	 * Scan the block at the center at {@code y=-d} level.
 	 * <p>
 	 * Called from {@link #scan()}.
+	 * <p>
+	 * See also {@link #scanSquare(int)}.
 	 */
 	private boolean scanCenter(int d) {
-		final boolean scanDebug = 1 < ModConfig.getInstance().debugLevel;
-		if (scanDebug) {
+		if (1 < debugLevel) {
 			Global.LOGGER.info("Scanning center d={}, y={}", d, d);
 		}
 		return transDetect(0, -d, 0, d);

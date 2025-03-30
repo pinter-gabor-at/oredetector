@@ -60,7 +60,7 @@ public class ModRecipeGenerator extends RecipeGenerator {
 
 
 	/**
-	 * Generate recipes
+	 * Generate recipes.
 	 */
 	@Override
 	public void generate() {

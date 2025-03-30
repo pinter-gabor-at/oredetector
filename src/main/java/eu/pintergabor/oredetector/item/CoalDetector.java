@@ -18,12 +18,10 @@ import net.minecraft.block.Blocks;
  * plus Applied Energistics certus quartz.
  */
 public class CoalDetector extends DetectOreDetector {
-	private final int focus;
 
 	public CoalDetector(Settings settings, int focus) {
-		super(settings);
+		super(settings, focus);
 		bangs = ModSounds.DETECTOR_3BANGS[1];
-		this.focus = focus;
 	}
 
 	public CoalDetector(Settings settings) {
@@ -49,10 +47,5 @@ public class CoalDetector extends DetectOreDetector {
 	public int getRange() {
 		final var config = ModConfig.getInstance();
 		return config.rangeVoidDetector;
-	}
-
-	@Override
-	public int getFocus() {
-		return focus;
 	}
 }

@@ -16,12 +16,10 @@ import net.minecraft.block.Blocks;
  * plus Tech Reborn iridium, pyrite, cinnabar, sphalerite, tungsten, sheldonite, peridot and sodalite.
  */
 public class DiamondDetector extends DetectOreDetector {
-	private final int focus;
 
 	public DiamondDetector(Settings settings, int focus) {
-		super(settings);
+		super(settings, focus);
 		bangs = ModSounds.DETECTOR_3BANGS[4];
-		this.focus = focus;
 	}
 
 	public DiamondDetector(Settings settings) {
@@ -48,10 +46,5 @@ public class DiamondDetector extends DetectOreDetector {
 	public int getRange() {
 		final var config = ModConfig.getInstance();
 		return config.rangeVoidDetector;
-	}
-
-	@Override
-	public int getFocus() {
-		return focus;
 	}
 }

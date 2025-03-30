@@ -18,12 +18,10 @@ import net.minecraft.block.Blocks;
  * plus Applied Energistics certus quartz.
  */
 public class IronDetector extends DetectOreDetector {
-	private final int focus;
 
 	public IronDetector(Settings settings, int focus) {
-		super(settings);
+		super(settings, focus);
 		bangs = ModSounds.DETECTOR_3BANGS[2];
-		this.focus = focus;
 	}
 
 	public IronDetector(Settings settings) {
@@ -53,10 +51,5 @@ public class IronDetector extends DetectOreDetector {
 	public int getRange() {
 		final var config = ModConfig.getInstance();
 		return config.rangeVoidDetector;
-	}
-
-	@Override
-	public int getFocus() {
-		return focus;
 	}
 }
