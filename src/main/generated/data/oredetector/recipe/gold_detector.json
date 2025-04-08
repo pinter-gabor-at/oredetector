@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "/": "minecraft:stick",
+    "@": "minecraft:string",
+    "B": "minecraft:gold_ingot"
+  },
+  "pattern": [
+    "  B",
+    "@/ ",
+    "/@ "
+  ],
+  "result": {
+    "count": 1,
+    "id": "oredetector:gold_detector"
+  }
+}
