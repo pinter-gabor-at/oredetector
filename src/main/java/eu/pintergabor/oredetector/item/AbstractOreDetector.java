@@ -7,28 +7,29 @@ import eu.pintergabor.oredetector.sound.ModSounds;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.Blocks;
-import net.minecraft.entity.EquipmentSlot;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemUsageContext;
-import net.minecraft.particle.BlockStateParticleEffect;
-import net.minecraft.particle.ParticleEffect;
-import net.minecraft.particle.ParticleTypes;
-import net.minecraft.server.world.ServerWorld;
-import net.minecraft.sound.SoundCategory;
-import net.minecraft.sound.SoundEvent;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Direction;
-import net.minecraft.util.math.Vec3i;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.core.Vec3i;
+import net.minecraft.core.particles.BlockParticleOption;
+import net.minecraft.core.particles.ParticleOptions;
+import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.context.UseOnContext;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 
 
 public abstract class AbstractOreDetector extends Item {
 
-	public AbstractOreDetector(Settings settings, int focus) {
-		super(settings);
+	public AbstractOreDetector(Properties props, int focus) {
+		super(props);
 		this.bangs = null;
 		this.bangVolume = 1F;
 		this.debugLevel = ModConfig.getInstance().debugLevel;
@@ -71,7 +72,7 @@ public abstract class AbstractOreDetector extends Item {
 	 * <p>
 	 * Set before scanning.
 	 */
-	protected ServerWorld clickWorld;
+	protected ServerLevel clickWorld;
 
 	/**
 	 * Position of block clicked.
@@ -125,7 +126,7 @@ public abstract class AbstractOreDetector extends Item {
 	/**
 	 * The particles of the found block.
 	 */
-	protected @Nullable ParticleEffect particleBlock;
+	protected @Nullable ParticleOptions particleBlock;
 
 	/**
 	 * Number of particles.
@@ -136,12 +137,12 @@ public abstract class AbstractOreDetector extends Item {
 	/**
 	 * Scanning damages the tool.
 	 * <p>
-	 * Called from {@link #useOnBlock(ItemUsageContext)}.
+	 * Called from {@link #useOn(UseOnContext)}.
 	 */
-	private void damageTool(ItemUsageContext context, PlayerEntity player) {
+	private void damageTool(UseOnContext context, Player player) {
 		if (!player.isCreative()) {
-			final var stack = context.getStack();
-			stack.damage(1, player, EquipmentSlot.MAINHAND);
+			final ItemStack stack = context.getItemInHand();
+			stack.hurtAndBreak(1, player, EquipmentSlot.MAINHAND);
 		}
 	}
 
@@ -154,18 +155,18 @@ public abstract class AbstractOreDetector extends Item {
 			// Play sound coming from the clicked block.
 			if (echoes != null) {
 				clickWorld.playSound(null, clickPos,
-					echoes, SoundCategory.BLOCKS,
+					echoes, SoundSource.BLOCKS,
 					echoVolume, 1F);
 			}
 			// Spawn particles in front of the clicked block, at the center,
 			// with a speed vector pointing outwards.
-			final var ppos = clickPos.offset(clickFacing).toCenterPos();
-			final var pspeed = clickFacing.getDoubleVector();
+			final var ppos = clickPos.relative(clickFacing).getCenter();
+			final var pspeed = clickFacing.getUnitVec3f();
 			if (particleBlock != null) {
-				clickWorld.spawnParticles(particleBlock,
+				clickWorld.sendParticles(particleBlock,
 					ppos.x, ppos.y, ppos.z,
 					particleCount,
-					pspeed.x, pspeed.y, pspeed.z, 0.005F);
+					pspeed.x(), pspeed.y(), pspeed.z(), 0.005F);
 			}
 		};
 	}
@@ -173,12 +174,12 @@ public abstract class AbstractOreDetector extends Item {
 	/**
 	 * Play sound, scan and play delayed echo.
 	 * <p>
-	 * Called from {@link #useOnBlock(ItemUsageContext)}.
+	 * Called from {@link #useOn(UseOnContext)}.
 	 */
 	private void soundScanEcho(DelayedExecute delayedExecute) {
 		// Everybody can hear the bangs on the server.
 		clickWorld.playSound(null, clickPos,
-			bangs, SoundCategory.BLOCKS,
+			bangs, SoundSource.BLOCKS,
 			bangVolume, 1F);
 		// Scan.
 		if (scan()) {
@@ -188,17 +189,18 @@ public abstract class AbstractOreDetector extends Item {
 	}
 
 	@Override
-	public ActionResult useOnBlock(ItemUsageContext context) {
-		if (!context.getWorld().isClient()) {
-			clickWorld = (ServerWorld) context.getWorld();
-			clickPos = context.getBlockPos();
-			clickFacing = context.getSide();
-			final PlayerEntity player = context.getPlayer();
+	@NotNull
+	public InteractionResult useOn(UseOnContext context) {
+		if (!context.getLevel().isClientSide) {
+			clickWorld = (ServerLevel) context.getLevel();
+			clickPos = context.getClickedPos();
+			clickFacing = context.getClickedFace();
+			final Player player = context.getPlayer();
 			if (player != null) {
 				DelayedExecute delayedExecute = (DelayedExecute) player;
 				// Cannot start new scanning while the previous one is still running.
 				if (delayedExecute.oredetector$isRunning()) {
-					return ActionResult.FAIL;
+					return InteractionResult.FAIL;
 				}
 				// Scanning damages the tool.
 				damageTool(context, player);
@@ -206,7 +208,7 @@ public abstract class AbstractOreDetector extends Item {
 				soundScanEcho(delayedExecute);
 			}
 		}
-		return ActionResult.SUCCESS;
+		return InteractionResult.SUCCESS;
 	}
 
 	/**
@@ -240,16 +242,15 @@ public abstract class AbstractOreDetector extends Item {
 	 */
 	private boolean priDetect(BlockPos pos, int distance) {
 		final boolean ret = detect(pos, distance);
-		final ModConfig config = ModConfig.getInstance();
-		if (0 < config.debugLevel && ret) {
+		if (0 < debugLevel && ret) {
 			Global.LOGGER.info("Found: {}, type: {}, at ({})",
-				clickWorld.getBlockState(pos).getBlock().toString(),
+				clickWorld.getBlockState(pos).getBlock(),
 				type,
 				pos.subtract(clickPos).toShortString());
 		}
-		if (2 < config.debugLevel && !ret) {
+		if (2 < debugLevel && !ret) {
 			// Replace the scanned and not detectable block with glass to see the detected block.
-			clickWorld.setBlockState(pos, Blocks.GLASS.getDefaultState(), Block.NOTIFY_ALL);
+			clickWorld.setBlockAndUpdate(pos, Blocks.TINTED_GLASS.defaultBlockState());
 		}
 		return ret;
 	}
@@ -281,7 +282,7 @@ public abstract class AbstractOreDetector extends Item {
 	 * @return true if anything is detected.
 	 */
 	private boolean transDetect(int x, int y, int z, int d) {
-		return priDetect(clickPos.add(translate(x, y, z)), d);
+		return priDetect(clickPos.offset(translate(x, y, z)), d);
 	}
 
 	/**
@@ -428,8 +429,8 @@ public abstract class AbstractOreDetector extends Item {
 		calcEcho(type, distance);
 		final var config = ModConfig.getInstance();
 		if (config.enableParticles) {
-			particleBlock = new BlockStateParticleEffect(
-				ParticleTypes.BLOCK, pBlock.getDefaultState());
+			particleBlock = new BlockParticleOption(
+				ParticleTypes.BLOCK, pBlock.defaultBlockState());
 			particleCount = (int) (40 * (1F - 0.9F * distance / getRange()));
 		}
 	}

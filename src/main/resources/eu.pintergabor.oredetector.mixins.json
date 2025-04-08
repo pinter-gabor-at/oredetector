@@ -7,7 +7,7 @@
   },
   "mixins": [
     "RecipeManagerMixin",
-    "ServerPlayerEntityMixin"
+    "ServerPlayerMixin"
   ],
   "client": [
   ],

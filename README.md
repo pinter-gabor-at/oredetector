@@ -1,4 +1,4 @@
-# Balanced Ore Detector (Fabric)  
+# Balanced Ore Detector (Fabric and NeoForge)  
 
 Old Minecraft worlds look like swiss cheese. The underground, especially around level 10, is hollow and ugly.  
 I have never liked it, and I decided to design various detectors to find ores without hollowing out the entire world.  
@@ -38,11 +38,13 @@ Every major feature of the mod is configurable in the Mod Menu.
 
 ![Screenshot](./images/modmenu.png "Screenshot")
 
-## Requires
+
+## Requires (Fabric)
 
 - [Fabric API](https://modrinth.com/mod/fabric-api)  
 - [Cloth Config API](https://modrinth.com/mod/cloth-config)
 - Optional, but recommended [Mod Menu](https://modrinth.com/mod/modmenu)
+
 
 ## Compatibility
 
@@ -55,24 +57,29 @@ Since 1.1.0
 - the Gold Detector detects silver and iridium,
 - and the Diamond Detector detects iridium, pyrite, cinnabar, sphalerite, tungsten, sheldonite, peridot and sodalite.
 
+
 ### [Applied energistics 2](https://www.curseforge.com/minecraft/mc-mods/applied-energistics-2)
 
 Since 1.1.0
 
 - Coal and Iron Detectors detect certus quartz too.
 
+
 ## License
 
 Standard MIT license. Feel free to learn from it and incorporate it in your own projects.  
+
 
 ## Source code
 
 Available on [GitLab](https://gitlab.com/pintergabor/oredetector.git) or on [GitHub](https://github.com/pinter-gabor-at/oredetector.git).  
 The source code has lots of comments to help learning Minecraft modding.
 
+
 ## Thanks
 
 Thanks to Kaupenjoe for his excellent [Modding By Kaupenjoe: Minecraft Modding 1.20.X for Fabric](https://www.udemy.com/course/minecraft-modding-120x-for-fabric/) course. 
+
 
 ## See also
 

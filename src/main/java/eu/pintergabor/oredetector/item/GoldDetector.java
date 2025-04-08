@@ -7,7 +7,7 @@ import eu.pintergabor.oredetector.sound.ModSounds;
 import eu.pintergabor.oredetector.tag.ImportBlockTags;
 import eu.pintergabor.oredetector.tag.ModBlockTags;
 
-import net.minecraft.block.Blocks;
+import net.minecraft.world.level.block.Blocks;
 
 
 /**
@@ -17,13 +17,13 @@ import net.minecraft.block.Blocks;
  */
 public class GoldDetector extends DetectOreDetector {
 
-	public GoldDetector(Settings settings, int focus) {
-		super(settings, focus);
+	public GoldDetector(Properties props, int focus) {
+		super(props, focus);
 		bangs = ModSounds.DETECTOR_3BANGS[3];
 	}
 
-	public GoldDetector(Settings settings) {
-		this(settings, 1);
+	public GoldDetector(Properties props) {
+		this(props, 1);
 	}
 
 	{

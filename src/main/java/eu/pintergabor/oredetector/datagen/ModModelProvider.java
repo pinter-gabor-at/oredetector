@@ -2,12 +2,14 @@ package eu.pintergabor.oredetector.datagen;
 
 import eu.pintergabor.oredetector.item.ModItems;
 
-import net.minecraft.client.data.BlockStateModelGenerator;
-import net.minecraft.client.data.ItemModelGenerator;
-import net.minecraft.client.data.Models;
+import net.minecraft.client.data.models.BlockModelGenerators;
+import net.minecraft.client.data.models.ItemModelGenerators;
 
 import net.fabricmc.fabric.api.client.datagen.v1.provider.FabricModelProvider;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
+
+import net.minecraft.client.data.models.model.ModelTemplates;
+import net.minecraft.world.item.Item;
 
 
 public class ModModelProvider extends FabricModelProvider {
@@ -17,20 +19,18 @@ public class ModModelProvider extends FabricModelProvider {
 	}
 
 	@Override
-	public void generateBlockStateModels(BlockStateModelGenerator blockStateModelGenerator) {
+	public void generateBlockStateModels(BlockModelGenerators generators) {
+	}
+
+
+	private static void generateModel(ItemModelGenerators generators, Item item) {
+		generators.generateFlatItem(item, ModelTemplates.FLAT_HANDHELD_ITEM);
 	}
 
 	@Override
-	public void generateItemModels(ItemModelGenerator itemModelGenerator) {
-		itemModelGenerator.register(ModItems.VOID_DETECTOR_ITEM, Models.HANDHELD);
-		itemModelGenerator.register(ModItems.FOCUSED_VOID_DETECTOR_ITEM, Models.HANDHELD);
-		itemModelGenerator.register(ModItems.COAL_DETECTOR_ITEM, Models.HANDHELD);
-		itemModelGenerator.register(ModItems.FOCUSED_COAL_DETECTOR_ITEM, Models.HANDHELD);
-		itemModelGenerator.register(ModItems.IRON_DETECTOR_ITEM, Models.HANDHELD);
-		itemModelGenerator.register(ModItems.FOCUSED_IRON_DETECTOR_ITEM, Models.HANDHELD);
-		itemModelGenerator.register(ModItems.GOLD_DETECTOR_ITEM, Models.HANDHELD);
-		itemModelGenerator.register(ModItems.FOCUSED_GOLD_DETECTOR_ITEM, Models.HANDHELD);
-		itemModelGenerator.register(ModItems.FOCUSED_DIAMOND_DETECTOR_ITEM, Models.HANDHELD);
-		itemModelGenerator.register(ModItems.DIAMOND_DETECTOR_ITEM, Models.HANDHELD);
+	public void generateItemModels(ItemModelGenerators generators) {
+		for (Item detector : ModItems.DETECTORS) {
+			generateModel(generators, detector);
+		}
 	}
 }

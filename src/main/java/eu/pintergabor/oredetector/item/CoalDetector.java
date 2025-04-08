@@ -7,7 +7,7 @@ import eu.pintergabor.oredetector.sound.ModSounds;
 import eu.pintergabor.oredetector.tag.ImportBlockTags;
 import eu.pintergabor.oredetector.tag.ModBlockTags;
 
-import net.minecraft.block.Blocks;
+import net.minecraft.world.level.block.Blocks;
 
 
 /**
@@ -19,13 +19,13 @@ import net.minecraft.block.Blocks;
  */
 public class CoalDetector extends DetectOreDetector {
 
-	public CoalDetector(Settings settings, int focus) {
-		super(settings, focus);
+	public CoalDetector(Properties props, int focus) {
+		super(props, focus);
 		bangs = ModSounds.DETECTOR_3BANGS[1];
 	}
 
-	public CoalDetector(Settings settings) {
-		this(settings, 1);
+	public CoalDetector(Properties props) {
+		this(props, 1);
 	}
 
 	{

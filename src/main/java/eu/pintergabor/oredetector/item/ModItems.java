@@ -1,15 +1,16 @@
 package eu.pintergabor.oredetector.item;
 
+import java.util.List;
 import java.util.function.Function;
 
 import eu.pintergabor.oredetector.Global;
 import eu.pintergabor.oredetector.config.ModConfig;
 
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemGroups;
-import net.minecraft.item.Items;
-import net.minecraft.registry.RegistryKey;
-import net.minecraft.registry.RegistryKeys;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.world.item.CreativeModeTabs;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Items;
 
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 
@@ -27,6 +28,20 @@ public final class ModItems {
 	public static Item FOCUSED_GOLD_DETECTOR_ITEM;
 	public static Item DIAMOND_DETECTOR_ITEM;
 	public static Item FOCUSED_DIAMOND_DETECTOR_ITEM;
+	public static List<Item> DETECTORS;
+
+	/**
+	 * Register one item.
+	 */
+	private static Item register(
+		String path, Function<Item.Properties, Item> factory, int durability) {
+		Item detector = Items.registerItem(
+			ResourceKey.create(Registries.ITEM, Global.modId(path)),
+			factory,
+			new Item.Properties().durability(durability));
+		DETECTORS.add(detector);
+		return detector;
+	}
 
 	/**
 	 * Create and register items.
@@ -40,56 +55,38 @@ public final class ModItems {
 				config.durabilityVoidDetector);
 		FOCUSED_VOID_DETECTOR_ITEM =
 			register("focused_void_detector",
-				settings -> new VoidDetector(settings, 2),
+				props -> new VoidDetector(props, 2),
 				config.durabilityVoidDetector);
 		COAL_DETECTOR_ITEM = register("coal_detector",
 			CoalDetector::new,
 			config.durabilityCoalDetector);
 		FOCUSED_COAL_DETECTOR_ITEM = register("focused_coal_detector",
-			settings -> new CoalDetector(settings, 2),
+			props -> new CoalDetector(props, 2),
 			config.durabilityCoalDetector);
 		IRON_DETECTOR_ITEM = register("iron_detector",
 			IronDetector::new,
 			config.durabilityIronDetector);
 		FOCUSED_IRON_DETECTOR_ITEM = register("focused_iron_detector",
-			settings -> new IronDetector(settings, 2),
+			props -> new IronDetector(props, 2),
 			config.durabilityIronDetector);
 		GOLD_DETECTOR_ITEM = register("gold_detector",
 			GoldDetector::new,
 			config.durabilityGoldDetector);
 		FOCUSED_GOLD_DETECTOR_ITEM = register("focused_gold_detector",
-			settings -> new GoldDetector(settings, 2),
+			props -> new GoldDetector(props, 2),
 			config.durabilityGoldDetector);
 		DIAMOND_DETECTOR_ITEM = register("diamond_detector",
 			DiamondDetector::new,
 			config.durabilityDiamondDetector);
 		FOCUSED_DIAMOND_DETECTOR_ITEM = register("focused_diamond_detector",
-			settings -> new DiamondDetector(settings, 2),
+			props -> new DiamondDetector(props, 2),
 			config.durabilityDiamondDetector);
 		// Item groups.
-		ItemGroupEvents.modifyEntriesEvent(ItemGroups.TOOLS).register(
+		ItemGroupEvents.modifyEntriesEvent(CreativeModeTabs.TOOLS_AND_UTILITIES).register(
 			entries -> {
-				entries.add(VOID_DETECTOR_ITEM);
-				entries.add(FOCUSED_VOID_DETECTOR_ITEM);
-				entries.add(COAL_DETECTOR_ITEM);
-				entries.add(FOCUSED_COAL_DETECTOR_ITEM);
-				entries.add(IRON_DETECTOR_ITEM);
-				entries.add(FOCUSED_IRON_DETECTOR_ITEM);
-				entries.add(GOLD_DETECTOR_ITEM);
-				entries.add(FOCUSED_GOLD_DETECTOR_ITEM);
-				entries.add(DIAMOND_DETECTOR_ITEM);
-				entries.add(FOCUSED_DIAMOND_DETECTOR_ITEM);
+				for (Item detector : DETECTORS) {
+					entries.accept(detector);
+				}
 			});
-	}
-
-	/**
-	 * Register one item.
-	 */
-	private static Item register(
-		String path, Function<Item.Settings, Item> factory, int durability) {
-		return Items.register(
-			RegistryKey.of(RegistryKeys.ITEM, Global.modId(path)),
-			factory,
-			new Item.Settings().maxDamage(durability));
 	}
 }

@@ -4,9 +4,9 @@ import java.util.concurrent.CompletableFuture;
 
 import eu.pintergabor.oredetector.tag.ModBlockTags;
 
-import net.minecraft.block.Blocks;
-import net.minecraft.registry.RegistryWrapper;
-import net.minecraft.registry.tag.BlockTags;
+import net.minecraft.core.HolderLookup;
+import net.minecraft.tags.BlockTags;
+import net.minecraft.world.level.block.Blocks;
 
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
@@ -14,14 +14,15 @@ import net.fabricmc.fabric.api.tag.convention.v2.ConventionalBlockTags;
 
 
 public class ModBlockTagProvider extends FabricTagProvider.BlockTagProvider {
+
 	public ModBlockTagProvider(
 		FabricDataOutput output,
-		CompletableFuture<RegistryWrapper.WrapperLookup> registriesFuture) {
+		CompletableFuture<HolderLookup.Provider> registriesFuture) {
 		super(output, registriesFuture);
 	}
 
 	@Override
-	protected void configure(RegistryWrapper.WrapperLookup arg) {
+	protected void addTags(HolderLookup.Provider wrapperLookup) {
 		getOrCreateTagBuilder(ModBlockTags.AIR)
 			.add(Blocks.AIR, Blocks.VOID_AIR, Blocks.CAVE_AIR);
 		getOrCreateTagBuilder(ModBlockTags.WATER)
