@@ -2,10 +2,10 @@ package eu.pintergabor.oredetector.sound;
 
 import eu.pintergabor.oredetector.Global;
 
-import net.minecraft.registry.Registries;
-import net.minecraft.registry.Registry;
-import net.minecraft.sound.SoundEvent;
-import net.minecraft.util.Identifier;
+import net.minecraft.core.Registry;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.sounds.SoundEvent;
 
 
 public class ModSounds {
@@ -13,8 +13,9 @@ public class ModSounds {
 	public static SoundEvent[] DETECTOR_3ECHOS = new SoundEvent[16];
 
 	private static SoundEvent register(String name) {
-		Identifier id = Global.modId(name);
-		return Registry.register(Registries.SOUND_EVENT, id, SoundEvent.of(id));
+		ResourceLocation id = Global.modId(name);
+		return Registry.register(
+			BuiltInRegistries.SOUND_EVENT, id, SoundEvent.createVariableRangeEvent(id));
 	}
 
 	public static void init() {

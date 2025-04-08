@@ -1,6 +1,0 @@
-{
-  "parent": "minecraft:item/handheld",
-  "textures": {
-    "layer0": "oredetector:item/focused_diamond_detector"
-  }
-}

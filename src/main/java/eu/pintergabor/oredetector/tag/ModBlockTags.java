@@ -3,9 +3,9 @@ package eu.pintergabor.oredetector.tag;
 import eu.pintergabor.oredetector.Global;
 import eu.pintergabor.oredetector.datagen.ModBlockTagProvider;
 
-import net.minecraft.block.Block;
-import net.minecraft.registry.RegistryKeys;
-import net.minecraft.registry.tag.TagKey;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.tags.TagKey;
+import net.minecraft.world.level.block.Block;
 
 
 /**
@@ -29,7 +29,7 @@ public final class ModBlockTags {
 	public static TagKey<Block> NETHER;
 
 	public static TagKey<Block> createBlockTag(String name) {
-		return TagKey.of(RegistryKeys.BLOCK, Global.modId(name));
+		return TagKey.create(Registries.BLOCK, Global.modId(name));
 	}
 
 	public static void init() {

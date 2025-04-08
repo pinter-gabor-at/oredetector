@@ -7,7 +7,7 @@ import eu.pintergabor.oredetector.sound.ModSounds;
 import eu.pintergabor.oredetector.tag.ImportBlockTags;
 import eu.pintergabor.oredetector.tag.ModBlockTags;
 
-import net.minecraft.block.Blocks;
+import net.minecraft.world.level.block.Blocks;
 
 
 /**
@@ -19,13 +19,13 @@ import net.minecraft.block.Blocks;
  */
 public class IronDetector extends DetectOreDetector {
 
-	public IronDetector(Settings settings, int focus) {
-		super(settings, focus);
+	public IronDetector(Properties props, int focus) {
+		super(props, focus);
 		bangs = ModSounds.DETECTOR_3BANGS[2];
 	}
 
-	public IronDetector(Settings settings) {
-		this(settings, 1);
+	public IronDetector(Properties props) {
+		this(props, 1);
 	}
 
 	{

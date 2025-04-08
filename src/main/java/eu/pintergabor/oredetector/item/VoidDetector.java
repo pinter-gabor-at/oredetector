@@ -4,9 +4,9 @@ import eu.pintergabor.oredetector.config.ModConfig;
 import eu.pintergabor.oredetector.sound.ModSounds;
 import eu.pintergabor.oredetector.tag.ModBlockTags;
 
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.util.math.BlockPos;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.state.BlockState;
 
 
 /**
@@ -14,27 +14,27 @@ import net.minecraft.util.math.BlockPos;
  */
 public class VoidDetector extends AbstractOreDetector {
 
-	public VoidDetector(Settings settings, int focus) {
-		super(settings, focus);
+	public VoidDetector(Properties props, int focus) {
+		super(props, focus);
 		bangs = ModSounds.DETECTOR_3BANGS[0];
 	}
 
-	public VoidDetector(Settings settings) {
-		this(settings, 1);
+	public VoidDetector(Properties props) {
+		this(props, 1);
 	}
 
 	@Override
 	protected boolean detect(BlockPos pos, int distance) {
 		final BlockState blockState = clickWorld.getBlockState(pos);
-		if (blockState.isIn(ModBlockTags.AIR) || blockState.isAir()) {
+		if (blockState.is(ModBlockTags.AIR) || blockState.isAir()) {
 			calcEcho(0, distance, Blocks.SNOW);
 			return true;
 		}
-		if (blockState.isIn(ModBlockTags.WATER)) {
+		if (blockState.is(ModBlockTags.WATER)) {
 			calcEcho(2, distance, Blocks.WATER);
 			return true;
 		}
-		if (blockState.isIn(ModBlockTags.LAVA)) {
+		if (blockState.is(ModBlockTags.LAVA)) {
 			calcEcho(3, distance, Blocks.LAVA);
 			return true;
 		}
@@ -43,7 +43,7 @@ public class VoidDetector extends AbstractOreDetector {
 			calcEcho(4, distance, Blocks.WATER);
 			return true;
 		}
-		if (!blockState.isOpaqueFullCube()) {
+		if (!blockState.isSolidRender()) {
 			// Something partly transparent.
 			calcEcho(1, distance, Blocks.SHORT_GRASS);
 			return true;

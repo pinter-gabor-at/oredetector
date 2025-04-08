@@ -2,18 +2,19 @@ package eu.pintergabor.oredetector.datagen;
 
 import eu.pintergabor.oredetector.item.ModItems;
 
-import net.minecraft.data.recipe.RecipeExporter;
-import net.minecraft.data.recipe.RecipeGenerator;
-import net.minecraft.item.Item;
-import net.minecraft.item.Items;
-import net.minecraft.recipe.book.RecipeCategory;
-import net.minecraft.registry.RegistryWrapper;
+import net.minecraft.core.HolderLookup;
+import net.minecraft.data.recipes.RecipeCategory;
+import net.minecraft.data.recipes.RecipeOutput;
+import net.minecraft.data.recipes.RecipeProvider;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Items;
 
 
-public class ModRecipeGenerator extends RecipeGenerator {
+public class ModRecipeGenerator extends RecipeProvider {
 
-	protected ModRecipeGenerator(RegistryWrapper.WrapperLookup registries, RecipeExporter exporter) {
-		super(registries, exporter);
+	public ModRecipeGenerator(
+		HolderLookup.Provider registries, RecipeOutput output) {
+		super(registries, output);
 	}
 
 	/**
@@ -24,17 +25,17 @@ public class ModRecipeGenerator extends RecipeGenerator {
 	 */
 	private void generateBasic(
 		Item keyItem, Item resultItem) {
-		createShaped(RecipeCategory.MISC, resultItem)
+		shaped(RecipeCategory.MISC, resultItem)
 			.pattern("  B")
 			.pattern("@/ ")
 			.pattern("/@ ")
-			.input('/', Items.STICK)
-			.input('@', Items.STRING)
-			.input('B', keyItem)
-			.criterion(hasItem(keyItem), conditionsFromItem(keyItem))
-			.criterion(hasItem(Items.STICK), conditionsFromItem(Items.STICK))
-			.criterion(hasItem(Items.STRING), conditionsFromItem(Items.STRING))
-			.offerTo(exporter);
+			.define('/', Items.STICK)
+			.define('@', Items.STRING)
+			.define('B', keyItem)
+			.unlockedBy(getHasName(keyItem), has(keyItem))
+			.unlockedBy(getHasName(Items.STICK), has(Items.STICK))
+			.unlockedBy(getHasName(Items.STRING), has(Items.STRING))
+			.save(output);
 	}
 
 	/**
@@ -45,25 +46,24 @@ public class ModRecipeGenerator extends RecipeGenerator {
 	 */
 	private void generateFocused(
 		Item keyItem, Item resultItem) {
-		createShaped(RecipeCategory.MISC, resultItem)
+		shaped(RecipeCategory.MISC, resultItem)
 			.pattern(" BB")
 			.pattern("@BB")
 			.pattern("/@ ")
-			.input('/', Items.STICK)
-			.input('@', Items.STRING)
-			.input('B', keyItem)
-			.criterion(hasItem(keyItem), conditionsFromItem(keyItem))
-			.criterion(hasItem(Items.STICK), conditionsFromItem(Items.STICK))
-			.criterion(hasItem(Items.STRING), conditionsFromItem(Items.STRING))
-			.offerTo(exporter);
+			.define('/', Items.STICK)
+			.define('@', Items.STRING)
+			.define('B', keyItem)
+			.unlockedBy(getHasName(keyItem), has(keyItem))
+			.unlockedBy(getHasName(Items.STICK), has(Items.STICK))
+			.unlockedBy(getHasName(Items.STRING), has(Items.STRING))
+			.save(output);
 	}
-
 
 	/**
 	 * Generate recipes.
 	 */
 	@Override
-	public void generate() {
+	public void buildRecipes() {
 		generateBasic(Items.COBBLESTONE, ModItems.VOID_DETECTOR_ITEM);
 		generateFocused(Items.COBBLESTONE, ModItems.FOCUSED_VOID_DETECTOR_ITEM);
 		generateBasic(Items.COAL, ModItems.COAL_DETECTOR_ITEM);
