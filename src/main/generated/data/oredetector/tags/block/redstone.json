@@ -1,5 +1,6 @@
 {
   "values": [
+    "#c:ores/redstone",
     "#minecraft:redstone_ores",
     "minecraft:redstone_block",
     "minecraft:redstone_torch",

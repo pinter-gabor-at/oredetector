@@ -8,6 +8,7 @@ import net.minecraft.data.recipes.RecipeOutput;
 import net.minecraft.data.recipes.RecipeProvider;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.level.ItemLike;
 
 
 public class ModRecipeGenerator extends RecipeProvider {
@@ -24,7 +25,7 @@ public class ModRecipeGenerator extends RecipeProvider {
 	 * @param resultItem Result.
 	 */
 	private void generateBasic(
-		Item keyItem, Item resultItem) {
+		ItemLike keyItem, ItemLike resultItem) {
 		shaped(RecipeCategory.MISC, resultItem)
 			.pattern("  B")
 			.pattern("@/ ")
@@ -45,7 +46,7 @@ public class ModRecipeGenerator extends RecipeProvider {
 	 * @param resultItem Result.
 	 */
 	private void generateFocused(
-		Item keyItem, Item resultItem) {
+		ItemLike keyItem, ItemLike resultItem) {
 		shaped(RecipeCategory.MISC, resultItem)
 			.pattern(" BB")
 			.pattern("@BB")

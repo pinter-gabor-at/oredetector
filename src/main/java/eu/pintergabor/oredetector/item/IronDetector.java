@@ -2,7 +2,7 @@ package eu.pintergabor.oredetector.item;
 
 import java.util.List;
 
-import eu.pintergabor.oredetector.config.ModConfig;
+import eu.pintergabor.oredetector.config.ModConfigData;
 import eu.pintergabor.oredetector.sound.ModSounds;
 import eu.pintergabor.oredetector.tag.ImportBlockTags;
 import eu.pintergabor.oredetector.tag.ModBlockTags;
@@ -21,7 +21,7 @@ public class IronDetector extends DetectOreDetector {
 
 	public IronDetector(Properties props, int focus) {
 		super(props, focus);
-		bangs = ModSounds.DETECTOR_3BANGS[2];
+		bangs = ModSounds.DETECTOR_3BANGS[2].value();
 	}
 
 	public IronDetector(Properties props) {
@@ -49,7 +49,6 @@ public class IronDetector extends DetectOreDetector {
 
 	@Override
 	public int getRange() {
-		final var config = ModConfig.getInstance();
-		return config.rangeVoidDetector;
+		return ModConfigData.rangeVoidDetector;
 	}
 }

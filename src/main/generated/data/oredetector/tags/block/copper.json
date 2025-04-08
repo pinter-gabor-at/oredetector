@@ -1,5 +1,6 @@
 {
   "values": [
+    "#c:ores/copper",
     "#minecraft:copper_ores",
     "minecraft:copper_block",
     "minecraft:raw_copper_block",

@@ -1,7 +1,7 @@
 package eu.pintergabor.oredetector.item;
 
 import eu.pintergabor.oredetector.Global;
-import eu.pintergabor.oredetector.config.ModConfig;
+import eu.pintergabor.oredetector.config.ModConfigData;
 import eu.pintergabor.oredetector.mixinutil.DelayedExecute;
 import eu.pintergabor.oredetector.sound.ModSounds;
 import org.jetbrains.annotations.NotNull;
@@ -32,7 +32,7 @@ public abstract class AbstractOreDetector extends Item {
 		super(props);
 		this.bangs = null;
 		this.bangVolume = 1F;
-		this.debugLevel = ModConfig.getInstance().debugLevel;
+		this.debugLevel = ModConfigData.debugLevel;
 		this.focus = focus;
 	}
 
@@ -63,7 +63,7 @@ public abstract class AbstractOreDetector extends Item {
 	 * Debug level.
 	 * <p>
 	 * Set in the constructor.
-	 * See {@link ModConfig#debugLevel} for details.
+	 * See {@link ModConfigData#debugLevel} for details.
 	 */
 	protected int debugLevel;
 
@@ -415,7 +415,7 @@ public abstract class AbstractOreDetector extends Item {
 	protected void calcEcho(int type, int distance) {
 		this.type = type;
 		this.distance = distance;
-		echoes = ModSounds.DETECTOR_3ECHOS[type];
+		echoes = ModSounds.DETECTOR_3ECHOS[type].value();
 		echoVolume = 1F - 0.9F * distance / getRange();
 		echoDelay = 10 + 2 * distance;
 		// For echos that do not generate particles.
@@ -427,8 +427,7 @@ public abstract class AbstractOreDetector extends Item {
 	 */
 	protected void calcEcho(int type, int distance, Block pBlock) {
 		calcEcho(type, distance);
-		final var config = ModConfig.getInstance();
-		if (config.enableParticles) {
+		if (ModConfigData.enableParticles) {
 			particleBlock = new BlockParticleOption(
 				ParticleTypes.BLOCK, pBlock.defaultBlockState());
 			particleCount = (int) (40 * (1F - 0.9F * distance / getRange()));

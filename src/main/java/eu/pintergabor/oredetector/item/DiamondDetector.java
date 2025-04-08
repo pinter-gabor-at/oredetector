@@ -2,7 +2,7 @@ package eu.pintergabor.oredetector.item;
 
 import java.util.List;
 
-import eu.pintergabor.oredetector.config.ModConfig;
+import eu.pintergabor.oredetector.config.ModConfigData;
 import eu.pintergabor.oredetector.sound.ModSounds;
 import eu.pintergabor.oredetector.tag.ImportBlockTags;
 import eu.pintergabor.oredetector.tag.ModBlockTags;
@@ -19,7 +19,7 @@ public class DiamondDetector extends DetectOreDetector {
 
 	public DiamondDetector(Properties props, int focus) {
 		super(props, focus);
-		bangs = ModSounds.DETECTOR_3BANGS[4];
+		bangs = ModSounds.DETECTOR_3BANGS[4].value();
 	}
 
 	public DiamondDetector(Properties props) {
@@ -44,7 +44,6 @@ public class DiamondDetector extends DetectOreDetector {
 
 	@Override
 	public int getRange() {
-		final var config = ModConfig.getInstance();
-		return config.rangeVoidDetector;
+		return ModConfigData.rangeVoidDetector;
 	}
 }

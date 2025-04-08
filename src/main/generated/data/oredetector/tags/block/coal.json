@@ -1,5 +1,6 @@
 {
   "values": [
+    "#c:ores/coal",
     "#minecraft:coal_ores",
     "minecraft:coal_block",
     "minecraft:torch"

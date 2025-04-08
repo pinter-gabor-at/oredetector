@@ -1,36 +1,39 @@
 package eu.pintergabor.oredetector.datagen;
 
+import eu.pintergabor.oredetector.Global;
 import eu.pintergabor.oredetector.item.ModItems;
 
 import net.minecraft.client.data.models.BlockModelGenerators;
 import net.minecraft.client.data.models.ItemModelGenerators;
 
-import net.fabricmc.fabric.api.client.datagen.v1.provider.FabricModelProvider;
-import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
-
+import net.minecraft.client.data.models.ModelProvider;
 import net.minecraft.client.data.models.model.ModelTemplates;
+import net.minecraft.data.PackOutput;
 import net.minecraft.world.item.Item;
 
+import net.neoforged.neoforge.registries.DeferredItem;
+import org.jetbrains.annotations.NotNull;
 
-public class ModModelProvider extends FabricModelProvider {
 
-	public ModModelProvider(FabricDataOutput output) {
-		super(output);
+public class ModModelProvider extends ModelProvider {
+
+	public ModModelProvider(PackOutput output) {
+		super(output, Global.MODID);
 	}
-
-	@Override
-	public void generateBlockStateModels(BlockModelGenerators generators) {
-	}
-
 
 	private static void generateModel(ItemModelGenerators generators, Item item) {
 		generators.generateFlatItem(item, ModelTemplates.FLAT_HANDHELD_ITEM);
 	}
 
+	/**
+	 * Generate blockstates, block and item models.
+	 */
 	@Override
-	public void generateItemModels(ItemModelGenerators generators) {
-		for (Item detector : ModItems.DETECTORS) {
-			generateModel(generators, detector);
+	protected void registerModels(
+		@NotNull BlockModelGenerators blockModels,
+		@NotNull ItemModelGenerators itemModels) {
+		for (DeferredItem<Item> detector : ModItems.DETECTORS) {
+			generateModel(itemModels, detector.get());
 		}
 	}
 }

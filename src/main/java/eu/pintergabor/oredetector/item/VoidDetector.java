@@ -1,6 +1,6 @@
 package eu.pintergabor.oredetector.item;
 
-import eu.pintergabor.oredetector.config.ModConfig;
+import eu.pintergabor.oredetector.config.ModConfigData;
 import eu.pintergabor.oredetector.sound.ModSounds;
 import eu.pintergabor.oredetector.tag.ModBlockTags;
 
@@ -16,7 +16,7 @@ public class VoidDetector extends AbstractOreDetector {
 
 	public VoidDetector(Properties props, int focus) {
 		super(props, focus);
-		bangs = ModSounds.DETECTOR_3BANGS[0];
+		bangs = ModSounds.DETECTOR_3BANGS[0].value();
 	}
 
 	public VoidDetector(Properties props) {
@@ -53,7 +53,6 @@ public class VoidDetector extends AbstractOreDetector {
 
 	@Override
 	public int getRange() {
-		final var config = ModConfig.getInstance();
-		return config.rangeVoidDetector;
+		return ModConfigData.rangeVoidDetector;
 	}
 }
