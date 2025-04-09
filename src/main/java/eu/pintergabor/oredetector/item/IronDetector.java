@@ -50,6 +50,6 @@ public class IronDetector extends DetectOreDetector {
 	@Override
 	public int getRange() {
 		final var config = ModConfig.getInstance();
-		return config.rangeVoidDetector;
+		return config.rangeIronDetector;
 	}
 }
