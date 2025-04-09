@@ -44,6 +44,6 @@ public class DiamondDetector extends DetectOreDetector {
 
 	@Override
 	public int getRange() {
-		return ModConfigData.rangeVoidDetector;
+		return ModConfigData.rangeVoidDetector.get();
 	}
 }

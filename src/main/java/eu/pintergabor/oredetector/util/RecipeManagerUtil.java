@@ -30,23 +30,23 @@ public class RecipeManagerUtil {
 	 * @param map Map of all recipes.
 	 */
 	public static void configRecipes(Map<ResourceLocation, Recipe<?>> map) {
-		if (!ModConfigData.enableVoidDetector) {
+		if (!ModConfigData.enableVoidDetector.get()) {
 			removeItemRecipe(map, ModItems.VOID_DETECTOR_ITEM);
 			removeItemRecipe(map, ModItems.FOCUSED_VOID_DETECTOR_ITEM);
 		}
-		if (!ModConfigData.enableCoalDetector) {
+		if (!ModConfigData.enableCoalDetector.get()) {
 			removeItemRecipe(map, ModItems.COAL_DETECTOR_ITEM);
 			removeItemRecipe(map, ModItems.FOCUSED_COAL_DETECTOR_ITEM);
 		}
-		if (!ModConfigData.enableIronDetector) {
+		if (!ModConfigData.enableIronDetector.get()) {
 			removeItemRecipe(map, ModItems.IRON_DETECTOR_ITEM);
 			removeItemRecipe(map, ModItems.FOCUSED_IRON_DETECTOR_ITEM);
 		}
-		if (!ModConfigData.enableGoldDetector) {
+		if (!ModConfigData.enableGoldDetector.get()) {
 			removeItemRecipe(map, ModItems.GOLD_DETECTOR_ITEM);
 			removeItemRecipe(map, ModItems.FOCUSED_GOLD_DETECTOR_ITEM);
 		}
-		if (!ModConfigData.enableDiamondDetector) {
+		if (!ModConfigData.enableDiamondDetector.get()) {
 			removeItemRecipe(map, ModItems.DIAMOND_DETECTOR_ITEM);
 			removeItemRecipe(map, ModItems.FOCUSED_DIAMOND_DETECTOR_ITEM);
 		}

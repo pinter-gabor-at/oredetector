@@ -34,11 +34,9 @@ public final class ModItems {
 	 * Register one item.
 	 */
 	private static DeferredItem<Item> register(
-		String path, Function<Item.Properties, Item> factory, int durability) {
+		String path, Function<Item.Properties, Item> factory) {
 		DeferredItem<Item> detector = ITEMS.registerItem(
-			path,
-			factory,
-			new Item.Properties().durability(durability));
+			path, factory);
 		DETECTORS.add(detector);
 		return detector;
 	}
@@ -48,38 +46,36 @@ public final class ModItems {
 	 */
 	public static void init(IEventBus modEventBus) {
 		// Create Ore Detectors.
-		VOID_DETECTOR_ITEM =
-			register("void_detector",
-				VoidDetector::new,
-				ModConfigData.durabilityVoidDetector);
-		FOCUSED_VOID_DETECTOR_ITEM =
-			register("focused_void_detector",
-				props -> new VoidDetector(props, 2),
-				ModConfigData.durabilityVoidDetector);
+		VOID_DETECTOR_ITEM = register("void_detector",
+			props -> new VoidDetector(props
+				.durability(ModConfigData.durabilityVoidDetector.get())));
+		FOCUSED_VOID_DETECTOR_ITEM = register("focused_void_detector",
+			props -> new VoidDetector(props
+				.durability(ModConfigData.durabilityVoidDetector.get()), 2));
 		COAL_DETECTOR_ITEM = register("coal_detector",
-			CoalDetector::new,
-			ModConfigData.durabilityCoalDetector);
+			props -> new CoalDetector(props
+				.durability(ModConfigData.durabilityCoalDetector.get())));
 		FOCUSED_COAL_DETECTOR_ITEM = register("focused_coal_detector",
-			props -> new CoalDetector(props, 2),
-			ModConfigData.durabilityCoalDetector);
+			props -> new CoalDetector(props
+				.durability(ModConfigData.durabilityCoalDetector.get()), 2));
 		IRON_DETECTOR_ITEM = register("iron_detector",
-			IronDetector::new,
-			ModConfigData.durabilityIronDetector);
+			props -> new IronDetector(props
+				.durability(ModConfigData.durabilityIronDetector.get())));
 		FOCUSED_IRON_DETECTOR_ITEM = register("focused_iron_detector",
-			props -> new IronDetector(props, 2),
-			ModConfigData.durabilityIronDetector);
+			props -> new IronDetector(props
+				.durability(ModConfigData.durabilityIronDetector.get()), 2));
 		GOLD_DETECTOR_ITEM = register("gold_detector",
-			GoldDetector::new,
-			ModConfigData.durabilityGoldDetector);
+			props -> new GoldDetector(props
+				.durability(ModConfigData.durabilityGoldDetector.get())));
 		FOCUSED_GOLD_DETECTOR_ITEM = register("focused_gold_detector",
-			props -> new GoldDetector(props, 2),
-			ModConfigData.durabilityGoldDetector);
+			props -> new GoldDetector(props
+				.durability(ModConfigData.durabilityGoldDetector.get()), 2));
 		DIAMOND_DETECTOR_ITEM = register("diamond_detector",
-			DiamondDetector::new,
-			ModConfigData.durabilityDiamondDetector);
+			props -> new DiamondDetector(props
+				.durability(ModConfigData.durabilityDiamondDetector.get())));
 		FOCUSED_DIAMOND_DETECTOR_ITEM = register("focused_diamond_detector",
-			props -> new DiamondDetector(props, 2),
-			ModConfigData.durabilityDiamondDetector);
+			props -> new DiamondDetector(props
+				.durability(ModConfigData.durabilityDiamondDetector.get()), 2));
 		// Register them on the mod event bus.
 		ITEMS.register(modEventBus);
 	}

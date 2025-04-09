@@ -20,12 +20,12 @@ public final class ModClient {
 		// Config screen.
 		modContainer.registerExtensionPoint(
 			IConfigScreenFactory.class,
-			(mod, parent) ->
-				new ConfigurationScreen(mod, parent,
-					(context, key, original) -> {
-						Global.LOGGER.info(original.toString());
-						return original;
-					}));
+			// Do not display config parameters whose names are starting with "debug".
+			(mod, parent) -> {
+				return new ConfigurationScreen(mod, parent,
+					(context, key, original) ->
+						key.matches("^debug.*") ? null : original);
+			});
 		// Creative tabs.
 		modEventBus.addListener(CreativeTabs::init);
 		// Data generator.

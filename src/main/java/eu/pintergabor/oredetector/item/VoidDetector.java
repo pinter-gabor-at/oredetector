@@ -53,6 +53,6 @@ public class VoidDetector extends AbstractOreDetector {
 
 	@Override
 	public int getRange() {
-		return ModConfigData.rangeVoidDetector;
+		return ModConfigData.rangeVoidDetector.get();
 	}
 }

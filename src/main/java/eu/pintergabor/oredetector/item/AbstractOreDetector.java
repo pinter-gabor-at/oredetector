@@ -32,7 +32,7 @@ public abstract class AbstractOreDetector extends Item {
 		super(props);
 		this.bangs = null;
 		this.bangVolume = 1F;
-		this.debugLevel = ModConfigData.debugLevel;
+		this.debugLevel = ModConfigData.debugLevel.get();
 		this.focus = focus;
 	}
 
@@ -178,9 +178,11 @@ public abstract class AbstractOreDetector extends Item {
 	 */
 	private void soundScanEcho(DelayedExecute delayedExecute) {
 		// Everybody can hear the bangs on the server.
-		clickWorld.playSound(null, clickPos,
-			bangs, SoundSource.BLOCKS,
-			bangVolume, 1F);
+		if (bangs != null) {
+			clickWorld.playSound(null, clickPos,
+				bangs, SoundSource.BLOCKS,
+				bangVolume, 1F);
+		}
 		// Scan.
 		if (scan()) {
 			// Play echo delayed.
@@ -427,7 +429,7 @@ public abstract class AbstractOreDetector extends Item {
 	 */
 	protected void calcEcho(int type, int distance, Block pBlock) {
 		calcEcho(type, distance);
-		if (ModConfigData.enableParticles) {
+		if (ModConfigData.enableParticles.get()) {
 			particleBlock = new BlockParticleOption(
 				ParticleTypes.BLOCK, pBlock.defaultBlockState());
 			particleCount = (int) (40 * (1F - 0.9F * distance / getRange()));
