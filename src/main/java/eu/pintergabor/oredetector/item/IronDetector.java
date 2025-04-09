@@ -49,6 +49,6 @@ public class IronDetector extends DetectOreDetector {
 
 	@Override
 	public int getRange() {
-		return ModConfigData.rangeVoidDetector.get();
+		return ModConfigData.RANGE_IRON_DETECTOR.get();
 	}
 }

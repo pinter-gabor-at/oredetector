@@ -45,6 +45,6 @@ public class CoalDetector extends DetectOreDetector {
 
 	@Override
 	public int getRange() {
-		return ModConfigData.rangeVoidDetector.get();
+		return ModConfigData.RANGE_COAL_DETECTOR.get();
 	}
 }

@@ -50,6 +50,6 @@ public class GoldDetector extends DetectOreDetector {
 
 	@Override
 	public int getRange() {
-		return ModConfigData.rangeVoidDetector.get();
+		return ModConfigData.RANGE_GOLD_DETECTOR.get();
 	}
 }

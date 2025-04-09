@@ -4,6 +4,9 @@ import eu.pintergabor.oredetector.Global;
 import eu.pintergabor.oredetector.config.ModConfigData;
 import eu.pintergabor.oredetector.mixinutil.DelayedExecute;
 import eu.pintergabor.oredetector.sound.ModSounds;
+
+import net.minecraft.world.phys.Vec3;
+
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -32,7 +35,7 @@ public abstract class AbstractOreDetector extends Item {
 		super(props);
 		this.bangs = null;
 		this.bangVolume = 1F;
-		this.debugLevel = ModConfigData.debugLevel.get();
+		this.debugLevel = ModConfigData.DEBUG_LEVEL.get();
 		this.focus = focus;
 	}
 
@@ -63,7 +66,7 @@ public abstract class AbstractOreDetector extends Item {
 	 * Debug level.
 	 * <p>
 	 * Set in the constructor.
-	 * See {@link ModConfigData#debugLevel} for details.
+	 * See {@link ModConfigData#DEBUG_LEVEL} for details.
 	 */
 	protected int debugLevel;
 
@@ -160,13 +163,13 @@ public abstract class AbstractOreDetector extends Item {
 			}
 			// Spawn particles in front of the clicked block, at the center,
 			// with a speed vector pointing outwards.
-			final var ppos = clickPos.relative(clickFacing).getCenter();
-			final var pspeed = clickFacing.getUnitVec3f();
+			final Vec3 ppos = clickPos.relative(clickFacing).getCenter();
+			final Vec3 pspeed = clickFacing.getUnitVec3();
 			if (particleBlock != null) {
 				clickWorld.sendParticles(particleBlock,
 					ppos.x, ppos.y, ppos.z,
 					particleCount,
-					pspeed.x(), pspeed.y(), pspeed.z(), 0.005F);
+					pspeed.x, pspeed.y, pspeed.z, 0.005F);
 			}
 		};
 	}
@@ -429,7 +432,7 @@ public abstract class AbstractOreDetector extends Item {
 	 */
 	protected void calcEcho(int type, int distance, Block pBlock) {
 		calcEcho(type, distance);
-		if (ModConfigData.enableParticles.get()) {
+		if (ModConfigData.ENABLE_PARTICLES.get()) {
 			particleBlock = new BlockParticleOption(
 				ParticleTypes.BLOCK, pBlock.defaultBlockState());
 			particleCount = (int) (40 * (1F - 0.9F * distance / getRange()));
