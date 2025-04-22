@@ -1,5 +1,6 @@
 package eu.pintergabor.oredetector.item;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Function;
 
@@ -34,7 +35,8 @@ public final class ModItems {
 	 * Register one item.
 	 */
 	private static Item register(
-		String path, Function<Item.Properties, Item> factory, int durability) {
+		String path, Function<Item.Properties, Item> factory, int durability
+	) {
 		Item detector = Items.registerItem(
 			ResourceKey.create(Registries.ITEM, Global.modId(path)),
 			factory,
@@ -48,6 +50,7 @@ public final class ModItems {
 	 */
 	public static void init() {
 		final var config = ModConfig.getInstance();
+		DETECTORS = new ArrayList<>(10);
 		// Create and register Ore Detectors.
 		VOID_DETECTOR_ITEM =
 			register("void_detector",
