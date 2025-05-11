@@ -19,9 +19,9 @@ public final class ModSounds {
 	}
 
 	@SuppressWarnings("unchecked")
-	public static Holder<SoundEvent>[] DETECTOR_3BANGS = new Holder[5];
+	public static final Holder<SoundEvent>[] DETECTOR_3BANGS = new Holder[5];
 	@SuppressWarnings("unchecked")
-	public static Holder<SoundEvent>[] DETECTOR_3ECHOS = new Holder[16];
+	public static final Holder<SoundEvent>[] DETECTOR_3ECHOS = new Holder[16];
 
 	/**
 	 * Create and add one sound to the registry.

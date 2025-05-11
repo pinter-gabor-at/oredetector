@@ -1,11 +1,10 @@
 package eu.pintergabor.oredetector.config;
 
-
 import eu.pintergabor.oredetector.Global;
 import net.neoforged.neoforge.common.ModConfigSpec;
 
 
-public class ModConfigData {
+public final class ModConfigData {
 	/**
 	 * Builder.
 	 */

@@ -14,7 +14,7 @@ import net.minecraft.tags.BlockTags;
 import net.minecraft.world.level.block.Blocks;
 
 
-public class ModBlockTagProvider extends BlockTagsProvider {
+public final class ModBlockTagProvider extends BlockTagsProvider {
 
 	public ModBlockTagProvider(
 		PackOutput output, CompletableFuture<HolderLookup.Provider> lookupProvider) {

@@ -6,15 +6,15 @@ import net.minecraft.core.HolderLookup;
 import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.RecipeOutput;
 import net.minecraft.data.recipes.RecipeProvider;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.ItemLike;
 
 
-public class ModRecipeGenerator extends RecipeProvider {
+public final class ModRecipeGenerator extends RecipeProvider {
 
 	public ModRecipeGenerator(
-		HolderLookup.Provider registries, RecipeOutput output) {
+		HolderLookup.Provider registries, RecipeOutput output
+	) {
 		super(registries, output);
 	}
 
@@ -25,7 +25,8 @@ public class ModRecipeGenerator extends RecipeProvider {
 	 * @param resultItem Result.
 	 */
 	private void generateBasic(
-		ItemLike keyItem, ItemLike resultItem) {
+		ItemLike keyItem, ItemLike resultItem
+	) {
 		shaped(RecipeCategory.MISC, resultItem)
 			.pattern("  B")
 			.pattern("@/ ")
@@ -46,7 +47,8 @@ public class ModRecipeGenerator extends RecipeProvider {
 	 * @param resultItem Result.
 	 */
 	private void generateFocused(
-		ItemLike keyItem, ItemLike resultItem) {
+		ItemLike keyItem, ItemLike resultItem
+	) {
 		shaped(RecipeCategory.MISC, resultItem)
 			.pattern(" BB")
 			.pattern("@BB")

@@ -30,7 +30,8 @@ public abstract class RecipeManagerMixin {
 			shift = At.Shift.AFTER))
 	private void editMap(
 		ResourceManager resourceManager, ProfilerFiller profilerFiller, CallbackInfoReturnable<RecipeMap> cir,
-		@Local SortedMap<ResourceLocation, Recipe<?>> sortedMap) {
+		@Local SortedMap<ResourceLocation, Recipe<?>> sortedMap
+	) {
 		RecipeManagerUtil.configRecipes(sortedMap);
 	}
 }

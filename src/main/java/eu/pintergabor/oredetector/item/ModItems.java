@@ -34,7 +34,8 @@ public final class ModItems {
 	 * Register one item.
 	 */
 	private static DeferredItem<Item> register(
-		String path, Function<Item.Properties, Item> factory) {
+		String path, Function<Item.Properties, Item> factory
+	) {
 		DeferredItem<Item> detector = ITEMS.registerItem(
 			path, factory);
 		DETECTORS.add(detector);

@@ -2,20 +2,17 @@ package eu.pintergabor.oredetector.datagen;
 
 import eu.pintergabor.oredetector.Global;
 import eu.pintergabor.oredetector.item.ModItems;
+import org.jetbrains.annotations.NotNull;
 
 import net.minecraft.client.data.models.BlockModelGenerators;
 import net.minecraft.client.data.models.ItemModelGenerators;
-
 import net.minecraft.client.data.models.ModelProvider;
 import net.minecraft.client.data.models.model.ModelTemplates;
 import net.minecraft.data.PackOutput;
 import net.minecraft.world.item.Item;
 
-import net.neoforged.neoforge.registries.DeferredItem;
-import org.jetbrains.annotations.NotNull;
 
-
-public class ModModelProvider extends ModelProvider {
+public final class ModModelProvider extends ModelProvider {
 
 	public ModModelProvider(PackOutput output) {
 		super(output, Global.MODID);
@@ -31,9 +28,10 @@ public class ModModelProvider extends ModelProvider {
 	@Override
 	protected void registerModels(
 		@NotNull BlockModelGenerators blockModels,
-		@NotNull ItemModelGenerators itemModels) {
-		for (DeferredItem<Item> detector : ModItems.DETECTORS) {
-			generateModel(itemModels, detector.get());
-		}
+		@NotNull ItemModelGenerators itemModels
+	) {
+		ModItems.DETECTORS
+			.forEach(detector ->
+				generateModel(itemModels, detector.get()));
 	}
 }
