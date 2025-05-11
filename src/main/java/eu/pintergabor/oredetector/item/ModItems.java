@@ -86,10 +86,6 @@ public final class ModItems {
 			config.durabilityDiamondDetector);
 		// Item groups.
 		ItemGroupEvents.modifyEntriesEvent(CreativeModeTabs.TOOLS_AND_UTILITIES).register(
-			entries -> {
-				for (Item detector : DETECTORS) {
-					entries.accept(detector);
-				}
-			});
+			entries -> DETECTORS.forEach(entries::accept));
 	}
 }

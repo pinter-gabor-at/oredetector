@@ -12,7 +12,7 @@ import net.minecraft.client.data.models.model.ModelTemplates;
 import net.minecraft.world.item.Item;
 
 
-public class ModModelProvider extends FabricModelProvider {
+public final class ModModelProvider extends FabricModelProvider {
 
 	public ModModelProvider(FabricDataOutput output) {
 		super(output);

@@ -27,17 +27,17 @@ public abstract class ServerPlayerMixin
 	}
 
 	@Unique
-	private boolean running = false;
+	private boolean balancedOreDetector$running = false;
 	@Unique
-	private long triggerTime;
+	private long balancedOreDetector$triggerTime;
 	@Unique
-	private Runnable action;
+	private Runnable balancedOreDetector$action;
 
 	@Inject(method = "tick", at = @At(value = "HEAD"))
 	private void playerTick(CallbackInfo ci) {
-		if (running && triggerTime <= level().getGameTime()) {
-			action.run();
-			running = false;
+		if (balancedOreDetector$running && balancedOreDetector$triggerTime <= level().getGameTime()) {
+			balancedOreDetector$action.run();
+			balancedOreDetector$running = false;
 		}
 	}
 
@@ -46,7 +46,7 @@ public abstract class ServerPlayerMixin
 	 */
 	@Unique
 	public boolean oredetector$isRunning() {
-		return running;
+		return balancedOreDetector$running;
 	}
 
 	/**
@@ -60,10 +60,10 @@ public abstract class ServerPlayerMixin
 	@Unique
 	@SuppressWarnings("UnusedReturnValue")
 	public boolean oredetector$delayedExecute(int delay, Runnable action) {
-		if (running) return false;
-		this.triggerTime = level().getGameTime() + delay;
-		this.action = action;
-		running = true;
+		if (balancedOreDetector$running) return false;
+		balancedOreDetector$triggerTime = level().getGameTime() + delay;
+		balancedOreDetector$action = action;
+		balancedOreDetector$running = true;
 		return true;
 	}
 }

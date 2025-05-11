@@ -10,7 +10,7 @@ import org.jetbrains.annotations.ApiStatus;
 
 @ApiStatus.Internal
 @Config(name = "oredetector")
-public class ModConfig implements ConfigData {
+public final class ModConfig implements ConfigData {
 	@ConfigEntry.Gui.Tooltip
 	public boolean enableVoidDetector = true;
 
