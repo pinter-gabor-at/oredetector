@@ -4,6 +4,9 @@ import eu.pintergabor.oredetector.Global;
 import eu.pintergabor.oredetector.config.ModConfig;
 import eu.pintergabor.oredetector.mixinutil.DelayedExecute;
 import eu.pintergabor.oredetector.sound.ModSounds;
+
+import net.minecraft.world.phys.Vec3;
+
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -24,6 +27,8 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+
+import org.joml.Vector3fc;
 
 
 /**
@@ -163,8 +168,8 @@ public abstract class AbstractOreDetector extends Item {
 			}
 			// Spawn particles in front of the clicked block, at the center,
 			// with a speed vector pointing outwards.
-			final var ppos = clickPos.relative(clickFacing).getCenter();
-			final var pspeed = clickFacing.getUnitVec3f();
+			final Vec3 ppos = clickPos.relative(clickFacing).getCenter();
+			final Vector3fc pspeed = clickFacing.getUnitVec3f();
 			if (particleBlock != null) {
 				clickWorld.sendParticles(particleBlock,
 					ppos.x, ppos.y, ppos.z,
