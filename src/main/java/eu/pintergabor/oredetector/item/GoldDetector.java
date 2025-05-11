@@ -50,7 +50,7 @@ public class GoldDetector extends DetectOreDetector {
 
 	@Override
 	public int getRange() {
-		final var config = ModConfig.getInstance();
+		final ModConfig config = ModConfig.getInstance();
 		return config.rangeGoldDetector;
 	}
 }

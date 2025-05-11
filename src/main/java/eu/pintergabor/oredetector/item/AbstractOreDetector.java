@@ -26,6 +26,9 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 
 
+/**
+ * Base class for all Ore Detectors.
+ */
 public abstract class AbstractOreDetector extends Item {
 
 	public AbstractOreDetector(Properties props, int focus) {

@@ -13,7 +13,7 @@ import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
 
 
-public class ModRecipeProvider extends FabricRecipeProvider {
+public final class ModRecipeProvider extends FabricRecipeProvider {
 
 	public ModRecipeProvider(
 		FabricDataOutput output,

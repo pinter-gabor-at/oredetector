@@ -1,5 +1,6 @@
 {
   "values": [
+    "#c:ores/gold",
     "#minecraft:gold_ores",
     "minecraft:gold_block",
     "minecraft:raw_gold_block"

@@ -11,7 +11,11 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.crafting.Recipe;
 
 
-public class RecipeManagerUtil {
+public final class RecipeManagerUtil {
+
+	private RecipeManagerUtil() {
+		// Static class.
+	}
 
 	/**
 	 * Remove {@code item} recipe from map.
@@ -29,7 +33,7 @@ public class RecipeManagerUtil {
 	 * @param map Map of all recipes.
 	 */
 	public static void configRecipes(Map<ResourceLocation, Recipe<?>> map) {
-		final var config = ModConfig.getInstance();
+		final ModConfig config = ModConfig.getInstance();
 		if (!config.enableVoidDetector) {
 			removeItemRecipe(map, ModItems.VOID_DETECTOR_ITEM);
 			removeItemRecipe(map, ModItems.FOCUSED_VOID_DETECTOR_ITEM);

@@ -9,7 +9,7 @@ import eu.pintergabor.oredetector.tag.ModBlockTags;
 import net.fabricmc.api.ModInitializer;
 
 
-public class Mod implements ModInitializer {
+public final class Mod implements ModInitializer {
 
 	@Override
 	public void onInitialize() {

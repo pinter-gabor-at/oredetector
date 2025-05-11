@@ -1,5 +1,6 @@
 {
   "values": [
+    "#c:ores/iron",
     "#minecraft:iron_ores",
     "minecraft:iron_block",
     "minecraft:raw_iron_block",
