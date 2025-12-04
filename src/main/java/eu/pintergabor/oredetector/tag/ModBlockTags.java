@@ -7,6 +7,8 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.level.block.Block;
 
+import org.jetbrains.annotations.NotNull;
+
 
 /**
  * Primary block tags of this mod.
@@ -28,7 +30,7 @@ public final class ModBlockTags {
 	public static TagKey<Block> QUARTZ;
 	public static TagKey<Block> NETHER;
 
-	public static TagKey<Block> createBlockTag(String name) {
+	public static @NotNull TagKey<Block> createBlockTag(String name) {
 		return TagKey.create(Registries.BLOCK, Global.modId(name));
 	}
 
