@@ -1,6 +1,7 @@
 package eu.pintergabor.oredetector.datagen;
 
 import eu.pintergabor.oredetector.item.ModItems;
+import org.jetbrains.annotations.NotNull;
 
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.recipes.RecipeCategory;
@@ -24,7 +25,9 @@ public final class ModRecipeGenerator extends RecipeProvider {
 	 * @param resultItem Result.
 	 */
 	private void generateBasic(
-		Item keyItem, Item resultItem) {
+		@NotNull Item keyItem,
+		@NotNull Item resultItem
+	) {
 		shaped(RecipeCategory.MISC, resultItem)
 			.pattern("  B")
 			.pattern("@/ ")
@@ -45,7 +48,9 @@ public final class ModRecipeGenerator extends RecipeProvider {
 	 * @param resultItem Result.
 	 */
 	private void generateFocused(
-		Item keyItem, Item resultItem) {
+		@NotNull Item keyItem,
+		@NotNull Item resultItem
+	) {
 		shaped(RecipeCategory.MISC, resultItem)
 			.pattern(" BB")
 			.pattern("@BB")

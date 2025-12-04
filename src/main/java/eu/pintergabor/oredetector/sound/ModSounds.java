@@ -7,12 +7,14 @@ import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvent;
 
+import org.jetbrains.annotations.NotNull;
+
 
 public final class ModSounds {
 	public static final SoundEvent[] DETECTOR_3BANGS = new SoundEvent[5];
 	public static final SoundEvent[] DETECTOR_3ECHOS = new SoundEvent[16];
 
-	private static SoundEvent register(String name) {
+	private static @NotNull SoundEvent register(String name) {
 		final ResourceLocation id = Global.modId(name);
 		return Registry.register(
 			BuiltInRegistries.SOUND_EVENT, id, SoundEvent.createVariableRangeEvent(id));

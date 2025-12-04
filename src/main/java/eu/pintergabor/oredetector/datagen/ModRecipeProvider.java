@@ -17,20 +17,21 @@ public final class ModRecipeProvider extends FabricRecipeProvider {
 
 	public ModRecipeProvider(
 		FabricDataOutput output,
-		CompletableFuture<HolderLookup.Provider> registriesFuture) {
+		CompletableFuture<HolderLookup.Provider> registriesFuture
+	) {
 		super(output, registriesFuture);
 	}
 
 	@Override
-	@NotNull
-	protected RecipeProvider createRecipeProvider(
-		HolderLookup.Provider registryLookup, RecipeOutput output) {
+	protected @NotNull RecipeProvider createRecipeProvider(
+		HolderLookup.Provider registryLookup,
+		RecipeOutput output
+	) {
 		return new ModRecipeGenerator(registryLookup, output);
 	}
 
 	@Override
-	@NotNull
-	public String getName() {
+	public @NotNull String getName() {
 		return Global.MODID + " recipes";
 	}
 }

@@ -147,7 +147,7 @@ public abstract class AbstractOreDetector extends Item {
 	 * <p>
 	 * Called from {@link #useOn(UseOnContext)}.
 	 */
-	private void damageTool(UseOnContext context, Player player) {
+	private void damageTool(@NotNull UseOnContext context, @NotNull Player player) {
 		if (!player.isCreative()) {
 			final ItemStack stack = context.getItemInHand();
 			stack.hurtAndBreak(1, player, EquipmentSlot.MAINHAND);
@@ -157,8 +157,7 @@ public abstract class AbstractOreDetector extends Item {
 	/**
 	 * Play echo and show particles.
 	 */
-	@NotNull
-	private Runnable playEcho() {
+	private @NotNull Runnable playEcho() {
 		return () -> {
 			// Play sound coming from the clicked block.
 			if (echoes != null) {
@@ -197,8 +196,7 @@ public abstract class AbstractOreDetector extends Item {
 	}
 
 	@Override
-	@NotNull
-	public InteractionResult useOn(UseOnContext context) {
+	public @NotNull InteractionResult useOn(@NotNull UseOnContext context) {
 		if (!context.getLevel().isClientSide) {
 			clickWorld = (ServerLevel) context.getLevel();
 			clickPos = context.getClickedPos();
@@ -268,7 +266,7 @@ public abstract class AbstractOreDetector extends Item {
 	 *
 	 * @return {@code (x,y,z)} translated.
 	 */
-	private Vec3i translate(int x, int y, int z) {
+	private @NotNull Vec3i translate(int x, int y, int z) {
 		return switch (clickFacing) {
 			case DOWN -> new Vec3i(-x, -y, +z);
 			case EAST -> new Vec3i(+y, -x, +z);

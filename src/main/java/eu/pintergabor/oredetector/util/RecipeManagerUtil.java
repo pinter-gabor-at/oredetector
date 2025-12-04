@@ -10,6 +10,8 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.crafting.Recipe;
 
+import org.jetbrains.annotations.NotNull;
+
 
 public final class RecipeManagerUtil {
 
@@ -23,7 +25,7 @@ public final class RecipeManagerUtil {
 	 * @param map Map of all recipes.
 	 */
 	private static void removeItemRecipe(
-		Map<ResourceLocation, Recipe<?>> map, Item item) {
+		@NotNull Map<ResourceLocation, Recipe<?>> map, Item item) {
 		map.remove(BuiltInRegistries.ITEM.getKey(item));
 	}
 
