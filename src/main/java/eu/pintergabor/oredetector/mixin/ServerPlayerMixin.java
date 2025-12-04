@@ -61,8 +61,8 @@ public abstract class ServerPlayerMixin
 	@SuppressWarnings("UnusedReturnValue")
 	public boolean oredetector$delayedExecute(int delay, Runnable action) {
 		if (balancedOreDetector$running) return false;
-		this.balancedOreDetector$triggerTime = level().getGameTime() + delay;
-		this.balancedOreDetector$action = action;
+		balancedOreDetector$triggerTime = level().getGameTime() + delay;
+		balancedOreDetector$action = action;
 		balancedOreDetector$running = true;
 		return true;
 	}

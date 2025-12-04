@@ -5,6 +5,8 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.level.block.Block;
 
+import org.jetbrains.annotations.NotNull;
+
 
 /**
  * Conventional block tags from popular mods.
@@ -35,7 +37,7 @@ public final class ImportBlockTags {
 	public static TagKey<Block> C_CERTUS_QUARTZ_ORES;
 
 	@SuppressWarnings("unused")
-	public static TagKey<Block> createCommonBlockTag(String name) {
+	public static @NotNull TagKey<Block> createCommonBlockTag(String name) {
 		return TagKey.create(
 			Registries.BLOCK, ResourceLocation.fromNamespaceAndPath("c", name));
 	}

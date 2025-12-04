@@ -3,6 +3,7 @@ package eu.pintergabor.oredetector.sound;
 import eu.pintergabor.oredetector.Global;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredRegister;
+import org.jetbrains.annotations.NotNull;
 
 import net.minecraft.core.Holder;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -26,7 +27,7 @@ public final class ModSounds {
 	/**
 	 * Create and add one sound to the registry.
 	 */
-	private static Holder<SoundEvent> register(String name) {
+	private static @NotNull Holder<SoundEvent> register(String name) {
 		return SOUND_EVENTS.register(name, SoundEvent::createVariableRangeEvent);
 	}
 

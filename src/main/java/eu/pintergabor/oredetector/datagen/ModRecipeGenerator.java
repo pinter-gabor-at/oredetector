@@ -9,6 +9,8 @@ import net.minecraft.data.recipes.RecipeProvider;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.ItemLike;
 
+import org.jetbrains.annotations.NotNull;
+
 
 public final class ModRecipeGenerator extends RecipeProvider {
 
@@ -47,7 +49,8 @@ public final class ModRecipeGenerator extends RecipeProvider {
 	 * @param resultItem Result.
 	 */
 	private void generateFocused(
-		ItemLike keyItem, ItemLike resultItem
+		@NotNull ItemLike keyItem,
+		@NotNull ItemLike resultItem
 	) {
 		shaped(RecipeCategory.MISC, resultItem)
 			.pattern(" BB")

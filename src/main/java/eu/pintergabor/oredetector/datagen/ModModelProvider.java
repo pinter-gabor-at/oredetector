@@ -18,7 +18,10 @@ public final class ModModelProvider extends ModelProvider {
 		super(output, Global.MODID);
 	}
 
-	private static void generateModel(ItemModelGenerators generators, Item item) {
+	private static void generateModel(
+		@NotNull ItemModelGenerators generators,
+		@NotNull Item item
+	) {
 		generators.generateFlatItem(item, ModelTemplates.FLAT_HANDHELD_ITEM);
 	}
 
