@@ -4,11 +4,9 @@ import eu.pintergabor.oredetector.Global;
 import eu.pintergabor.oredetector.config.ModConfig;
 import eu.pintergabor.oredetector.mixinutil.DelayedExecute;
 import eu.pintergabor.oredetector.sound.ModSounds;
-
-import net.minecraft.world.phys.Vec3;
-
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import org.joml.Vector3fc;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -27,8 +25,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
-
-import org.joml.Vector3fc;
+import net.minecraft.world.phys.Vec3;
 
 
 /**
@@ -197,7 +194,7 @@ public abstract class AbstractOreDetector extends Item {
 
 	@Override
 	public @NotNull InteractionResult useOn(@NotNull UseOnContext context) {
-		if (!context.getLevel().isClientSide) {
+		if (!context.getLevel().isClientSide()) {
 			clickWorld = (ServerLevel) context.getLevel();
 			clickPos = context.getClickedPos();
 			clickFacing = context.getClickedFace();
