@@ -17,25 +17,26 @@ public final class ModBlockTagProvider extends FabricTagProvider.BlockTagProvide
 
 	public ModBlockTagProvider(
 		FabricDataOutput output,
-		CompletableFuture<HolderLookup.Provider> registriesFuture) {
+		CompletableFuture<HolderLookup.Provider> registriesFuture
+	) {
 		super(output, registriesFuture);
 	}
 
 	@Override
 	protected void addTags(HolderLookup.Provider wrapperLookup) {
-		getOrCreateTagBuilder(ModBlockTags.AIR)
+		valueLookupBuilder(ModBlockTags.AIR)
 			.add(Blocks.AIR, Blocks.VOID_AIR, Blocks.CAVE_AIR);
-		getOrCreateTagBuilder(ModBlockTags.WATER)
+		valueLookupBuilder(ModBlockTags.WATER)
 			.add(Blocks.WATER, Blocks.WATER_CAULDRON);
-		getOrCreateTagBuilder(ModBlockTags.LAVA)
+		valueLookupBuilder(ModBlockTags.LAVA)
 			.add(Blocks.LAVA, Blocks.LAVA_CAULDRON);
-		getOrCreateTagBuilder(ModBlockTags.COAL)
-			.forceAddTag(ConventionalBlockTags.COAL_ORES)
-			.forceAddTag(BlockTags.COAL_ORES)
+		valueLookupBuilder(ModBlockTags.COAL)
+			.addOptionalTag(ConventionalBlockTags.COAL_ORES)
+			.addOptionalTag(BlockTags.COAL_ORES)
 			.add(Blocks.COAL_BLOCK, Blocks.TORCH);
-		getOrCreateTagBuilder(ModBlockTags.COPPER)
-			.forceAddTag(ConventionalBlockTags.COPPER_ORES)
-			.forceAddTag(BlockTags.COPPER_ORES)
+		valueLookupBuilder(ModBlockTags.COPPER)
+			.addOptionalTag(ConventionalBlockTags.COPPER_ORES)
+			.addOptionalTag(BlockTags.COPPER_ORES)
 			.add(
 				Blocks.COPPER_BLOCK, Blocks.RAW_COPPER_BLOCK,
 				Blocks.COPPER_GRATE,
@@ -70,35 +71,35 @@ public final class ModBlockTagProvider extends FabricTagProvider.BlockTagProvide
 				Blocks.WAXED_OXIDIZED_COPPER_GRATE, Blocks.WAXED_OXIDIZED_COPPER_BULB,
 				Blocks.WAXED_OXIDIZED_COPPER_DOOR, Blocks.WAXED_OXIDIZED_COPPER_TRAPDOOR,
 				Blocks.WAXED_OXIDIZED_CHISELED_COPPER, Blocks.WAXED_OXIDIZED_CUT_COPPER);
-		getOrCreateTagBuilder(ModBlockTags.IRON)
-			.forceAddTag(ConventionalBlockTags.IRON_ORES)
-			.forceAddTag(BlockTags.IRON_ORES)
+		valueLookupBuilder(ModBlockTags.IRON)
+			.addOptionalTag(ConventionalBlockTags.IRON_ORES)
+			.addOptionalTag(BlockTags.IRON_ORES)
 			.add(
 				Blocks.IRON_BLOCK, Blocks.RAW_IRON_BLOCK,
 				Blocks.IRON_BARS, Blocks.IRON_DOOR, Blocks.IRON_TRAPDOOR);
-		getOrCreateTagBuilder(ModBlockTags.GOLD)
-			.forceAddTag(ConventionalBlockTags.GOLD_ORES)
-			.forceAddTag(BlockTags.GOLD_ORES)
+		valueLookupBuilder(ModBlockTags.GOLD)
+			.addOptionalTag(ConventionalBlockTags.GOLD_ORES)
+			.addOptionalTag(BlockTags.GOLD_ORES)
 			.add(Blocks.GOLD_BLOCK, Blocks.RAW_GOLD_BLOCK);
-		getOrCreateTagBuilder(ModBlockTags.REDSTONE)
-			.forceAddTag(BlockTags.REDSTONE_ORES)
+		valueLookupBuilder(ModBlockTags.REDSTONE)
+			.addOptionalTag(BlockTags.REDSTONE_ORES)
 			.add(
 				Blocks.REDSTONE_BLOCK, Blocks.REDSTONE_TORCH, Blocks.REDSTONE_WALL_TORCH,
 				Blocks.REDSTONE_LAMP, Blocks.REDSTONE_WIRE);
-		getOrCreateTagBuilder(ModBlockTags.LAPIS)
-			.forceAddTag(ConventionalBlockTags.LAPIS_ORES)
-			.forceAddTag(BlockTags.LAPIS_ORES)
+		valueLookupBuilder(ModBlockTags.LAPIS)
+			.addOptionalTag(ConventionalBlockTags.LAPIS_ORES)
+			.addOptionalTag(BlockTags.LAPIS_ORES)
 			.add(Blocks.LAPIS_BLOCK);
-		getOrCreateTagBuilder(ModBlockTags.DIAMOND)
-			.forceAddTag(ConventionalBlockTags.DIAMOND_ORES)
-			.forceAddTag(BlockTags.DIAMOND_ORES)
+		valueLookupBuilder(ModBlockTags.DIAMOND)
+			.addOptionalTag(ConventionalBlockTags.DIAMOND_ORES)
+			.addOptionalTag(BlockTags.DIAMOND_ORES)
 			.add(Blocks.DIAMOND_BLOCK);
-		getOrCreateTagBuilder(ModBlockTags.EMERALD)
-			.forceAddTag(ConventionalBlockTags.EMERALD_ORES)
-			.forceAddTag(BlockTags.EMERALD_ORES)
+		valueLookupBuilder(ModBlockTags.EMERALD)
+			.addOptionalTag(ConventionalBlockTags.EMERALD_ORES)
+			.addOptionalTag(BlockTags.EMERALD_ORES)
 			.add(Blocks.EMERALD_BLOCK);
-		getOrCreateTagBuilder(ModBlockTags.QUARTZ)
-			.forceAddTag(ConventionalBlockTags.QUARTZ_ORES)
+		valueLookupBuilder(ModBlockTags.QUARTZ)
+			.addOptionalTag(ConventionalBlockTags.QUARTZ_ORES)
 			.add(
 				Blocks.QUARTZ_BLOCK,
 				Blocks.QUARTZ_BRICKS, Blocks.QUARTZ_PILLAR,
@@ -106,7 +107,7 @@ public final class ModBlockTagProvider extends FabricTagProvider.BlockTagProvide
 				Blocks.CHISELED_QUARTZ_BLOCK,
 				Blocks.SMOOTH_QUARTZ,
 				Blocks.SMOOTH_QUARTZ_SLAB, Blocks.SMOOTH_QUARTZ_STAIRS);
-		getOrCreateTagBuilder(ModBlockTags.NETHER)
+		valueLookupBuilder(ModBlockTags.NETHER)
 			.add(Blocks.NETHERITE_BLOCK, Blocks.ANCIENT_DEBRIS);
 	}
 }

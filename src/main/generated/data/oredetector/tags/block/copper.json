@@ -1,7 +1,13 @@
 {
   "values": [
-    "#c:ores/copper",
-    "#minecraft:copper_ores",
+    {
+      "id": "#c:ores/copper",
+      "required": false
+    },
+    {
+      "id": "#minecraft:copper_ores",
+      "required": false
+    },
     "minecraft:copper_block",
     "minecraft:raw_copper_block",
     "minecraft:copper_grate",

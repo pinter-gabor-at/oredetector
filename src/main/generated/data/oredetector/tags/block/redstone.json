@@ -1,6 +1,9 @@
 {
   "values": [
-    "#minecraft:redstone_ores",
+    {
+      "id": "#minecraft:redstone_ores",
+      "required": false
+    },
     "minecraft:redstone_block",
     "minecraft:redstone_torch",
     "minecraft:redstone_wall_torch",

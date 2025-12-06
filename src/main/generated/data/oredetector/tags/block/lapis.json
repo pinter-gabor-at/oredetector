@@ -1,7 +1,13 @@
 {
   "values": [
-    "#c:ores/lapis",
-    "#minecraft:lapis_ores",
+    {
+      "id": "#c:ores/lapis",
+      "required": false
+    },
+    {
+      "id": "#minecraft:lapis_ores",
+      "required": false
+    },
     "minecraft:lapis_block"
   ]
 }
