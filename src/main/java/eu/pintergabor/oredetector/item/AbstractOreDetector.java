@@ -197,7 +197,7 @@ public abstract class AbstractOreDetector extends Item {
 	@Override
 	@NotNull
 	public InteractionResult useOn(@NotNull UseOnContext context) {
-		if (!context.getLevel().isClientSide) {
+		if (!context.getLevel().isClientSide()) {
 			clickWorld = (ServerLevel) context.getLevel();
 			clickPos = context.getClickedPos();
 			clickFacing = context.getClickedFace();
