@@ -3,22 +3,27 @@ package eu.pintergabor.oredetector.datagen;
 import java.util.concurrent.CompletableFuture;
 
 import eu.pintergabor.oredetector.Global;
+
+import net.minecraft.core.registries.Registries;
+
 import org.jetbrains.annotations.NotNull;
 
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
-import net.minecraft.data.tags.ItemTagsProvider;
+import net.minecraft.data.tags.KeyTagProvider;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 
 
-public final class ModItemTagProvider extends ItemTagsProvider {
+public class ModItemTagProvider extends KeyTagProvider<Item> {
 
+	@SuppressWarnings("unused")
 	public ModItemTagProvider(
 		PackOutput output,
 		CompletableFuture<HolderLookup.Provider> lookupProvider,
 		CompletableFuture<TagLookup<Block>> blockTagProvider
 	) {
-		super(output, lookupProvider, blockTagProvider, Global.MODID);
+		super(output, Registries.ITEM, lookupProvider, Global.MODID);
 	}
 
 	@Override
