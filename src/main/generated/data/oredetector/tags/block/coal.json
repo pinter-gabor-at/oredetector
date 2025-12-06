@@ -1,7 +1,13 @@
 {
   "values": [
-    "#c:ores/coal",
-    "#minecraft:coal_ores",
+    {
+      "id": "#c:ores/coal",
+      "required": false
+    },
+    {
+      "id": "#minecraft:coal_ores",
+      "required": false
+    },
     "minecraft:coal_block",
     "minecraft:torch"
   ]

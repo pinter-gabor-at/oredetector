@@ -1,7 +1,13 @@
 {
   "values": [
-    "#c:ores/diamond",
-    "#minecraft:diamond_ores",
+    {
+      "id": "#c:ores/diamond",
+      "required": false
+    },
+    {
+      "id": "#minecraft:diamond_ores",
+      "required": false
+    },
     "minecraft:diamond_block"
   ]
 }

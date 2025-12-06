@@ -22,7 +22,6 @@ public final class ModModelProvider extends FabricModelProvider {
 	public void generateBlockStateModels(BlockModelGenerators generators) {
 	}
 
-
 	private static void generateModel(@NotNull ItemModelGenerators generators, Item item) {
 		generators.generateFlatItem(item, ModelTemplates.FLAT_HANDHELD_ITEM);
 	}
