@@ -4,7 +4,7 @@ import eu.pintergabor.oredetector.Global;
 
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.sounds.SoundEvent;
 
 import org.jetbrains.annotations.NotNull;
@@ -15,7 +15,7 @@ public final class ModSounds {
 	public static final SoundEvent[] DETECTOR_3ECHOS = new SoundEvent[16];
 
 	private static @NotNull SoundEvent register(String name) {
-		final ResourceLocation id = Global.modId(name);
+		final Identifier id = Global.modId(name);
 		return Registry.register(
 			BuiltInRegistries.SOUND_EVENT, id, SoundEvent.createVariableRangeEvent(id));
 	}

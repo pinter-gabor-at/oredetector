@@ -6,7 +6,7 @@ import eu.pintergabor.oredetector.config.ModConfig;
 import eu.pintergabor.oredetector.item.ModItems;
 
 import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.crafting.Recipe;
 
@@ -25,7 +25,7 @@ public final class RecipeManagerUtil {
 	 * @param map Map of all recipes.
 	 */
 	private static void removeItemRecipe(
-		@NotNull Map<ResourceLocation, Recipe<?>> map, Item item) {
+		@NotNull Map<Identifier, Recipe<?>> map, Item item) {
 		map.remove(BuiltInRegistries.ITEM.getKey(item));
 	}
 
@@ -34,7 +34,7 @@ public final class RecipeManagerUtil {
 	 *
 	 * @param map Map of all recipes.
 	 */
-	public static void configRecipes(Map<ResourceLocation, Recipe<?>> map) {
+	public static void configRecipes(Map<Identifier, Recipe<?>> map) {
 		final ModConfig config = ModConfig.getInstance();
 		if (!config.enableVoidDetector) {
 			removeItemRecipe(map, ModItems.VOID_DETECTOR_ITEM);
