@@ -5,7 +5,7 @@ import org.jetbrains.annotations.NotNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 
 
 public final class Global {
@@ -43,7 +43,7 @@ public final class Global {
 	 */
 	@Contract("_ -> new")
 	@SuppressWarnings("unused")
-	public static @NotNull ResourceLocation modId(String path) {
-		return ResourceLocation.fromNamespaceAndPath(MODID, path);
+	public static @NotNull Identifier modId(String path) {
+		return Identifier.fromNamespaceAndPath(MODID, path);
 	}
 }

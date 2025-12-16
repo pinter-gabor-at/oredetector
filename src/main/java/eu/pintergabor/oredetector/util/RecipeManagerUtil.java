@@ -6,7 +6,7 @@ import eu.pintergabor.oredetector.config.ModConfigData;
 import eu.pintergabor.oredetector.item.ModItems;
 
 import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.level.ItemLike;
 
@@ -21,7 +21,7 @@ public class RecipeManagerUtil {
 	 * @param map Map of all recipes.
 	 */
 	private static void removeItemRecipe(
-		@NotNull Map<ResourceLocation, Recipe<?>> map,
+		@NotNull Map<Identifier, Recipe<?>> map,
 		@NotNull ItemLike item
 	) {
 		map.remove(BuiltInRegistries.ITEM.getKey(item.asItem()));
@@ -32,7 +32,7 @@ public class RecipeManagerUtil {
 	 *
 	 * @param map Map of all recipes.
 	 */
-	public static void configRecipes(Map<ResourceLocation, Recipe<?>> map) {
+	public static void configRecipes(Map<Identifier, Recipe<?>> map) {
 		if (!ModConfigData.ENABLE_VOID_DETECTOR.get()) {
 			removeItemRecipe(map, ModItems.VOID_DETECTOR_ITEM);
 			removeItemRecipe(map, ModItems.FOCUSED_VOID_DETECTOR_ITEM);
