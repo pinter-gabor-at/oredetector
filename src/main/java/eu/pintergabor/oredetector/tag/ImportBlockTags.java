@@ -3,7 +3,7 @@ package eu.pintergabor.oredetector.tag;
 import org.jetbrains.annotations.NotNull;
 
 import net.minecraft.core.registries.Registries;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.level.block.Block;
 
@@ -39,7 +39,7 @@ public final class ImportBlockTags {
 	@SuppressWarnings("unused")
 	public static @NotNull TagKey<Block> createCommonBlockTag(String name) {
 		return TagKey.create(
-			Registries.BLOCK, ResourceLocation.fromNamespaceAndPath("c", name));
+			Registries.BLOCK, Identifier.fromNamespaceAndPath("c", name));
 	}
 
 	public static void init() {
