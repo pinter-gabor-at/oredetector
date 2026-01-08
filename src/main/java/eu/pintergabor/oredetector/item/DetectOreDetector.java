@@ -2,7 +2,7 @@ package eu.pintergabor.oredetector.item;
 
 import java.util.List;
 
-import org.jetbrains.annotations.Nullable;
+import org.jspecify.annotations.Nullable;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.tags.TagKey;

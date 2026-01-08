@@ -7,7 +7,7 @@ import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.neoforge.client.gui.ConfigurationScreen;
 import net.neoforged.neoforge.client.gui.IConfigScreenFactory;
-import org.jetbrains.annotations.NotNull;
+import org.jspecify.annotations.NonNull;
 
 
 /**
@@ -17,7 +17,7 @@ import org.jetbrains.annotations.NotNull;
 public final class ModClient {
 
 	@SuppressWarnings("unused")
-	public ModClient(@NotNull IEventBus modEventBus, @NotNull ModContainer modContainer) {
+	public ModClient(@NonNull IEventBus modEventBus, @NonNull ModContainer modContainer) {
 		// Config screen.
 		modContainer.registerExtensionPoint(
 			IConfigScreenFactory.class,
@@ -30,6 +30,6 @@ public final class ModClient {
 		// Creative tabs.
 		modEventBus.addListener(CreativeTabs::init);
 		// Data generator.
-		modEventBus.addListener(DataGen::init);
+		modEventBus.addListener(ModDataGenerator::init);
 	}
 }

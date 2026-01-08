@@ -5,16 +5,16 @@ import eu.pintergabor.oredetector.datagen.ModItemTagProvider;
 import eu.pintergabor.oredetector.datagen.ModModelProvider;
 import eu.pintergabor.oredetector.datagen.ModRecipeRunner;
 import net.neoforged.neoforge.data.event.GatherDataEvent;
-import org.jetbrains.annotations.NotNull;
+import org.jspecify.annotations.NonNull;
 
 
-public final class DataGen {
+public final class ModDataGenerator {
 
-	public DataGen() {
+	public ModDataGenerator() {
 		// Static class.
 	}
 
-	public static void init(GatherDataEvent.@NotNull Client event) {
+	public static void init(GatherDataEvent.@NonNull Client event) {
 		// Create recipes.
 		event.createProvider(ModRecipeRunner::new);
 		// Create models.

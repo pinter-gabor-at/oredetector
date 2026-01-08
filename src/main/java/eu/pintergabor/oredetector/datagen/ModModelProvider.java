@@ -2,7 +2,7 @@ package eu.pintergabor.oredetector.datagen;
 
 import eu.pintergabor.oredetector.Global;
 import eu.pintergabor.oredetector.item.ModItems;
-import org.jetbrains.annotations.NotNull;
+import org.jspecify.annotations.NonNull;
 
 import net.minecraft.client.data.models.BlockModelGenerators;
 import net.minecraft.client.data.models.ItemModelGenerators;
@@ -19,8 +19,8 @@ public final class ModModelProvider extends ModelProvider {
 	}
 
 	private static void generateModel(
-		@NotNull ItemModelGenerators generators,
-		@NotNull Item item
+		@NonNull ItemModelGenerators generators,
+		@NonNull Item item
 	) {
 		generators.generateFlatItem(item, ModelTemplates.FLAT_HANDHELD_ITEM);
 	}
@@ -30,8 +30,8 @@ public final class ModModelProvider extends ModelProvider {
 	 */
 	@Override
 	protected void registerModels(
-		@NotNull BlockModelGenerators blockModels,
-		@NotNull ItemModelGenerators itemModels
+		@NonNull BlockModelGenerators blockModels,
+		@NonNull ItemModelGenerators itemModels
 	) {
 		ModItems.DETECTORS
 			.forEach(detector ->

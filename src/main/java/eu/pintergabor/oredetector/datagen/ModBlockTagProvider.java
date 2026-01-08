@@ -6,7 +6,7 @@ import eu.pintergabor.oredetector.Global;
 import eu.pintergabor.oredetector.tag.ModBlockTags;
 import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.common.data.BlockTagsProvider;
-import org.jetbrains.annotations.NotNull;
+import org.jspecify.annotations.NonNull;
 
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
@@ -24,7 +24,7 @@ public final class ModBlockTagProvider extends BlockTagsProvider {
 	}
 
 	@Override
-	protected void addTags(@NotNull HolderLookup.Provider lookupProvider) {
+	protected void addTags(HolderLookup.@NonNull Provider lookupProvider) {
 		tag(ModBlockTags.AIR)
 			.add(Blocks.AIR, Blocks.VOID_AIR, Blocks.CAVE_AIR);
 		tag(ModBlockTags.WATER)

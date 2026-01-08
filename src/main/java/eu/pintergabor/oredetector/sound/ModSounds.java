@@ -3,11 +3,13 @@ package eu.pintergabor.oredetector.sound;
 import eu.pintergabor.oredetector.Global;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredRegister;
-import org.jetbrains.annotations.NotNull;
+import org.jspecify.annotations.NonNull;
 
 import net.minecraft.core.Holder;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.sounds.SoundEvent;
+
+import java.util.stream.IntStream;
 
 
 public final class ModSounds {
@@ -27,7 +29,7 @@ public final class ModSounds {
 	/**
 	 * Create and add one sound to the registry.
 	 */
-	private static @NotNull Holder<SoundEvent> register(String name) {
+	private static @NonNull Holder<SoundEvent> register(String name) {
 		return SOUND_EVENTS.register(name, SoundEvent::createVariableRangeEvent);
 	}
 
@@ -35,12 +37,10 @@ public final class ModSounds {
 	 * Register all sounds.
 	 */
 	public static void init(IEventBus modEventBus) {
-		for (int i = 0; i < DETECTOR_3BANGS.length; i++) {
-			DETECTOR_3BANGS[i] = register(String.format("detector_3bangs%d", i));
-		}
-		for (int i = 0; i < DETECTOR_3ECHOS.length; i++) {
-			DETECTOR_3ECHOS[i] = register(String.format("detector_3echos%02d", i));
-		}
+		IntStream.range(0, DETECTOR_3BANGS.length).forEach(
+			i -> DETECTOR_3BANGS[i] = register(String.format("detector_3bangs%d", i)));
+		IntStream.range(0, DETECTOR_3ECHOS.length).forEach(
+			i -> DETECTOR_3ECHOS[i] = register(String.format("detector_3echos%02d", i)));
 		SOUND_EVENTS.register(modEventBus);
 	}
 }
