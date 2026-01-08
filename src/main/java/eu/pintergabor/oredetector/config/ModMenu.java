@@ -7,12 +7,16 @@ import me.shedaniel.autoconfig.AutoConfigClient;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 
+import org.jetbrains.annotations.Contract;
+import org.jspecify.annotations.NonNull;
+
 
 @Environment(EnvType.CLIENT)
 public final class ModMenu implements ModMenuApi {
 
+	@Contract(pure = true)
 	@Override
-	public ConfigScreenFactory<?> getModConfigScreenFactory() {
+	public @NonNull ConfigScreenFactory<?> getModConfigScreenFactory() {
 		return parent -> AutoConfigClient.getConfigScreen(ModConfig.class, parent).get();
 	}
 }

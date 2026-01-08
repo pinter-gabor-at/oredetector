@@ -1,6 +1,6 @@
 package eu.pintergabor.oredetector.tag;
 
-import org.jetbrains.annotations.NotNull;
+import org.jspecify.annotations.NonNull;
 
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.Identifier;
@@ -37,7 +37,7 @@ public final class ImportBlockTags {
 	public static TagKey<Block> C_CERTUS_QUARTZ_ORES;
 
 	@SuppressWarnings("unused")
-	public static @NotNull TagKey<Block> createCommonBlockTag(String name) {
+	public static @NonNull TagKey<Block> createCommonBlockTag(String name) {
 		return TagKey.create(
 			Registries.BLOCK, Identifier.fromNamespaceAndPath("c", name));
 	}
