@@ -3,17 +3,18 @@ package eu.pintergabor.oredetector;
 import eu.pintergabor.oredetector.datagen.ModBlockTagProvider;
 import eu.pintergabor.oredetector.datagen.ModModelProvider;
 import eu.pintergabor.oredetector.datagen.ModRecipeProvider;
+import org.jspecify.annotations.NonNull;
 
 import net.fabricmc.fabric.api.datagen.v1.DataGeneratorEntrypoint;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
 
-import org.jetbrains.annotations.NotNull;
 
-
-public class Datagen implements DataGeneratorEntrypoint {
+public class ModDataGenerator implements DataGeneratorEntrypoint {
 
 	@Override
-	public void onInitializeDataGenerator(@NotNull FabricDataGenerator fabricDataGenerator) {
+	public void onInitializeDataGenerator(
+		@NonNull FabricDataGenerator fabricDataGenerator
+	) {
 		FabricDataGenerator.Pack pack = fabricDataGenerator.createPack();
 		pack.addProvider(ModModelProvider::new);
 		pack.addProvider(ModBlockTagProvider::new);

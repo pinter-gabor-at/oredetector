@@ -4,9 +4,9 @@ import eu.pintergabor.oredetector.Global;
 import eu.pintergabor.oredetector.config.ModConfig;
 import eu.pintergabor.oredetector.mixinutil.DelayedExecute;
 import eu.pintergabor.oredetector.sound.ModSounds;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 import org.joml.Vector3fc;
+import org.jspecify.annotations.NonNull;
+import org.jspecify.annotations.Nullable;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -144,7 +144,7 @@ public abstract class AbstractOreDetector extends Item {
 	 * <p>
 	 * Called from {@link #useOn(UseOnContext)}.
 	 */
-	private void damageTool(@NotNull UseOnContext context, @NotNull Player player) {
+	private void damageTool(@NonNull UseOnContext context, @NonNull Player player) {
 		if (!player.isCreative()) {
 			final ItemStack stack = context.getItemInHand();
 			stack.hurtAndBreak(1, player, EquipmentSlot.MAINHAND);
@@ -154,7 +154,7 @@ public abstract class AbstractOreDetector extends Item {
 	/**
 	 * Play echo and show particles.
 	 */
-	private @NotNull Runnable playEcho() {
+	private @NonNull Runnable playEcho() {
 		return () -> {
 			// Play sound coming from the clicked block.
 			if (echoes != null) {
@@ -193,7 +193,7 @@ public abstract class AbstractOreDetector extends Item {
 	}
 
 	@Override
-	public @NotNull InteractionResult useOn(@NotNull UseOnContext context) {
+	public @NonNull InteractionResult useOn(@NonNull UseOnContext context) {
 		if (!context.getLevel().isClientSide()) {
 			clickWorld = (ServerLevel) context.getLevel();
 			clickPos = context.getClickedPos();
@@ -263,7 +263,7 @@ public abstract class AbstractOreDetector extends Item {
 	 *
 	 * @return {@code (x,y,z)} translated.
 	 */
-	private @NotNull Vec3i translate(int x, int y, int z) {
+	private @NonNull Vec3i translate(int x, int y, int z) {
 		return switch (clickFacing) {
 			case DOWN -> new Vec3i(-x, -y, +z);
 			case EAST -> new Vec3i(+y, -x, +z);

@@ -1,13 +1,16 @@
 package eu.pintergabor.oredetector;
 
 import org.jetbrains.annotations.Contract;
-import org.jetbrains.annotations.NotNull;
+import org.jspecify.annotations.NonNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import net.minecraft.resources.Identifier;
 
 
+/**
+ * Common global definitions and utilities.
+ */
 public final class Global {
 
 	private Global() {
@@ -32,7 +35,7 @@ public final class Global {
 	 */
 	@Contract(pure = true)
 	@SuppressWarnings("unused")
-	public static @NotNull String modName(String path) {
+	public static @NonNull String modName(String path) {
 		return MODID + ":" + path;
 	}
 
@@ -43,7 +46,7 @@ public final class Global {
 	 */
 	@Contract("_ -> new")
 	@SuppressWarnings("unused")
-	public static @NotNull Identifier modId(String path) {
+	public static @NonNull Identifier modId(String path) {
 		return Identifier.fromNamespaceAndPath(MODID, path);
 	}
 }

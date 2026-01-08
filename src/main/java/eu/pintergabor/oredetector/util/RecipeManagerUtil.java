@@ -4,13 +4,12 @@ import java.util.Map;
 
 import eu.pintergabor.oredetector.config.ModConfig;
 import eu.pintergabor.oredetector.item.ModItems;
+import org.jspecify.annotations.NonNull;
 
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.Identifier;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.crafting.Recipe;
-
-import org.jetbrains.annotations.NotNull;
 
 
 public final class RecipeManagerUtil {
@@ -25,7 +24,7 @@ public final class RecipeManagerUtil {
 	 * @param map Map of all recipes.
 	 */
 	private static void removeItemRecipe(
-		@NotNull Map<Identifier, Recipe<?>> map, Item item) {
+		@NonNull Map<Identifier, Recipe<?>> map, Item item) {
 		map.remove(BuiltInRegistries.ITEM.getKey(item));
 	}
 

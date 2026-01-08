@@ -3,6 +3,7 @@ package eu.pintergabor.oredetector.datagen;
 import java.util.concurrent.CompletableFuture;
 
 import eu.pintergabor.oredetector.tag.ModBlockTags;
+import org.jspecify.annotations.NonNull;
 
 import net.minecraft.core.HolderLookup;
 import net.minecraft.tags.BlockTags;
@@ -23,7 +24,7 @@ public final class ModBlockTagProvider extends FabricTagProvider.BlockTagProvide
 	}
 
 	@Override
-	protected void addTags(HolderLookup.Provider wrapperLookup) {
+	protected void addTags(HolderLookup.@NonNull Provider wrapperLookup) {
 		valueLookupBuilder(ModBlockTags.AIR)
 			.add(Blocks.AIR, Blocks.VOID_AIR, Blocks.CAVE_AIR);
 		valueLookupBuilder(ModBlockTags.WATER)

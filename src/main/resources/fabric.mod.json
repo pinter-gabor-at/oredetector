@@ -22,7 +22,7 @@
 			"eu.pintergabor.oredetector.config.ModMenu"
 		],
 		"fabric-datagen": [
-			"eu.pintergabor.oredetector.Datagen"
+          "eu.pintergabor.oredetector.ModDataGenerator"
 		]
 	},
 	"mixins": [
