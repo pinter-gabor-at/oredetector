@@ -9,25 +9,28 @@ import net.minecraft.client.data.models.model.ModelTemplates;
 import net.minecraft.world.item.Item;
 
 import net.fabricmc.fabric.api.client.datagen.v1.provider.FabricModelProvider;
-import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
+import net.fabricmc.fabric.api.datagen.v1.FabricPackOutput;
 
 
 public final class ModModelProvider extends FabricModelProvider {
 
-	public ModModelProvider(FabricDataOutput output) {
+	public ModModelProvider(FabricPackOutput output) {
 		super(output);
 	}
 
 	@Override
-	public void generateBlockStateModels(BlockModelGenerators generators) {
+	public void generateBlockStateModels(final @NonNull BlockModelGenerators generators) {
 	}
 
-	private static void generateModel(@NonNull ItemModelGenerators generators, Item item) {
+	private static void generateModel(
+		final @NonNull ItemModelGenerators generators,
+		final @NonNull Item item
+	) {
 		generators.generateFlatItem(item, ModelTemplates.FLAT_HANDHELD_ITEM);
 	}
 
 	@Override
-	public void generateItemModels(ItemModelGenerators generators) {
+	public void generateItemModels(final @NonNull ItemModelGenerators generators) {
 		for (Item detector : ModItems.DETECTORS) {
 			generateModel(generators, detector);
 		}
