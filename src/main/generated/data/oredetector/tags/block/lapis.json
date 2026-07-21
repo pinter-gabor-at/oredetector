@@ -4,10 +4,8 @@
       "id": "#c:ores/lapis",
       "required": false
     },
-    {
-      "id": "#minecraft:lapis_ores",
-      "required": false
-    },
+    "minecraft:lapis_ore",
+    "minecraft:deepslate_lapis_ore",
     "minecraft:lapis_block"
   ]
 }

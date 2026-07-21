@@ -4,10 +4,8 @@
       "id": "#c:ores/diamond",
       "required": false
     },
-    {
-      "id": "#minecraft:diamond_ores",
-      "required": false
-    },
+    "minecraft:diamond_ore",
+    "minecraft:deepslate_diamond_ore",
     "minecraft:diamond_block"
   ]
 }
