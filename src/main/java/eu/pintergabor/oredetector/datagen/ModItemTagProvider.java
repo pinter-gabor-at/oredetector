@@ -8,18 +8,18 @@ import org.jspecify.annotations.NonNull;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.PackOutput;
-import net.minecraft.data.tags.KeyTagProvider;
+import net.minecraft.data.tags.TagsProvider;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 
 
-public class ModItemTagProvider extends KeyTagProvider<Item> {
+public class ModItemTagProvider extends TagsProvider<Item> {
 
 	@SuppressWarnings("unused")
 	public ModItemTagProvider(
-		PackOutput output,
-		CompletableFuture<HolderLookup.Provider> lookupProvider,
-		CompletableFuture<TagLookup<Block>> blockTagProvider
+		final PackOutput output,
+		final CompletableFuture<HolderLookup.Provider> lookupProvider,
+		final CompletableFuture<TagsProvider.TagLookup<Block>> blockTagProvider
 	) {
 		super(output, Registries.ITEM, lookupProvider, Global.MODID);
 	}

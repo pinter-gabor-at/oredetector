@@ -1,7 +1,11 @@
 {
   "values": [
-    "#c:ores/redstone",
-    "#minecraft:redstone_ores",
+    {
+      "id": "#c:ores/redstone",
+      "required": false
+    },
+    "minecraft:redstone_ore",
+    "minecraft:deepslate_redstone_ore",
     "minecraft:redstone_block",
     "minecraft:redstone_torch",
     "minecraft:redstone_wall_torch",

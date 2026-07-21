@@ -1,7 +1,11 @@
 {
   "values": [
-    "#c:ores/emerald",
-    "#minecraft:emerald_ores",
+    {
+      "id": "#c:ores/emerald",
+      "required": false
+    },
+    "minecraft:emerald_ore",
+    "minecraft:deepslate_emerald_ore",
     "minecraft:emerald_block"
   ]
 }

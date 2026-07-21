@@ -1,7 +1,11 @@
 {
   "values": [
-    "#c:ores/diamond",
-    "#minecraft:diamond_ores",
+    {
+      "id": "#c:ores/diamond",
+      "required": false
+    },
+    "minecraft:diamond_ore",
+    "minecraft:deepslate_diamond_ore",
     "minecraft:diamond_block"
   ]
 }

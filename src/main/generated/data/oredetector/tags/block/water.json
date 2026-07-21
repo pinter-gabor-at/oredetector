@@ -1,6 +1,22 @@
 {
   "values": [
+    {
+      "id": "#minecraft:ice",
+      "required": false
+    },
+    {
+      "id": "#minecraft:snow",
+      "required": false
+    },
     "minecraft:water",
+    "minecraft:snow",
+    "minecraft:snow_block",
+    "minecraft:powder_snow",
+    "minecraft:ice",
+    "minecraft:blue_ice",
+    "minecraft:packed_ice",
+    "minecraft:frosted_ice",
+    "minecraft:powder_snow_cauldron",
     "minecraft:water_cauldron"
   ]
 }

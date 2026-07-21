@@ -34,7 +34,7 @@ public class CoalDetector extends DetectOreDetector {
 			new Echo(ImportBlockTags.C_GALENA_ORES, 1, null),
 			new Echo(ImportBlockTags.C_TIN_ORES, 2, Blocks.IRON_BLOCK),
 			new Echo(ImportBlockTags.C_LEAD_ORES, 3, Blocks.IRON_BLOCK),
-			new Echo(ModBlockTags.COPPER, 4, Blocks.COPPER_BLOCK),
+			new Echo(ModBlockTags.COPPER, 4, Blocks.COPPER_BLOCK.weathering().unaffected()),
 			new Echo(ModBlockTags.IRON, 5, Blocks.IRON_BLOCK),
 			new Echo(ModBlockTags.QUARTZ, 6, Blocks.QUARTZ_BLOCK),
 			new Echo(ImportBlockTags.C_CERTUS_QUARTZ_ORES, 6, Blocks.QUARTZ_BLOCK),

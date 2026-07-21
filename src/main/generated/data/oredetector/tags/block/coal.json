@@ -1,7 +1,11 @@
 {
   "values": [
-    "#c:ores/coal",
-    "#minecraft:coal_ores",
+    {
+      "id": "#c:ores/coal",
+      "required": false
+    },
+    "minecraft:coal_ore",
+    "minecraft:deepslate_coal_ore",
     "minecraft:coal_block",
     "minecraft:torch"
   ]
