@@ -26,12 +26,14 @@ public abstract class RecipeManagerMixin {
 	 * Inject code right after loading the recipes from JSON.
 	 */
 	@Inject(method = "prepare(Lnet/minecraft/server/packs/resources/ResourceManager;Lnet/minecraft/util/profiling/ProfilerFiller;)Lnet/minecraft/world/item/crafting/RecipeMap;",
-		at = @At(value = "INVOKE", target = "Lnet/minecraft/server/packs/resources/SimpleJsonResourceReloadListener;scanDirectory(Lnet/minecraft/server/packs/resources/ResourceManager;Lnet/minecraft/resources/FileToIdConverter;Lcom/mojang/serialization/DynamicOps;Lcom/mojang/serialization/Codec;Ljava/util/Map;)V",
+		at = @At(value = "INVOKE", target = "Lnet/minecraft/server/packs/resources/SimpleJsonResourceReloadListener;scanDirectoryWithModifier(Lnet/minecraft/server/packs/resources/ResourceManager;Lnet/minecraft/resources/FileToIdConverter;Lcom/mojang/serialization/DynamicOps;Lcom/mojang/serialization/Codec;Ljava/util/Map;Ljava/util/function/Consumer;)V",
 			shift = At.Shift.AFTER))
 	private void editMap(
-		ResourceManager resourceManager, ProfilerFiller profilerFiller, CallbackInfoReturnable<RecipeMap> cir,
-		@Local SortedMap<Identifier, Recipe<?>> sortedMap
+		ResourceManager manager,
+		ProfilerFiller profiler,
+		CallbackInfoReturnable<RecipeMap> cir,
+		@Local(name = "recipes") SortedMap<Identifier, Recipe<?>> recipes
 	) {
-		RecipeManagerUtil.configRecipes(sortedMap);
+		RecipeManagerUtil.configRecipes(recipes);
 	}
 }
