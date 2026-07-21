@@ -6,6 +6,7 @@ import java.util.function.Function;
 
 import eu.pintergabor.oredetector.Global;
 import eu.pintergabor.oredetector.config.ModConfig;
+import org.jspecify.annotations.NonNull;
 
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
@@ -13,7 +14,7 @@ import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 
-import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
+import net.fabricmc.fabric.api.creativetab.v1.CreativeModeTabEvents;
 
 
 public final class ModItems {
@@ -34,10 +35,12 @@ public final class ModItems {
 	/**
 	 * Register one item.
 	 */
-	private static Item register(
-		String path, Function<Item.Properties, Item> factory, int durability
+	private static @NonNull Item register(
+		final @NonNull String path,
+		final @NonNull Function<Item.Properties, Item> factory,
+		final int durability
 	) {
-		Item detector = Items.registerItem(
+		final Item detector = Items.registerItem(
 			ResourceKey.create(Registries.ITEM, Global.modId(path)),
 			factory,
 			new Item.Properties().durability(durability));
@@ -85,7 +88,7 @@ public final class ModItems {
 			props -> new DiamondDetector(props, 2),
 			config.durabilityDiamondDetector);
 		// Item groups.
-		ItemGroupEvents.modifyEntriesEvent(CreativeModeTabs.TOOLS_AND_UTILITIES).register(
+		CreativeModeTabEvents.modifyOutputEvent(CreativeModeTabs.TOOLS_AND_UTILITIES).register(
 			entries -> DETECTORS.forEach(entries::accept));
 	}
 }
