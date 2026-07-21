@@ -4,6 +4,7 @@
       "id": "#c:ores/quartz",
       "required": false
     },
+    "minecraft:nether_quartz_ore",
     "minecraft:quartz_block",
     "minecraft:quartz_bricks",
     "minecraft:quartz_pillar",

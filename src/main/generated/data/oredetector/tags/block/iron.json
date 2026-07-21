@@ -8,10 +8,26 @@
       "id": "#minecraft:iron_ores",
       "required": false
     },
+    {
+      "id": "#minecraft:anvil",
+      "required": false
+    },
+    {
+      "id": "#minecraft:rails",
+      "required": false
+    },
+    "minecraft:iron_ore",
+    "minecraft:deepslate_iron_ore",
     "minecraft:iron_block",
     "minecraft:raw_iron_block",
     "minecraft:iron_bars",
+    "minecraft:iron_chain",
     "minecraft:iron_door",
+    "minecraft:anvil",
+    "minecraft:chipped_anvil",
+    "minecraft:damaged_anvil",
+    "minecraft:rail",
+    "minecraft:activator_rail",
     "minecraft:iron_trapdoor"
   ]
 }

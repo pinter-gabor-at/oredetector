@@ -164,7 +164,7 @@ public abstract class AbstractOreDetector extends Item {
 			}
 			// Spawn particles in front of the clicked block, at the center,
 			// with a speed vector pointing outwards.
-			final Vec3 ppos = clickPos.relative(clickFacing).getCenter();
+			final Vec3 ppos = Vec3.atCenterOf(clickPos.relative(clickFacing));
 			final Vector3fc pspeed = clickFacing.getUnitVec3f();
 			if (particleBlock != null) {
 				clickWorld.sendParticles(particleBlock,
