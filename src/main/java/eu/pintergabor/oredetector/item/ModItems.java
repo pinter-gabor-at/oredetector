@@ -8,11 +8,12 @@ import eu.pintergabor.oredetector.Global;
 import eu.pintergabor.oredetector.config.ModConfig;
 import org.jspecify.annotations.NonNull;
 
+import net.minecraft.core.Registry;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.Items;
 
 import net.fabricmc.fabric.api.creativetab.v1.CreativeModeTabEvents;
 
@@ -34,16 +35,20 @@ public final class ModItems {
 
 	/**
 	 * Register one item.
+	 * <p>
+	 * See {@code Items.registerItem} for details.
 	 */
 	private static @NonNull Item register(
 		final @NonNull String path,
 		final @NonNull Function<Item.Properties, Item> factory,
 		final int durability
 	) {
-		final Item detector = Items.registerItem(
-			ResourceKey.create(Registries.ITEM, Global.modId(path)),
-			factory,
-			new Item.Properties().durability(durability));
+		final ResourceKey<Item> id = ResourceKey.create(Registries.ITEM, Global.modId(path));
+		final Item.Properties props = new Item.Properties()
+			.durability(durability)
+			.setId(id);
+		final Item detector = factory.apply(props);
+		Registry.register(BuiltInRegistries.ITEM, id, detector);
 		DETECTORS.add(detector);
 		return detector;
 	}
