@@ -33,7 +33,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "oredetector:focused_coal_detector"
+        "recipes": "oredetector:focused_coal_detector"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

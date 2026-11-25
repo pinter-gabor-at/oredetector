@@ -33,7 +33,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "oredetector:gold_detector"
+        "recipes": "oredetector:gold_detector"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

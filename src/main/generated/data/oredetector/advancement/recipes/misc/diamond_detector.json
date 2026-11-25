@@ -33,7 +33,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "oredetector:diamond_detector"
+        "recipes": "oredetector:diamond_detector"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

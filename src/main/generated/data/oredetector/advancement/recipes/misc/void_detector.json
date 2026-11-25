@@ -33,7 +33,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "oredetector:void_detector"
+        "recipes": "oredetector:void_detector"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
