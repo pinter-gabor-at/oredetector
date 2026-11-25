@@ -36,7 +36,7 @@ public final class ModSounds {
 	/**
 	 * Register all sounds.
 	 */
-	public static void init(IEventBus modEventBus) {
+	public static void listen(IEventBus modEventBus) {
 		IntStream.range(0, DETECTOR_3BANGS.length).forEach(
 			i -> DETECTOR_3BANGS[i] = register(String.format("detector_3bangs%d", i)));
 		IntStream.range(0, DETECTOR_3ECHOS.length).forEach(

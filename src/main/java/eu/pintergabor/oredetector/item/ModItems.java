@@ -45,7 +45,7 @@ public final class ModItems {
 	/**
 	 * Create and register items.
 	 */
-	public static void init(IEventBus modEventBus) {
+	public static void listen(IEventBus modEventBus) {
 		// Create Ore Detectors.
 		VOID_DETECTOR_ITEM = register("void_detector",
 			props -> new VoidDetector(props

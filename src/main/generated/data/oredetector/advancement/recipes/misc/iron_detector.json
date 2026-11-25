@@ -33,7 +33,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "oredetector:iron_detector"
+        "recipes": "oredetector:iron_detector"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

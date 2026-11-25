@@ -1,22 +1,31 @@
 package eu.pintergabor.oredetector.datagen;
 
 import eu.pintergabor.oredetector.item.ModItems;
+import org.jetbrains.annotations.Contract;
 import org.jspecify.annotations.NonNull;
 
-import net.minecraft.core.HolderLookup;
+import net.minecraft.advancements.Advancement;
+import net.minecraft.core.registries.MultiRegistryBootstrap;
 import net.minecraft.data.recipes.RecipeCategory;
-import net.minecraft.data.recipes.RecipeOutput;
 import net.minecraft.data.recipes.RecipeProvider;
+import net.minecraft.data.worldgen.BootstrapContext;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.level.ItemLike;
 
 
 public final class ModRecipeGenerator extends RecipeProvider {
 
 	public ModRecipeGenerator(
-		HolderLookup.Provider registries, RecipeOutput output
+		final BootstrapContext<Recipe<?>> recipes,
+		final BootstrapContext<Advancement> advancements
 	) {
-		super(registries, output);
+		super(recipes, advancements);
+	}
+
+	@Contract(value = " -> new", pure = true)
+	public static @NonNull MultiRegistryBootstrap create() {
+		return RecipeProvider.asBootstrap(ModRecipeGenerator::new);
 	}
 
 	/**
@@ -26,7 +35,8 @@ public final class ModRecipeGenerator extends RecipeProvider {
 	 * @param resultItem Result.
 	 */
 	private void generateBasic(
-		ItemLike keyItem, ItemLike resultItem
+		@NonNull ItemLike keyItem,
+		@NonNull ItemLike resultItem
 	) {
 		shaped(RecipeCategory.MISC, resultItem)
 			.pattern("  B")

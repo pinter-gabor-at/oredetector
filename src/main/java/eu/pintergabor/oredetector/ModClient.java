@@ -28,8 +28,9 @@ public final class ModClient {
 						key.matches("^debug.*") ? null : original);
 			});
 		// Creative tabs.
-		modEventBus.addListener(CreativeTabs::init);
+		modEventBus.addListener(CreativeTabs::listen);
 		// Data generator.
-		modEventBus.addListener(ModDataGenerator::init);
+		modEventBus.addListener(ModDataGenerator::listen0);
+		modEventBus.addListener(ModDataGenerator::listen1);
 	}
 }

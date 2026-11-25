@@ -5,11 +5,6 @@ import java.util.concurrent.CompletableFuture;
 
 import eu.pintergabor.oredetector.Global;
 import eu.pintergabor.oredetector.tag.ModBlockTags;
-
-import net.minecraft.references.BlockItemId;
-
-import net.minecraft.world.level.block.WeatheringCopperCollection;
-
 import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.common.data.BlockTagsProvider;
 import org.jspecify.annotations.NonNull;
@@ -18,9 +13,11 @@ import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.TagAppender;
 import net.minecraft.references.BlockIds;
+import net.minecraft.references.BlockItemId;
 import net.minecraft.references.BlockItemIds;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.WeatheringCopperCollection;
 
 
 public final class ModBlockTagProvider extends BlockTagsProvider {
@@ -67,7 +64,7 @@ public final class ModBlockTagProvider extends BlockTagsProvider {
 	@SuppressWarnings({"unchecked", "RedundantSuppression"})
 	private void tagCoal() {
 		final TagAppender<Block> tag = tag(ModBlockTags.COAL);
-		tag.addOptionalTag(Tags.Blocks.ORES_COAL);
+		tag.addOptionalTag(Tags.BlockItems.ORES_COAL.block());
 		tag.add(
 			BlockItemIds.COAL_ORE.block(),
 			BlockItemIds.DEEPSLATE_COAL_ORE.block(),
@@ -87,8 +84,8 @@ public final class ModBlockTagProvider extends BlockTagsProvider {
 	private void tagCopper() {
 		final TagAppender<Block> tag = tag(ModBlockTags.COPPER);
 		tag.addOptionalTag(BlockTags.COPPER);
-		tag.addOptionalTag(Tags.Blocks.ORES_COPPER);
-		tag.addOptionalTag(Tags.Blocks.BARS_COPPER);
+		tag.addOptionalTag(Tags.BlockItems.ORES_COPPER.block());
+		tag.addOptionalTag(Tags.BlockItems.BARS_COPPER.block());
 		tag.add(
 			BlockItemIds.COPPER_ORE.block(),
 			BlockItemIds.DEEPSLATE_COPPER_ORE.block(),
@@ -116,7 +113,7 @@ public final class ModBlockTagProvider extends BlockTagsProvider {
 	@SuppressWarnings({"unchecked", "RedundantSuppression"})
 	private void tagIron() {
 		final TagAppender<Block> tag = tag(ModBlockTags.IRON);
-		tag.addOptionalTag(Tags.Blocks.ORES_IRON);
+		tag.addOptionalTag(Tags.BlockItems.ORES_IRON.block());
 		tag.addOptionalTag(BlockTags.IRON_ORES);
 		tag.addOptionalTag(BlockTags.ANVIL);
 		tag.addOptionalTag(BlockTags.RAILS);
@@ -139,7 +136,7 @@ public final class ModBlockTagProvider extends BlockTagsProvider {
 	@SuppressWarnings({"unchecked", "RedundantSuppression"})
 	private void tagGold() {
 		final TagAppender<Block> tag = tag(ModBlockTags.GOLD);
-		tag.addOptionalTag(Tags.Blocks.ORES_GOLD);
+		tag.addOptionalTag(Tags.BlockItems.ORES_GOLD.block());
 		tag.addOptionalTag(BlockTags.GOLD_ORES);
 		tag.add(
 			BlockItemIds.GOLD_ORE.block(),
@@ -152,7 +149,7 @@ public final class ModBlockTagProvider extends BlockTagsProvider {
 	@SuppressWarnings({"unchecked", "RedundantSuppression"})
 	private void tagRedstone() {
 		final TagAppender<Block> tag = tag(ModBlockTags.REDSTONE);
-		tag.addOptionalTag(Tags.Blocks.ORES_REDSTONE);
+		tag.addOptionalTag(Tags.BlockItems.ORES_REDSTONE.block());
 		tag.add(
 			BlockItemIds.REDSTONE_ORE.block(),
 			BlockItemIds.DEEPSLATE_REDSTONE_ORE.block(),
@@ -166,7 +163,7 @@ public final class ModBlockTagProvider extends BlockTagsProvider {
 	@SuppressWarnings({"unchecked", "RedundantSuppression"})
 	private void tagLapis() {
 		final TagAppender<Block> tag = tag(ModBlockTags.LAPIS);
-		tag.addOptionalTag(Tags.Blocks.ORES_LAPIS);
+		tag.addOptionalTag(Tags.BlockItems.ORES_LAPIS.block());
 		tag.add(
 			BlockItemIds.LAPIS_ORE.block(),
 			BlockItemIds.DEEPSLATE_LAPIS_ORE.block(),
@@ -176,7 +173,7 @@ public final class ModBlockTagProvider extends BlockTagsProvider {
 	@SuppressWarnings({"unchecked", "RedundantSuppression"})
 	private void tagDiamond() {
 		final TagAppender<Block> tag = tag(ModBlockTags.DIAMOND);
-		tag.addOptionalTag(Tags.Blocks.ORES_DIAMOND);
+		tag.addOptionalTag(Tags.BlockItems.ORES_DIAMOND.block());
 		tag.add(
 			BlockItemIds.DIAMOND_ORE.block(),
 			BlockItemIds.DEEPSLATE_DIAMOND_ORE.block(),
@@ -186,7 +183,7 @@ public final class ModBlockTagProvider extends BlockTagsProvider {
 	@SuppressWarnings({"unchecked", "RedundantSuppression"})
 	private void tagEmerald() {
 		final TagAppender<Block> tag = tag(ModBlockTags.EMERALD);
-		tag.addOptionalTag(Tags.Blocks.ORES_EMERALD);
+		tag.addOptionalTag(Tags.BlockItems.ORES_EMERALD.block());
 		tag.add(
 			BlockItemIds.EMERALD_ORE.block(),
 			BlockItemIds.DEEPSLATE_EMERALD_ORE.block(),
@@ -196,7 +193,7 @@ public final class ModBlockTagProvider extends BlockTagsProvider {
 	@SuppressWarnings({"unchecked", "RedundantSuppression"})
 	private void tagQuartz() {
 		final TagAppender<Block> tag = tag(ModBlockTags.QUARTZ);
-		tag.addOptionalTag(Tags.Blocks.ORES_QUARTZ);
+		tag.addOptionalTag(Tags.BlockItems.ORES_QUARTZ.block());
 		tag.add(
 			BlockItemIds.NETHER_QUARTZ_ORE.block(),
 			BlockItemIds.QUARTZ_BLOCK.block(),

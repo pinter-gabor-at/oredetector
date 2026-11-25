@@ -5,7 +5,6 @@ import eu.pintergabor.oredetector.item.ModItems;
 import eu.pintergabor.oredetector.sound.ModSounds;
 import eu.pintergabor.oredetector.tag.ImportBlockTags;
 import eu.pintergabor.oredetector.tag.ModBlockTags;
-import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.common.Mod;
@@ -19,16 +18,18 @@ import org.jspecify.annotations.NonNull;
 @Mod(Global.MODID)
 public final class ModCommon {
 
-	@SuppressWarnings("unused")
-	public ModCommon(IEventBus modEventBus, @NonNull ModContainer modContainer, Dist dist) {
+	public ModCommon(
+		@NonNull IEventBus modEventBus,
+		@NonNull ModContainer modContainer
+	) {
 		// Use configuration parameters on both sides and load them on startup.
 		modContainer.registerConfig(ModConfig.Type.STARTUP, ModConfigData.SPEC);
 		// Register sounds.
-		ModSounds.init(modEventBus);
+		ModSounds.listen(modEventBus);
 		// Register tags.
 		ImportBlockTags.init();
 		ModBlockTags.init();
 		// Register items.
-		ModItems.init(modEventBus);
+		ModItems.listen(modEventBus);
 	}
 }
